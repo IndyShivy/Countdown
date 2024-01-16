@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="#96D196" />
 
-    <!-- The color to use for the background of a selected item. -->
-    <item android:color="#434242" android:state_selected="true" />
-    <!-- The color to use for the background of a pressed item. -->
-    <item android:color="#434242" android:state_pressed="true" />
-    <!-- The default background color. -->
-    <item android:color="#434242" />
 </selector>
