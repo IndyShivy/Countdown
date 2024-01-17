@@ -4,5 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background_light">#96D196</color>
     <color name="background_dark">#4E4E4E</color>
-    <color name="button_dark">#000000</color>
+    <color name="nav_background_light">#07492D</color>
+    <color name="nav_background_dark">#000000</color>
 </resources>

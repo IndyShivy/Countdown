@@ -4,16 +4,16 @@
     <item
 
         android:id="@+id/menu_home"
-        android:icon="@drawable/home_round"
+        android:icon="@drawable/home"
         android:title="@string/Home" />
 
     <item
         android:id="@+id/menu_add"
-        android:icon="@drawable/add_round"
+        android:icon="@drawable/plus"
         android:title="@string/add" />
 
     <item
         android:id="@+id/menu_myevents"
-        android:icon="@drawable/event_filled"
+        android:icon="@drawable/event"
         android:title="@string/my_events" />
 </menu>

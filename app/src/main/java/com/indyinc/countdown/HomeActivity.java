@@ -1,5 +1,6 @@
 package com.indyinc.countdown;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.content.ContextCompat;
+
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 
@@ -37,10 +40,20 @@ public class HomeActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(isDarkTheme ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_home);
 
+        // Set the navigation bar color
+        if (isDarkTheme) {
+            getWindow().setNavigationBarColor(getColor(R.color.nav_background_dark));
+        } else {
+            getWindow().setNavigationBarColor(getColor(R.color.nav_background_light));
+        }
+
+
 
         bottomNavigationView = findViewById(R.id.navigationView);
-        bottomNavigationView.setOnItemSelectedListener(navItemSelectedListener);
         darkModeSwitch = findViewById(R.id.darkModeSwitch);
+        bottomNavigationView.setSelectedItemId(R.id.menu_home);
+        bottomNavigationView.setOnItemSelectedListener(navItemSelectedListener);
+
 
         //set the switch to the correct state
         darkModeSwitch.setChecked(isDarkTheme);
@@ -55,8 +68,12 @@ public class HomeActivity extends AppCompatActivity {
             //set the app's theme
             AppCompatDelegate.setDefaultNightMode(isChecked ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
 
-            //recreate the activity to apply the theme
+            //restart the activity with a fade-in and fade-out animation
             recreate();
+//            @SuppressLint("UnsafeIntentLaunch") Intent intent = getIntent();
+//            finish();
+//            startActivity(intent);
+//            overridePendingTransition(R.anim.hold, R.anim.fade_in);
         });
     }
 
@@ -75,11 +92,18 @@ public class HomeActivity extends AppCompatActivity {
             }
 
             if (intent != null) {
+                //pass in if the theme is dark or not
+                intent.putExtra(IS_DARK_THEME, isDarkTheme);
                 startActivity(intent);
+                overridePendingTransition(R.anim.hold, R.anim.fade_in);
+                //close the current activity
+                finish();
                 return true;
             }
 
             return false;
         }
     };
+
+
 }

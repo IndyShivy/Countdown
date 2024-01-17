@@ -6,20 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <Button
-        android:id="@+id/button"
-        style="@style/buttonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.836" />
-
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="180dp"
         android:layout_height="59dp"
         android:orientation="horizontal"
@@ -58,6 +47,53 @@
         android:layout_height="86dp"
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/frag_nav_menu"></com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:menu="@menu/activity_nav_menu">
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <TextView
+        android:id="@+id/eventName"
+        android:layout_width="282dp"
+        android:layout_height="75dp"
+        android:text="Event Name"
+        app:layout_constraintBottom_toTopOf="@+id/navigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.148" />
+
+    <TextView
+        android:id="@+id/eventTimeFormat"
+        android:layout_width="303dp"
+        android:layout_height="239dp"
+        android:text="Event TIme Formatted"
+        app:layout_constraintBottom_toTopOf="@+id/navigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.395" />
+
+    <TextView
+        android:id="@+id/untilView"
+        android:layout_width="225dp"
+        android:layout_height="67dp"
+        android:layout_marginBottom="280dp"
+        android:text="UNTIL"
+        app:layout_constraintBottom_toTopOf="@+id/navigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventTimeFormat"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/dateView"
+        android:layout_width="320dp"
+        android:layout_height="145dp"
+        android:text="The Date of the Event"
+        app:layout_constraintBottom_toTopOf="@+id/navigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/untilView"
+        app:layout_constraintVertical_bias="0.161" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

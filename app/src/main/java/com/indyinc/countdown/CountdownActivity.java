@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Countdown extends AppCompatActivity {
+public class CountdownActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
