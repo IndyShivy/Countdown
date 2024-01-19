@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import androidx.viewpager.widget.PagerAdapter;
 
-public class CustomPagerAdapter extends PagerAdapter {
+public class AddAdapt extends PagerAdapter {
 
     private String[] data = new String[]{"Day", "Week", "Fortnight", "Month"};
     private int currentPosition = 0;

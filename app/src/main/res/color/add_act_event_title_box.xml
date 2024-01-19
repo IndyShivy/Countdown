@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Color for activated state -->
+    <item android:color="@color/act_all_nav_selected_dark" android:state_enabled="true" android:state_focused="true"/>
+    <!-- Color for deactivated state -->
+    <item android:color="@color/background_light" android:state_enabled="false"/>
+    <!-- Default color -->
+    <item android:color="@color/black"/>
+</selector>

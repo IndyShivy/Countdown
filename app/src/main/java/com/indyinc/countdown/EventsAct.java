@@ -16,12 +16,12 @@ import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
 
-public class MyEventsActivity extends AppCompatActivity {
+public class EventsAct extends AppCompatActivity {
 
     private static final String IS_DARK_THEME = "IS_DARK_THEME";
     private boolean isDarkTheme;
-    private MyEventsAdapter myEventsAdapter;
-    private RecyclerView recyclerView;
+    private EventsAdapt myEventsAdapter;
+    private RecyclerView eventsRecycler;
     private DateDatabase db;
     private Context context;
 
@@ -32,7 +32,7 @@ public class MyEventsActivity extends AppCompatActivity {
 
         //set the selected menu options as add and setup listener
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
-        bottomNavigationView.setSelectedItemId(R.id.menu_myevents);
+        bottomNavigationView.setSelectedItemId(R.id.menu_events);
         bottomNavigationView.setOnItemSelectedListener(navItemSelectedListener);
 
         //Get the app's theme from shared preferences then set it as the app's theme
@@ -48,10 +48,10 @@ public class MyEventsActivity extends AppCompatActivity {
         //set the context
         context = this;
         db = new DateDatabase(context);
-        myEventsAdapter = new MyEventsAdapter(new ArrayList<>(), context);
-        recyclerView = findViewById(R.id.eventsRecycler);
-        recyclerView.setAdapter(myEventsAdapter);
-        recyclerView.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(context));
+        myEventsAdapter = new EventsAdapt(new ArrayList<>(), context);
+        eventsRecycler = findViewById(R.id.eventsRecycler);
+        eventsRecycler.setAdapter(myEventsAdapter);
+        eventsRecycler.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(context));
         populateRecyclerView();
 
 
@@ -63,21 +63,20 @@ public class MyEventsActivity extends AppCompatActivity {
             Intent intent = null;
 
             int id = item.getItemId();
-            if (id == R.id.menu_myevents) {
+            if (id == R.id.menu_events) {
                 return true;
             } else if (id == R.id.menu_home) {
-                intent = new Intent(MyEventsActivity.this, HomeActivity.class);
+                intent = new Intent(EventsAct.this, HomeAct.class);
             } else if (id == R.id.menu_add) {
-                intent = new Intent(MyEventsActivity.this, AddActivity.class);
+                intent = new Intent(EventsAct.this, AddAct.class);
             }
 
             if (intent != null) {
-                //pass in if the theme is dark or not
+                //intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 intent.putExtra(IS_DARK_THEME, isDarkTheme);
                 startActivity(intent);
                 overridePendingTransition(R.anim.hold, R.anim.fade_in);
-                //close the current activity
-                finish();
+
                 return true;
             }
 
@@ -88,14 +87,24 @@ public class MyEventsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        //start the home intent
-        startActivity(new Intent(MyEventsActivity.this, HomeActivity.class));
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        Intent intent = new Intent(EventsAct.this, HomeAct.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
     public void populateRecyclerView(){
         ArrayList<DateItem> dateItems = db.getAllDates();
-        myEventsAdapter = new MyEventsAdapter(dateItems, context);
-        recyclerView.setAdapter(myEventsAdapter);
-        recyclerView.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(context));
+        myEventsAdapter = new EventsAdapt(dateItems, context);
+        eventsRecycler.setAdapter(myEventsAdapter);
+        eventsRecycler.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(context));
+        myEventsAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
+        bottomNavigationView.setSelectedItemId(R.id.menu_events);
+    }
+
+
 }

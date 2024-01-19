@@ -13,7 +13,7 @@
         android:title="@string/add" />
 
     <item
-        android:id="@+id/menu_myevents"
+        android:id="@+id/menu_events"
         android:icon="@drawable/event"
         android:title="@string/my_events" />
 </menu>

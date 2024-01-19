@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
+    tools:context=".HomeAct">
 
 
     <LinearLayout
@@ -85,7 +85,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/dateView"
+        android:id="@+id/dateLabel"
         android:layout_width="320dp"
         android:layout_height="145dp"
         android:text="The Date of the Event"

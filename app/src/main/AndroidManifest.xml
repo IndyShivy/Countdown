@@ -13,16 +13,16 @@
         android:theme="@style/Base.Theme.Countdown"
         tools:targetApi="31">
         <activity
-            android:name=".AddActivity"
+            android:name=".AddAct"
             android:exported="false" />
         <activity
-            android:name=".MyEventsActivity"
+            android:name=".EventsAct"
             android:exported="false" />
         <activity
             android:name=".CountdownActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".HomeAct"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,13 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MyEventsAdapter extends RecyclerView.Adapter<MyEventsAdapter.ViewHolder> {
+public class EventsAdapt extends RecyclerView.Adapter<EventsAdapt.ViewHolder> {
     private ArrayList<DateItem> dateItems;
     private DateDatabase db;
     private final Context context;
 
 
-    public MyEventsAdapter(ArrayList<DateItem> dateItems, Context context) {
+    public EventsAdapt(ArrayList<DateItem> dateItems, Context context) {
         this.dateItems = dateItems;
         this.context = context;
         this.db = new DateDatabase(context);
@@ -30,7 +29,7 @@ public class MyEventsAdapter extends RecyclerView.Adapter<MyEventsAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.act_myevents_adapter_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.act_events_adapter_item, parent, false);
         db = new DateDatabase(view.getContext());
         return new ViewHolder(view);
     }
@@ -48,7 +47,7 @@ public class MyEventsAdapter extends RecyclerView.Adapter<MyEventsAdapter.ViewHo
             View dialogView = backupInflate.inflate(R.layout.frag_home_backup_restore_dialog, null);
             builder.setView(dialogView);
             TextView title = dialogView.findViewById(R.id.dialog_title);
-            String titleSet = "Delete Card from Collection";
+            String titleSet = "Delete Event";
             title.setText(titleSet);
             title.setTextColor(Color.WHITE);
             TextView message = dialogView.findViewById(R.id.dialog_message);
@@ -59,7 +58,6 @@ public class MyEventsAdapter extends RecyclerView.Adapter<MyEventsAdapter.ViewHo
                         db.deleteEvent(dateItem);
                         dateItems.remove(dateItem);
                         notifyItemRemoved(position);
-                        notifyItemRangeChanged(position, getItemCount());
                     })
                     .setNegativeButton("No", null)
                     .show();
@@ -79,8 +77,8 @@ public class MyEventsAdapter extends RecyclerView.Adapter<MyEventsAdapter.ViewHo
         // Constructor
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            eventTitleTextView = itemView.findViewById(R.id.eventTitleTextView);
-            dateTextView = itemView.findViewById(R.id.eventDateTextView);
+            eventTitleTextView = itemView.findViewById(R.id.eventTitle);
+            dateTextView = itemView.findViewById(R.id.eventDate);
             removeButton = itemView.findViewById(R.id.removeButton);
         }
     }

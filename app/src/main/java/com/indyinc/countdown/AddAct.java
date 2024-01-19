@@ -10,12 +10,10 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +28,7 @@ import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.Calendar;
 
-public class AddActivity extends AppCompatActivity {
+public class AddAct extends AppCompatActivity {
 
     private static final String IS_DARK_THEME = "IS_DARK_THEME";
     private boolean isDarkTheme;
@@ -63,64 +61,14 @@ public class AddActivity extends AppCompatActivity {
 
         // Get the root layout
         ConstraintLayout rootLayout = findViewById(R.id.addLayout);
-        EditText eventTitle = findViewById(R.id.eventTitle);
+        EditText eventTitle = findViewById(R.id.eventTitleGet);
         ViewPager viewPager = findViewById(R.id.viewPager);
         Button addButton = findViewById(R.id.addButton);
-        TextView datePicker = findViewById(R.id.dateView);
-        CustomPagerAdapter adapter = new CustomPagerAdapter();
+        TextView dateView = findViewById(R.id.dateLabel);
+        AddAdapt adapter = new AddAdapt();
         viewPager.setAdapter(adapter);
 
 
-
-        // Set the touch listener
-        rootLayout.setOnTouchListener((v, event) -> {
-            if (!(v instanceof EditText)) {
-                View focusedView = getCurrentFocus();
-                if (focusedView != null) {
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                    focusedView.clearFocus();
-                }
-            }
-            return false;
-        });
-
-        //add button event that will check if the event name and date has been selected
-        addButton.setOnClickListener(v -> {
-            //check if the event name is empty
-            if (eventTitle.getText().toString().isEmpty()) {
-                Toast.makeText(AddActivity.this, "Please enter an event name", Toast.LENGTH_SHORT).show();
-                eventTitle.requestFocus();
-            } else if (date.isEmpty()) {
-                Toast.makeText(AddActivity.this, "Please select a date", Toast.LENGTH_SHORT).show();
-            } else {
-
-                System.out.println("Title" + eventTitle.getText().toString() + "Date" + date + "Format" + adapter.getFormat());
-                date = "";
-
-
-//                //add the event to the database
-//                db = new DateDatabase(AddActivity.this);
-//                db.addDate(new DateItem(eventTitle.getText().toString(), date, adapter.getFormat()));
-
-            }
-        });
-
-
-        // Set the OnEditorActionListener
-        eventTitle.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_NEXT ||
-                        (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
-                    v.clearFocus();
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                    return true;
-                }
-                return false;
-            }
-        });
 
 
         Button datePickerButton = findViewById(R.id.showDatePickerButton);
@@ -139,15 +87,39 @@ public class AddActivity extends AppCompatActivity {
             int mDay = c.get(Calendar.DAY_OF_MONTH);
 
             // Launch Date Picker Dialog
-            DatePickerDialog datePickerDialog = new DatePickerDialog(AddActivity.this,
-                    new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                            date = dayOfMonth+ "/" + monthOfYear+1 + "/" + year;
-                        }
-                    }, mYear, mMonth, mDay);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(AddAct.this,
+                    (view, year, monthOfYear, dayOfMonth) -> date = dayOfMonth+ "/" + ((int)(monthOfYear)+1) + "/" + year, mYear, mMonth, mDay);
+            //set the minimum date to today
+            datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
             datePickerDialog.show();
+            //after the date is selected, set the date view to the selected date
+            datePickerDialog.setOnDismissListener(dialog -> datePickerButton.setText(date));
+
         });
+
+        //add button event that will check if the event name and date has been selected
+        addButton.setOnClickListener(v -> {
+            String select = "Select";
+            //check if the event name is empty
+            if (eventTitle.getText().toString().isEmpty()) {
+                Toast.makeText(AddAct.this, "Please enter an event name", Toast.LENGTH_SHORT).show();
+                eventTitle.requestFocus();
+            } else if (date.isEmpty()) {
+                Toast.makeText(AddAct.this, "Please select a date", Toast.LENGTH_SHORT).show();
+            } else {
+
+                System.out.println("Title" + eventTitle.getText().toString() + "Date" + date + "Format" + adapter.getFormat());
+
+                DateItem dateItem = new DateItem(eventTitle.getText().toString(), date, adapter.getFormat());
+                db = new DateDatabase(AddAct.this);
+                db.insertDate(dateItem);
+                date = " ";
+                Toast.makeText(AddAct.this, "Event added!", Toast.LENGTH_SHORT).show();
+                datePickerButton.setText(select);
+                eventTitle.setText("");
+            }
+        });
+
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -166,6 +138,37 @@ public class AddActivity extends AppCompatActivity {
                 // Handle scroll state changes
             }
         });
+
+
+        // Hide the keyboard when the user presses enter
+        eventTitle.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_NEXT ||
+                    (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+                v.clearFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                return true;
+            }
+            return false;
+        });
+
+
+        // On touch for the root to close the keyboard
+        rootLayout.setOnTouchListener((v, event) -> {
+            if (!(v instanceof EditText)) {
+                View focusedView = getCurrentFocus();
+                if (focusedView != null) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    focusedView.clearFocus();
+                }
+            }
+            return false;
+        });
+
+
+
+
     }
 
 
@@ -178,15 +181,15 @@ public class AddActivity extends AppCompatActivity {
             if (id == R.id.menu_add) {
                 return true;
             } else if (id == R.id.menu_home) {
-                intent = new Intent(AddActivity.this, HomeActivity.class);
-            } else if (id == R.id.menu_myevents) {
-                intent = new Intent(AddActivity.this, MyEventsActivity.class);
+                intent = new Intent(AddAct.this, HomeAct.class);
+            } else if (id == R.id.menu_events) {
+                intent = new Intent(AddAct.this, EventsAct.class);
             }
 
             if (intent != null) {
+                //intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 overridePendingTransition(R.anim.hold, R.anim.fade_in);
-                finish();
                 return true;
             }
 
@@ -200,8 +203,17 @@ public class AddActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        //start the home intent
-        startActivity(new Intent(AddActivity.this, HomeActivity.class));
+        //close all activities and start the home activity
+        Intent intent = new Intent(AddAct.this, HomeAct.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
+        bottomNavigationView.setSelectedItemId(R.id.menu_add);
     }
 }

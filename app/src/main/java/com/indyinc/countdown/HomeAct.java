@@ -17,7 +17,7 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeAct extends AppCompatActivity {
 
     private static final String IS_DARK_THEME = "IS_DARK_THEME";
     private boolean isDarkTheme;
@@ -82,9 +82,9 @@ public class HomeActivity extends AppCompatActivity {
             if (id == R.id.menu_home) {
                 return true;
             } else if (id == R.id.menu_add) {
-                intent = new Intent(HomeActivity.this, AddActivity.class);
-            } else if (id == R.id.menu_myevents) {
-                intent = new Intent(HomeActivity.this, MyEventsActivity.class);
+                intent = new Intent(HomeAct.this, AddAct.class);
+            } else if (id == R.id.menu_events) {
+                intent = new Intent(HomeAct.this, EventsAct.class);
             }
 
             if (intent != null) {
@@ -100,6 +100,13 @@ public class HomeActivity extends AppCompatActivity {
             return false;
         }
     };
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //close all activities and close the app
+        this.finishAffinity();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
 
 
 }

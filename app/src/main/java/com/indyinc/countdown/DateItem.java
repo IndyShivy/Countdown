@@ -1,9 +1,9 @@
 package com.indyinc.countdown;
 
 public class DateItem {
-    private String title;
-    private String date;
-    private String format;
+    private final String title;
+    private final String date;
+    private final String format;
 
     public DateItem(String title, String date, String format) {
         this.title = title;

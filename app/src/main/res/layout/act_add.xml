@@ -5,7 +5,7 @@
     android:id="@+id/addLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddActivity">
+    tools:context=".AddAct">
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -38,40 +38,40 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/borderView2"
         app:layout_constraintEnd_toEndOf="@+id/borderView2"
-        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintHorizontal_bias="0.048"
         app:layout_constraintStart_toStartOf="@+id/borderView2"
         app:layout_constraintTop_toTopOf="@+id/borderView2"
         app:layout_constraintVertical_bias="0.492" />
 
     <TextView
-        android:id="@+id/dateView"
-        android:layout_width="138dp"
-        android:layout_height="38dp"
+        android:id="@+id/dateLabel"
+        android:layout_width="70dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginEnd="248dp"
         android:gravity="center"
-        android:text="Date View"
+        android:text="Date"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/borderView1"
         app:layout_constraintEnd_toEndOf="@+id/borderView1"
-        app:layout_constraintHorizontal_bias="0.28"
-        app:layout_constraintStart_toEndOf="@+id/colonView"
+        app:layout_constraintHorizontal_bias="0.050"
+        app:layout_constraintStart_toStartOf="@+id/borderView1"
         app:layout_constraintTop_toTopOf="@+id/borderView1"
-        app:layout_constraintVertical_bias="0.556" />
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/colonView"
-        android:layout_width="45dp"
+        android:layout_width="28dp"
         android:layout_height="36dp"
+        android:layout_marginEnd="220dp"
         android:gravity="center"
         android:text=":"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/borderView1"
         app:layout_constraintEnd_toEndOf="@+id/borderView1"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/showDatePickerButton"
-        app:layout_constraintTop_toTopOf="@+id/borderView1"
-        app:layout_constraintVertical_bias="0.555" />
+        app:layout_constraintTop_toTopOf="@+id/borderView1" />
 
     <View
         android:id="@+id/borderView2"
@@ -80,13 +80,13 @@
         android:layout_marginTop="48dp"
         android:background="@drawable/act_add_button_border"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/borderView1" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/CustomTextInputLayout"
         android:layout_width="388dp"
         android:layout_height="95dp"
         android:layout_marginTop="156dp"
@@ -95,20 +95,18 @@
         android:paddingEnd="23dp"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="RtlSymmetry">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/eventTitle"
-            android:layout_width="342dp"
+            android:id="@+id/eventTitleGet"
+            android:layout_width="340dp"
             android:layout_height="58dp"
             android:layout_marginTop="5dp"
             android:imeOptions="actionGo"
             android:inputType="text"
-
-
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,13 +117,13 @@
         app:layout_constraintBottom_toBottomOf="@+id/borderView2"
         app:layout_constraintEnd_toStartOf="@+id/viewPager"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/colonView2"
+        app:layout_constraintStart_toEndOf="@+id/dateColon"
         app:layout_constraintTop_toTopOf="@+id/borderView2"
         app:layout_constraintVertical_bias="0.492"
         app:srcCompat="@drawable/back" />
 
     <TextView
-        android:id="@+id/colonView2"
+        android:id="@+id/dateColon"
         android:layout_width="28dp"
         android:layout_height="36dp"
         android:layout_marginTop="14dp"
@@ -144,16 +142,16 @@
     <Button
         android:id="@+id/showDatePickerButton"
         style="@style/buttonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Date"
+        android:layout_width="157dp"
+        android:layout_height="67dp"
+        android:text="Select"
         android:textColorLink="#AA2222"
         app:layout_constraintBottom_toBottomOf="@+id/borderView1"
         app:layout_constraintEnd_toEndOf="@+id/borderView1"
-        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintHorizontal_bias="0.765"
         app:layout_constraintStart_toStartOf="@+id/borderView1"
         app:layout_constraintTop_toTopOf="@+id/borderView1"
-        app:layout_constraintVertical_bias="0.561" />
+        app:layout_constraintVertical_bias="0.526" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
@@ -185,14 +183,15 @@
     <Button
         android:id="@+id/addButton"
         style="@style/buttonStyle"
-        android:layout_width="239dp"
-        android:layout_height="48dp"
+        android:layout_width="251dp"
+        android:layout_height="70dp"
         android:text="Add"
         app:layout_constraintBottom_toTopOf="@+id/navigationView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/borderView2"
-        app:layout_constraintVertical_bias="0.341" />
+        app:layout_constraintVertical_bias="0.442" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

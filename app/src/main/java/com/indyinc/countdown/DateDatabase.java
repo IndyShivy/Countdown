@@ -44,7 +44,7 @@ public class DateDatabase extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
-    public void insertDate(String title, String date, String format){
+    public void insertDateRaw(String title, String date, String format){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         String query = "INSERT INTO " + TABLE_NAME + " (" +
                 COLUMN_TITLE + ", " +
@@ -53,6 +53,18 @@ public class DateDatabase extends SQLiteOpenHelper {
                 title + "', '" +
                 date + "', '" +
                 format + "');";
+        sqLiteDatabase.execSQL(query);
+    }
+
+    public void insertDate(DateItem dateItem){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        String query = "INSERT INTO " + TABLE_NAME + " (" +
+                COLUMN_TITLE + ", " +
+                COLUMN_DATE + ", " +
+                COLUMN_FORMAT + ") VALUES ('" +
+                dateItem.getTitle() + "', '" +
+                dateItem.getDate() + "', '" +
+                dateItem.getFormat() + "');";
         sqLiteDatabase.execSQL(query);
     }
 
