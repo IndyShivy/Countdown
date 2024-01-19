@@ -9,16 +9,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.KeyEvent;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.ViewPager;
@@ -28,10 +25,10 @@ import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.Calendar;
 
+/** @noinspection ALL*/
 public class AddAct extends AppCompatActivity {
 
     private static final String IS_DARK_THEME = "IS_DARK_THEME";
-    private boolean isDarkTheme;
     public DateDatabase db;
     public String date;
 
@@ -50,7 +47,7 @@ public class AddAct extends AppCompatActivity {
 
         //Get the app's theme from shared preferences then set it as the app's theme
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        isDarkTheme = sharedPreferences.getBoolean(IS_DARK_THEME, false);
+        boolean isDarkTheme = sharedPreferences.getBoolean(IS_DARK_THEME, false);
 
         if (isDarkTheme) {
             getWindow().setNavigationBarColor(getColor(R.color.nav_background_dark));
@@ -64,7 +61,6 @@ public class AddAct extends AppCompatActivity {
         EditText eventTitle = findViewById(R.id.eventTitleGet);
         ViewPager viewPager = findViewById(R.id.viewPager);
         Button addButton = findViewById(R.id.addButton);
-        TextView dateView = findViewById(R.id.dateLabel);
         AddAdapt adapter = new AddAdapt();
         viewPager.setAdapter(adapter);
 
@@ -172,29 +168,26 @@ public class AddAct extends AppCompatActivity {
     }
 
 
-    private final NavigationBarView.OnItemSelectedListener navItemSelectedListener = new NavigationBarView.OnItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Intent intent = null;
+    private final NavigationBarView.OnItemSelectedListener navItemSelectedListener = item -> {
+        Intent intent = null;
 
-            int id = item.getItemId();
-            if (id == R.id.menu_add) {
-                return true;
-            } else if (id == R.id.menu_home) {
-                intent = new Intent(AddAct.this, HomeAct.class);
-            } else if (id == R.id.menu_events) {
-                intent = new Intent(AddAct.this, EventsAct.class);
-            }
-
-            if (intent != null) {
-                //intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(intent);
-                overridePendingTransition(R.anim.hold, R.anim.fade_in);
-                return true;
-            }
-
-            return false;
+        int id = item.getItemId();
+        if (id == R.id.menu_add) {
+            return true;
+        } else if (id == R.id.menu_home) {
+            intent = new Intent(AddAct.this, HomeAct.class);
+        } else if (id == R.id.menu_events) {
+            intent = new Intent(AddAct.this, EventsAct.class);
         }
+
+        if (intent != null) {
+            //intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
+            overridePendingTransition(R.anim.hold, R.anim.fade_in);
+            return true;
+        }
+
+        return false;
     };
 
 

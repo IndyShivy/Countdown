@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +17,7 @@ import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
 
+/** @noinspection ALL*/
 public class EventsAct extends AppCompatActivity {
 
     private static final String IS_DARK_THEME = "IS_DARK_THEME";
@@ -91,6 +93,7 @@ public class EventsAct extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
+    @SuppressLint("NotifyDataSetChanged")
     public void populateRecyclerView(){
         ArrayList<DateItem> dateItems = db.getAllDates();
         myEventsAdapter = new EventsAdapt(dateItems, context);

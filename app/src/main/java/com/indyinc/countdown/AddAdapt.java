@@ -5,11 +5,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 public class AddAdapt extends PagerAdapter {
 
-    private String[] data = new String[]{"Day", "Week", "Fortnight", "Month"};
+    private final String[] data = new String[]{"Day", "Week", "Fortnight", "Month"};
     private int currentPosition = 0;
 
     @Override
@@ -18,10 +19,11 @@ public class AddAdapt extends PagerAdapter {
     }
 
     @Override
-    public boolean isViewFromObject(View view, Object object) {
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return view == object;
     }
 
+    @NonNull
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         TextView textView = new TextView(container.getContext());
@@ -33,7 +35,7 @@ public class AddAdapt extends PagerAdapter {
     }
 
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
+    public void destroyItem(ViewGroup container, int position, @NonNull Object object) {
         container.removeView((View) object);
     }
 

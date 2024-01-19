@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class EventsAdapt extends RecyclerView.Adapter<EventsAdapt.ViewHolder> {
-    private ArrayList<DateItem> dateItems;
+    private final ArrayList<DateItem> dateItems;
     private DateDatabase db;
     private final Context context;
 
@@ -44,7 +44,7 @@ public class EventsAdapt extends RecyclerView.Adapter<EventsAdapt.ViewHolder> {
             String eventTitle = dateItem.getTitle();
             AlertDialog.Builder builder = new AlertDialog.Builder(context,R.style.AlertDialogCustom);
             LayoutInflater backupInflate = LayoutInflater.from(context);
-            View dialogView = backupInflate.inflate(R.layout.frag_home_backup_restore_dialog, null);
+            View dialogView = backupInflate.inflate(R.layout.act_events_alert_dialog, null);
             builder.setView(dialogView);
             TextView title = dialogView.findViewById(R.id.dialog_title);
             String titleSet = "Delete Event";

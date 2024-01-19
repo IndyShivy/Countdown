@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.Countdown" parent="Theme.Material3.DayNight.NoActionBar">
 
@@ -29,7 +29,7 @@
     </style>
 
     <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:background">@drawable/frag_home_alert_dialog_background</item>
+        <item name="android:background">@drawable/act_events_alert_dialog_background</item>
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 

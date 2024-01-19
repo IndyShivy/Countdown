@@ -17,6 +17,7 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+/** @noinspection ALL*/
 public class HomeAct extends AppCompatActivity {
 
     private static final String IS_DARK_THEME = "IS_DARK_THEME";
@@ -66,10 +67,6 @@ public class HomeAct extends AppCompatActivity {
 
             //restart the activity with a fade-in and fade-out animation
             recreate();
-//            @SuppressLint("UnsafeIntentLaunch") Intent intent = getIntent();
-//            finish();
-//            startActivity(intent);
-//            overridePendingTransition(R.anim.hold, R.anim.fade_in);
         });
     }
 
