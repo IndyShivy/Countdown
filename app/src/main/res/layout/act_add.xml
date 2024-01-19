@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddActivity">
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigationView"
+        style="@style/CustomBottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="86dp"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/activity_nav_menu">
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <View
+        android:id="@+id/borderView1"
+        android:layout_width="340dp"
+        android:layout_height="162dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/act_add_button_border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+
+    <TextView
+        android:id="@+id/formatLabel"
+        android:layout_width="70dp"
+        android:layout_height="36dp"
+        android:gravity="center"
+        android:text="Format"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/borderView2"
+        app:layout_constraintEnd_toEndOf="@+id/borderView2"
+        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintStart_toStartOf="@+id/borderView2"
+        app:layout_constraintTop_toTopOf="@+id/borderView2"
+        app:layout_constraintVertical_bias="0.492" />
+
+    <TextView
+        android:id="@+id/dateView"
+        android:layout_width="138dp"
+        android:layout_height="38dp"
+        android:gravity="center"
+        android:text="Date View"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/borderView1"
+        app:layout_constraintEnd_toEndOf="@+id/borderView1"
+        app:layout_constraintHorizontal_bias="0.28"
+        app:layout_constraintStart_toEndOf="@+id/colonView"
+        app:layout_constraintTop_toTopOf="@+id/borderView1"
+        app:layout_constraintVertical_bias="0.556" />
+
+    <TextView
+        android:id="@+id/colonView"
+        android:layout_width="45dp"
+        android:layout_height="36dp"
+        android:gravity="center"
+        android:text=":"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/borderView1"
+        app:layout_constraintEnd_toEndOf="@+id/borderView1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/showDatePickerButton"
+        app:layout_constraintTop_toTopOf="@+id/borderView1"
+        app:layout_constraintVertical_bias="0.555" />
+
+    <View
+        android:id="@+id/borderView2"
+        android:layout_width="340dp"
+        android:layout_height="162dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/act_add_button_border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/borderView1" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="388dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="156dp"
+        android:hint="Event Title: "
+        android:paddingStart="23dp"
+        android:paddingEnd="23dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlSymmetry">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/eventTitle"
+            android:layout_width="342dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="5dp"
+            android:imeOptions="actionGo"
+            android:inputType="text"
+
+
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/backImage"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        app:layout_constraintBottom_toBottomOf="@+id/borderView2"
+        app:layout_constraintEnd_toStartOf="@+id/viewPager"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/colonView2"
+        app:layout_constraintTop_toTopOf="@+id/borderView2"
+        app:layout_constraintVertical_bias="0.492"
+        app:srcCompat="@drawable/back" />
+
+    <TextView
+        android:id="@+id/colonView2"
+        android:layout_width="28dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="11dp"
+        android:gravity="center"
+        android:text=":"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/borderView2"
+        app:layout_constraintEnd_toEndOf="@+id/borderView2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/formatLabel"
+        app:layout_constraintTop_toTopOf="@+id/borderView2"
+        app:layout_constraintVertical_bias="0.475" />
+
+    <Button
+        android:id="@+id/showDatePickerButton"
+        style="@style/buttonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:textColorLink="#AA2222"
+        app:layout_constraintBottom_toBottomOf="@+id/borderView1"
+        app:layout_constraintEnd_toEndOf="@+id/borderView1"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="@+id/borderView1"
+        app:layout_constraintTop_toTopOf="@+id/borderView1"
+        app:layout_constraintVertical_bias="0.561" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="132dp"
+        android:layout_height="36dp"
+        android:clipToPadding="false"
+        android:foregroundGravity="center"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/borderView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.655"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/borderView2"
+        app:layout_constraintVertical_bias="0.492" />
+
+    <ImageView
+        android:id="@+id/nextImage"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        app:layout_constraintBottom_toBottomOf="@+id/borderView2"
+        app:layout_constraintEnd_toEndOf="@+id/borderView2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/viewPager"
+        app:layout_constraintTop_toTopOf="@+id/borderView2"
+        app:layout_constraintVertical_bias="0.492"
+        app:srcCompat="@drawable/next" />
+
+    <Button
+        android:id="@+id/addButton"
+        style="@style/buttonStyle"
+        android:layout_width="239dp"
+        android:layout_height="48dp"
+        android:text="Add"
+        app:layout_constraintBottom_toTopOf="@+id/navigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/borderView2"
+        app:layout_constraintVertical_bias="0.341" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

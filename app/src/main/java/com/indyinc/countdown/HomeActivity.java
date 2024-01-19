@@ -1,18 +1,14 @@
 package com.indyinc.countdown;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
-import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.SwitchCompat;
-import androidx.core.content.ContextCompat;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
@@ -38,7 +34,7 @@ public class HomeActivity extends AppCompatActivity {
         isDarkTheme = sharedPreferences.getBoolean(IS_DARK_THEME, false);
         System.out.println("isDarkTheme: " + isDarkTheme);
         AppCompatDelegate.setDefaultNightMode(isDarkTheme ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.act_home);
 
         // Set the navigation bar color
         if (isDarkTheme) {

@@ -3,4 +3,6 @@
     <string name="my_events">My Events</string>
     <string name="add">Add</string>
     <string name="Home">Home</string>
+    <string name="left_greater"><![CDATA[<]]></string>
+    <string name="right_greater"><![CDATA[>]]></string>
 </resources>

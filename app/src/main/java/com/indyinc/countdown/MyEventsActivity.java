@@ -2,7 +2,9 @@ package com.indyinc.countdown;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,15 +14,21 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.util.ArrayList;
+
 public class MyEventsActivity extends AppCompatActivity {
 
     private static final String IS_DARK_THEME = "IS_DARK_THEME";
     private boolean isDarkTheme;
+    private MyEventsAdapter myEventsAdapter;
+    private RecyclerView recyclerView;
+    private DateDatabase db;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_events);
+        setContentView(R.layout.act_events);
 
         //set the selected menu options as add and setup listener
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
@@ -36,6 +44,18 @@ public class MyEventsActivity extends AppCompatActivity {
         } else {
             getWindow().setNavigationBarColor(getColor(R.color.nav_background_light));
         }
+
+        //set the context
+        context = this;
+        db = new DateDatabase(context);
+        myEventsAdapter = new MyEventsAdapter(new ArrayList<>(), context);
+        recyclerView = findViewById(R.id.eventsRecycler);
+        recyclerView.setAdapter(myEventsAdapter);
+        recyclerView.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(context));
+        populateRecyclerView();
+
+
+
     }
     private final NavigationBarView.OnItemSelectedListener  navItemSelectedListener = new NavigationBarView.OnItemSelectedListener() {
         @Override
@@ -71,5 +91,11 @@ public class MyEventsActivity extends AppCompatActivity {
         //start the home intent
         startActivity(new Intent(MyEventsActivity.this, HomeActivity.class));
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+    public void populateRecyclerView(){
+        ArrayList<DateItem> dateItems = db.getAllDates();
+        myEventsAdapter = new MyEventsAdapter(dateItems, context);
+        recyclerView.setAdapter(myEventsAdapter);
+        recyclerView.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(context));
     }
 }
