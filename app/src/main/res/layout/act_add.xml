@@ -15,8 +15,7 @@
         android:layout_height="86dp"
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/activity_nav_menu">
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:menu="@menu/activity_nav_menu"/>
 
     <View
         android:id="@+id/borderView1"
@@ -33,7 +32,7 @@
         android:id="@+id/formatLabel"
         android:layout_width="70dp"
         android:layout_height="36dp"
-        android:gravity="center"
+        android:gravity="center_vertical|end"
         android:text="Format"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/borderView2"
@@ -47,24 +46,20 @@
         android:id="@+id/dateLabel"
         android:layout_width="70dp"
         android:layout_height="36dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginEnd="248dp"
-        android:gravity="center"
+        android:gravity="center_vertical|end"
         android:text="Date"
-        android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/borderView1"
         app:layout_constraintEnd_toEndOf="@+id/borderView1"
-        app:layout_constraintHorizontal_bias="0.050"
+        app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="@+id/borderView1"
-        app:layout_constraintTop_toTopOf="@+id/borderView1"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toTopOf="@+id/borderView1" />
 
     <TextView
         android:id="@+id/colonView"
         android:layout_width="28dp"
         android:layout_height="36dp"
-        android:layout_marginEnd="220dp"
+        android:layout_marginEnd="228dp"
         android:gravity="center"
         android:text=":"
         android:textAlignment="center"
@@ -151,7 +146,7 @@
         app:layout_constraintHorizontal_bias="0.765"
         app:layout_constraintStart_toStartOf="@+id/borderView1"
         app:layout_constraintTop_toTopOf="@+id/borderView1"
-        app:layout_constraintVertical_bias="0.526" />
+        app:layout_constraintVertical_bias="0.50" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
@@ -192,6 +187,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/borderView2"
         app:layout_constraintVertical_bias="0.442" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="left"
+        app:constraint_referenced_ids="colonView" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="341dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

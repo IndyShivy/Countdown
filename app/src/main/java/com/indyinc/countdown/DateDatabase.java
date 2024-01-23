@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
-/** @noinspection ALL*/
+
 public class DateDatabase extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "DateDatabase";
     public static final int DATABASE_VERSION = 1;
@@ -44,17 +44,6 @@ public class DateDatabase extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
-//    public void insertDateRaw(String title, String date, String format){
-//        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-//        String query = "INSERT INTO " + TABLE_NAME + " (" +
-//                COLUMN_TITLE + ", " +
-//                COLUMN_DATE + ", " +
-//                COLUMN_FORMAT + ") VALUES ('" +
-//                title + "', '" +
-//                date + "', '" +
-//                format + "');";
-//        sqLiteDatabase.execSQL(query);
-//    }
 
     public void insertDate(DateItem dateItem){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();

@@ -2,10 +2,13 @@ package com.indyinc.countdown;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowInsetsController;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -17,7 +20,9 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-/** @noinspection ALL*/
+import java.util.Objects;
+
+
 public class HomeAct extends AppCompatActivity {
 
     private static final String IS_DARK_THEME = "IS_DARK_THEME";
@@ -31,19 +36,13 @@ public class HomeAct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Get the app's theme from shared preferences then set it as the app's theme
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sharedPreferences = getSharedPreferences("Storage", MODE_PRIVATE);
         isDarkTheme = sharedPreferences.getBoolean(IS_DARK_THEME, false);
         System.out.println("isDarkTheme: " + isDarkTheme);
         AppCompatDelegate.setDefaultNightMode(isDarkTheme ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
+
         setContentView(R.layout.act_home);
-
-        // Set the navigation bar color
-        if (isDarkTheme) {
-            getWindow().setNavigationBarColor(getColor(R.color.nav_background_dark));
-        } else {
-            getWindow().setNavigationBarColor(getColor(R.color.nav_background_light));
-        }
-
+        setStatusBarColor();
 
 
         bottomNavigationView = findViewById(R.id.navigationView);
@@ -61,13 +60,19 @@ public class HomeAct extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean(IS_DARK_THEME, isChecked);
             editor.apply();
-
-            //set the app's theme
             AppCompatDelegate.setDefaultNightMode(isChecked ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
-
-            //restart the activity with a fade-in and fade-out animation
             recreate();
+
         });
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                HomeAct.this.finishAffinity();
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     private final NavigationBarView.OnItemSelectedListener  navItemSelectedListener = new NavigationBarView.OnItemSelectedListener() {
@@ -97,13 +102,23 @@ public class HomeAct extends AppCompatActivity {
             return false;
         }
     };
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        //close all activities and close the app
-        this.finishAffinity();
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    private void setStatusBarColor() {
+        if (isDarkTheme) {
+            getWindow().setNavigationBarColor(getColor(R.color.black));
+            getWindow().getDecorView().setBackgroundColor(getColor(R.color.event_background_dark));
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                Objects.requireNonNull(getWindow().getInsetsController()).setSystemBarsAppearance(WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS, WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
+            }
+            getWindow().setNavigationBarColor(getColor(R.color.nav_background_light));
+            getWindow().getDecorView().setBackgroundColor(getColor(R.color.event_background_light));
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setStatusBarColor();
+    }
 }

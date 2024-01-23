@@ -6,6 +6,64 @@
     android:layout_height="match_parent"
     tools:context=".EventsAct">
 
+
+    <View
+        android:id="@+id/calenderFoot"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginBottom="596dp"
+        android:background="@drawable/calender_shape"
+        app:layout_constraintBottom_toTopOf="@+id/navigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.588" />
+
+    <View
+        android:id="@+id/pill2"
+        android:layout_width="25dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="56dp"
+        android:background="@drawable/pill_shape"
+        app:layout_constraintBottom_toBottomOf="@+id/calenderFoot"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/pill3"
+        android:layout_width="25dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="56dp"
+        android:background="@drawable/pill_shape"
+        app:layout_constraintBottom_toBottomOf="@+id/calenderFoot"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.68"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/pill4"
+        android:layout_width="25dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="56dp"
+        android:background="@drawable/pill_shape"
+        app:layout_constraintBottom_toBottomOf="@+id/calenderFoot"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.32"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/pill5"
+        android:layout_width="25dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="56dp"
+        android:background="@drawable/pill_shape"
+        app:layout_constraintBottom_toBottomOf="@+id/calenderFoot"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.86"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"
         style="@style/CustomBottomNavigationView"
@@ -13,18 +71,19 @@
         android:layout_height="86dp"
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/activity_nav_menu">
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:menu="@menu/activity_nav_menu" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/eventsRecycler"
-        android:layout_width="407dp"
-        android:layout_height="462dp"
-        android:layout_marginTop="116dp"
+        android:layout_width="match_parent"
+        android:layout_height="613dp"
+        android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toTopOf="@+id/navigationView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.057"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calenderFoot"
+        app:layout_constraintVertical_bias="0.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

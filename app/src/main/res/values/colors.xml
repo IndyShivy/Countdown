@@ -6,4 +6,6 @@
     <color name="background_dark">#4E4E4E</color>
     <color name="nav_background_light">#07492D</color>
     <color name="nav_background_dark">#000000</color>
+    <color name="event_background_light">#ecf7fd</color>
+    <color name="event_background_dark">#4E4E4E</color>
 </resources>

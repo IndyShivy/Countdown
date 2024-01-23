@@ -13,13 +13,13 @@
         android:theme="@style/Base.Theme.Countdown"
         tools:targetApi="31">
         <activity
+            android:name=".CountdownAct"
+            android:exported="false" />
+        <activity
             android:name=".AddAct"
             android:exported="false" />
         <activity
             android:name=".EventsAct"
-            android:exported="false" />
-        <activity
-            android:name=".CountdownActivity"
             android:exported="false" />
         <activity
             android:name=".HomeAct"

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CountdownAct">
+
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:id="@+id/navigationView"-->
+<!--        style="@style/CustomBottomNavigationView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="86dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:menu="@menu/activity_nav_menu"/>-->
+
+    <TextView
+        android:id="@+id/eventTitle"
+        android:layout_width="254dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="52dp"
+        android:text="Event Title"
+        android:gravity="center_vertical|center"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dfDay"
+        android:layout_width="249dp"
+        android:layout_height="271dp"
+        android:layout_marginTop="16dp"
+        android:text="Day Format Day"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.862"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventTitle"
+        app:layout_constraintVertical_bias="0.019" />
+
+    <TextView
+        android:id="@+id/dfDayLabel"
+        android:layout_width="110dp"
+        android:layout_height="60dp"
+        android:text="days"
+        app:layout_constraintBottom_toBottomOf="@+id/dfDay"
+        app:layout_constraintEnd_toEndOf="@+id/dfDay"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/dfDay"
+        app:layout_constraintTop_toTopOf="@+id/dfDay"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/dfDayHours"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="68dp"
+        android:text="Hours"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dfDay" />
+
+    <TextView
+        android:id="@+id/dfDayMinutes"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="68dp"
+        android:text="Minutes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dfDay" />
+
+    <TextView
+        android:id="@+id/dfDaySeconds"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="68dp"
+        android:text="Seconds"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dfDay" />
+
+    <TextView
+        android:id="@+id/dfDayHoursLabel"
+        android:layout_width="65dp"
+        android:layout_height="30dp"
+        android:text="hours"
+        app:layout_constraintBottom_toBottomOf="@+id/dfDayHours"
+        app:layout_constraintEnd_toEndOf="@+id/dfDayHours"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/dfDayHours"
+        app:layout_constraintTop_toTopOf="@+id/dfDayHours"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/dfDayMinutesLabel"
+        android:layout_width="65dp"
+        android:layout_height="30dp"
+        android:text="minutes"
+        app:layout_constraintBottom_toBottomOf="@+id/dfDayMinutes"
+        app:layout_constraintEnd_toEndOf="@+id/dfDayMinutes"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/dfDayMinutes"
+        app:layout_constraintTop_toTopOf="@+id/dfDayMinutes"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/dfDaySecondsLabel"
+        android:layout_width="65dp"
+        android:layout_height="30dp"
+        android:text="seconds"
+        app:layout_constraintBottom_toBottomOf="@+id/dfDaySeconds"
+        app:layout_constraintEnd_toEndOf="@+id/dfDaySeconds"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/dfDaySeconds"
+        app:layout_constraintTop_toTopOf="@+id/dfDaySeconds"
+        app:layout_constraintVertical_bias="1.0" />
+</androidx.constraintlayout.widget.ConstraintLayout>

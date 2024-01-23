@@ -5,4 +5,5 @@
     <string name="Home">Home</string>
     <string name="left_greater"><![CDATA[<]]></string>
     <string name="right_greater"><![CDATA[>]]></string>
+    <string name="format_image">format_image</string>
 </resources>

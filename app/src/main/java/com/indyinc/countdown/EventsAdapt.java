@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,10 @@ public class EventsAdapt extends RecyclerView.Adapter<EventsAdapt.ViewHolder> {
     private final ArrayList<DateItem> dateItems;
     private DateDatabase db;
     private final Context context;
+    private OnItemClickListener listener;
+
+
+
 
 
     public EventsAdapt(ArrayList<DateItem> dateItems, Context context) {
@@ -34,11 +39,36 @@ public class EventsAdapt extends RecyclerView.Adapter<EventsAdapt.ViewHolder> {
         return new ViewHolder(view);
     }
 
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DateItem dateItem = dateItems.get(position);
+        holder.bind(dateItem, listener);
         holder.eventTitleTextView.setText(dateItem.getTitle());
         holder.dateTextView.setText(dateItem.getDate());
+
+        // Set the image based on the format
+        String format = dateItem.getFormat();
+        switch (format) {
+            case "Day":
+                holder.formatImage.setImageResource(R.drawable.day);
+                //holder.itemView.setBackgroundResource(R.drawable.day);
+                //set the cardView background to the day image
+
+                break;
+            case "Week":
+                holder.formatImage.setImageResource(R.drawable.week);
+                break;
+            case "Fortnight":
+                holder.formatImage.setImageResource(R.drawable.fortnight);
+                break;
+            case "Month":
+                holder.formatImage.setImageResource(R.drawable.month);
+                break;
+        }
 
         holder.removeButton.setOnClickListener(v -> {
             String eventTitle = dateItem.getTitle();
@@ -56,23 +86,28 @@ public class EventsAdapt extends RecyclerView.Adapter<EventsAdapt.ViewHolder> {
             message.setTextColor(Color.WHITE);  // Set the color
             builder.setPositiveButton("Yes", (dialog, which) -> {
                         db.deleteEvent(dateItem);
-                        dateItems.remove(dateItem);
-                        notifyItemRemoved(position);
+                        dateItems.remove(position);
+                        dateItems.clear();
+                        dateItems.addAll(db.getAllDates());
+                        notifyDataSetChanged();
                     })
                     .setNegativeButton("No", null)
                     .show();
         });
     }
 
+
     @Override
     public int getItemCount() {
         return db.getAllDates().size();
     }
+
     // Create the view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView eventTitleTextView;
         TextView dateTextView;
         Button removeButton;
+        ImageView formatImage;
 
         // Constructor
         public ViewHolder(@NonNull View itemView) {
@@ -80,7 +115,19 @@ public class EventsAdapt extends RecyclerView.Adapter<EventsAdapt.ViewHolder> {
             eventTitleTextView = itemView.findViewById(R.id.eventTitle);
             dateTextView = itemView.findViewById(R.id.eventDate);
             removeButton = itemView.findViewById(R.id.removeButton);
+            formatImage = itemView.findViewById(R.id.formatImage); //
+
         }
+        public void bind(DateItem dateItem, OnItemClickListener listener){
+            itemView.setOnClickListener(v -> {
+                if (listener != null) {
+                    listener.onItemClick(dateItem);
+                }
+            });
+        }
+
+
+
     }
 
 
