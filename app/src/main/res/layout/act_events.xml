@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:layout_marginBottom="596dp"
-        android:background="@drawable/calender_shape"
+        android:background="@drawable/act_events_calender_shape"
         app:layout_constraintBottom_toTopOf="@+id/navigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -25,7 +25,7 @@
         android:layout_width="25dp"
         android:layout_height="65dp"
         android:layout_marginBottom="56dp"
-        android:background="@drawable/pill_shape"
+        android:background="@drawable/act_events_pill_shape"
         app:layout_constraintBottom_toBottomOf="@+id/calenderFoot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.14"
@@ -36,7 +36,7 @@
         android:layout_width="25dp"
         android:layout_height="65dp"
         android:layout_marginBottom="56dp"
-        android:background="@drawable/pill_shape"
+        android:background="@drawable/act_events_pill_shape"
         app:layout_constraintBottom_toBottomOf="@+id/calenderFoot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.68"
@@ -47,7 +47,7 @@
         android:layout_width="25dp"
         android:layout_height="65dp"
         android:layout_marginBottom="56dp"
-        android:background="@drawable/pill_shape"
+        android:background="@drawable/act_events_pill_shape"
         app:layout_constraintBottom_toBottomOf="@+id/calenderFoot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.32"
@@ -58,7 +58,7 @@
         android:layout_width="25dp"
         android:layout_height="65dp"
         android:layout_marginBottom="56dp"
-        android:background="@drawable/pill_shape"
+        android:background="@drawable/act_events_pill_shape"
         app:layout_constraintBottom_toBottomOf="@+id/calenderFoot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.86"
@@ -71,7 +71,7 @@
         android:layout_height="86dp"
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/activity_nav_menu" />
+        app:menu="@menu/act_nav_menu" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/eventsRecycler"

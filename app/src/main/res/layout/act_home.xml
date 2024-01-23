@@ -47,7 +47,7 @@
         android:layout_height="86dp"
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/activity_nav_menu"/>
+        app:menu="@menu/act_nav_menu"/>
 
 
     <TextView
