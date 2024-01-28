@@ -18,10 +18,13 @@ public class CountdownAct extends AppCompatActivity {
 
     private static final String IS_DARK_THEME = "IS_DARK_THEME";
     TextView eventTitle;
-    TextView dfDay, dfDayHours, dfDayMinutes, dfDaySeconds;
-    TextView dfWeek, dfWeekDays, dfWeekHours, dfWeekMinutes, dfWeekSeconds;
-    TextView dfFortnight, dfFortnightWeeks, dfFortnightDays, dfFortnightHours, dfFortnightMinutes, dfFortnightSeconds;
-    TextView dfMonth, dfMonthWeeks, dfMonthDays, dfMonthHours, dfMonthMinutes, dfMonthSeconds;
+    TextView dfDay, dfHours, dfMinutes, dfSeconds;
+    TextView dfWeek, dfWeekDays;
+    TextView dfFortnightWeeks;
+    TextView dfMonth;
+
+    TextView dfDayLabel, dfHoursLabel, dfMinutesLabel, dfSecondsLabel;
+    TextView dfWeekWeekLabel, dfWeekDayLabel, dfFortnightWeekLabel, dfMonthLabel;
 
 
     @Override
@@ -45,29 +48,39 @@ public class CountdownAct extends AppCompatActivity {
         }
 
         eventTitle = findViewById(R.id.eventTitle);
+
+        //labels
+        dfDayLabel = findViewById(R.id.dfDayLabel);
+        dfHoursLabel = findViewById(R.id.dfHoursLabel);
+        dfMinutesLabel = findViewById(R.id.dfMinutesLabel);
+        dfSecondsLabel = findViewById(R.id.dfSecondsLabel);
+        dfWeekWeekLabel = findViewById(R.id.dfWeekWeekLabel);
+        dfWeekDayLabel = findViewById(R.id.dfWeekDayLabel);
+        dfFortnightWeekLabel = findViewById(R.id.dfFortnightWeekLabel);
+        dfMonthLabel = findViewById(R.id.dfMonthLabel);
+
+        //day format
         dfDay = findViewById(R.id.dfDay);
-        dfDayHours = findViewById(R.id.dfDayHours);
-        dfDayMinutes = findViewById(R.id.dfDayMinutes);
-        dfDaySeconds = findViewById(R.id.dfDaySeconds);
-//        dfWeek = findViewById(R.id.dfWeek);
-//        dfWeekDays = findViewById(R.id.dfWeekDays);
-//        dfWeekHours = findViewById(R.id.dfWeekHours);
-//        dfWeekMinutes = findViewById(R.id.dfWeekMinutes);
-//        dfWeekSeconds = findViewById(R.id.dfWeekSeconds);
-//        dfFortnight = findViewById(R.id.dfFortnight);
-//        dfFortnightWeeks = findViewById(R.id.dfFortnightWeeks);
-//        dfFortnightDays = findViewById(R.id.dfFortnightDays);
-//        dfFortnightHours = findViewById(R.id.dfFortnightHours);
-//        dfFortnightMinutes = findViewById(R.id.dfFortnightMinutes);
-//        dfFortnightSeconds = findViewById(R.id.dfFortnightSeconds);
-//        dfMonth = findViewById(R.id.dfMonth);
-//        dfMonthWeeks = findViewById(R.id.dfMonthWeeks);
-//        dfMonthDays = findViewById(R.id.dfMonthDays);
-//        dfMonthHours = findViewById(R.id.dfMonthHours);
-//        dfMonthMinutes = findViewById(R.id.dfMonthMinutes);
-//        dfMonthSeconds = findViewById(R.id.dfMonthSeconds);
+        dfHours = findViewById(R.id.dfHours);
+        dfMinutes = findViewById(R.id.dfMinutes);
+        dfSeconds = findViewById(R.id.dfSeconds);
 
 
+        //Week format
+        dfWeek = findViewById(R.id.dfWeek);
+        dfWeekDays = findViewById(R.id.dfWeekDayF);
+
+
+        //Fortnight format
+        //dfWeekDays = findViewById(R.id.dfWeekDayF); (Fortnight)
+        dfFortnightWeeks = findViewById(R.id.dfFortnightWeek);
+        // dfWeek = findViewById(R.id.dfWeek);
+
+        //Month format
+        dfMonth = findViewById(R.id.dfMonth);
+        //dfWeekDays = findViewById(R.id.dfWeekDayF); (Fortnight)
+        //dfFortnightWeeks = findViewById(R.id.dfFortnightWeek);
+        // dfWeek = findViewById(R.id.dfWeek);
 
         Intent intent = getIntent();
         String title = intent.getStringExtra("eventTitle");
@@ -95,42 +108,64 @@ public class CountdownAct extends AppCompatActivity {
                 switch (format) {
                     case "Day":
                         dfDay.setText(String.valueOf(days));
-                        dfDayHours.setText(String.valueOf(hours));
-                        dfDayMinutes.setText(String.valueOf(minutes));
-                        dfDaySeconds.setText(String.valueOf(seconds));
+                        dfHours.setText(String.valueOf(hours));
+                        dfMinutes.setText(String.valueOf(minutes));
+                        dfSeconds.setText(String.valueOf(seconds));
+
+                        //remove the labels for the other formats
+                        dfWeekWeekLabel.setText("");
+                        dfWeekDayLabel.setText("");
+                        dfFortnightWeekLabel.setText("");
+                        dfMonthLabel.setText("");
+                        dfMonth.setText("");
                         break;
                     case "Week":
                         long weeks = days / 7;
                         days %= 7;
-//                        dfWeek.setText(String.valueOf(weeks));
-//                        dfWeekDays.setText(String.valueOf(days));
-//                        dfWeekHours.setText(String.valueOf(hours));
-//                        dfWeekMinutes.setText(String.valueOf(minutes));
-//                        dfWeekSeconds.setText(String.valueOf(seconds));
+                        dfWeek.setText(String.valueOf(weeks));
+                        dfWeekDays.setText(String.valueOf(days));
+                        dfHours.setText(String.valueOf(hours));
+                        dfMinutes.setText(String.valueOf(minutes));
+                        dfSeconds.setText(String.valueOf(seconds));
                         break;
                     case "Fortnight":
                         long fortnights = days / 14;
-//                        days %= 14;
-//                        dfFortnight.setText(String.valueOf(fortnights));
-//                        long weeksInFortnight = days / 7;
-//                        days %= 7;
-//                        dfFortnightWeeks.setText(String.valueOf(weeksInFortnight));
-//                        dfFortnightDays.setText(String.valueOf(days));
-//                        dfFortnightHours.setText(String.valueOf(hours));
-//                        dfFortnightMinutes.setText(String.valueOf(minutes));
-//                        dfFortnightSeconds.setText(String.valueOf(seconds));
+                        days %= 14;
+                        dfWeekDays.setText(String.valueOf(fortnights));
+                        long weeksInFortnight = days / 7;
+                        days %= 7;
+                        dfFortnightWeeks.setText(String.valueOf(weeksInFortnight));
+                        dfWeek.setText(String.valueOf(days));
+                        dfHours.setText(String.valueOf(hours));
+                        dfMinutes.setText(String.valueOf(minutes));
+                        dfSeconds.setText(String.valueOf(seconds));
                         break;
-                    case "Month":
-                        long months = days / 30;
+//                    case "Month":
+//                        long months = days / 30;
 //                        days %= 30;
 //                        dfMonth.setText(String.valueOf(months));
 //                        long weeksInMonth = days / 7;
 //                        days %= 7;
-//                        dfMonthWeeks.setText(String.valueOf(weeksInMonth));
-//                        dfMonthDays.setText(String.valueOf(days));
+//                        dfWeekDays.setText(String.valueOf(weeksInMonth));
+//
+//                        dfFortnightWeeks.setText(String.valueOf(days));
 //                        dfMonthHours.setText(String.valueOf(hours));
 //                        dfMonthMinutes.setText(String.valueOf(minutes));
 //                        dfMonthSeconds.setText(String.valueOf(seconds));
+//                        break;
+                    case "Month":
+                        long months = days / 30;
+                        days %= 30;
+                        dfMonth.setText(String.valueOf(months));
+                        long weeksInMonth = days / 7;
+                        days %= 7;
+                        dfWeekDays.setText(String.valueOf(weeksInMonth));
+                        long fortnightsAfterWeeks = days / 14; // Calculate fortnights after weeks
+                        days %= 14;
+                        dfFortnightWeeks.setText(String.valueOf(fortnightsAfterWeeks));
+                        dfHours.setText(String.valueOf(hours));
+                        dfMinutes.setText(String.valueOf(minutes));
+                        dfSeconds.setText(String.valueOf(seconds));
                         break;
                     default:
                         // Handle other formats or default case

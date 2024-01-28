@@ -16,36 +16,53 @@
 <!--        app:menu="@menu/activity_nav_menu"/>-->
 
     <TextView
+        android:id="@+id/dfWeekDayF"
+        android:layout_width="162dp"
+        android:layout_height="130dp"
+        android:text="Week Format Day"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.186" />
+
+    <TextView
         android:id="@+id/eventTitle"
         android:layout_width="254dp"
         android:layout_height="54dp"
-        android:layout_marginTop="52dp"
-        android:text="Event Title"
         android:gravity="center_vertical|center"
+        android:text="Event Title"
         android:textAllCaps="false"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.062" />
 
     <TextView
         android:id="@+id/dfDay"
         android:layout_width="249dp"
         android:layout_height="271dp"
         android:layout_marginTop="16dp"
-        android:text="Day Format Day"
+        android:textSize="256dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.862"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eventTitle"
-        app:layout_constraintVertical_bias="0.019" />
+        app:layout_constraintVertical_bias="0.019"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/dfDayLabel"
         android:layout_width="110dp"
         android:layout_height="60dp"
         android:text="days"
+        android:gravity="start|bottom"
         app:layout_constraintBottom_toBottomOf="@+id/dfDay"
         app:layout_constraintEnd_toEndOf="@+id/dfDay"
         app:layout_constraintHorizontal_bias="1.0"
@@ -54,7 +71,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/dfDayHours"
+        android:id="@+id/dfHours"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginTop="68dp"
@@ -65,7 +82,7 @@
         app:layout_constraintTop_toBottomOf="@+id/dfDay" />
 
     <TextView
-        android:id="@+id/dfDayMinutes"
+        android:id="@+id/dfMinutes"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginTop="68dp"
@@ -75,7 +92,7 @@
         app:layout_constraintTop_toBottomOf="@+id/dfDay" />
 
     <TextView
-        android:id="@+id/dfDaySeconds"
+        android:id="@+id/dfSeconds"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginTop="68dp"
@@ -86,38 +103,123 @@
         app:layout_constraintTop_toBottomOf="@+id/dfDay" />
 
     <TextView
-        android:id="@+id/dfDayHoursLabel"
+        android:id="@+id/dfHoursLabel"
         android:layout_width="65dp"
         android:layout_height="30dp"
         android:text="hours"
-        app:layout_constraintBottom_toBottomOf="@+id/dfDayHours"
-        app:layout_constraintEnd_toEndOf="@+id/dfDayHours"
+        app:layout_constraintBottom_toBottomOf="@+id/dfHours"
+        app:layout_constraintEnd_toEndOf="@+id/dfHours"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/dfDayHours"
-        app:layout_constraintTop_toTopOf="@+id/dfDayHours"
+        app:layout_constraintStart_toStartOf="@+id/dfHours"
+        app:layout_constraintTop_toTopOf="@+id/dfHours"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/dfDayMinutesLabel"
+        android:id="@+id/dfMinutesLabel"
         android:layout_width="65dp"
         android:layout_height="30dp"
         android:text="minutes"
-        app:layout_constraintBottom_toBottomOf="@+id/dfDayMinutes"
-        app:layout_constraintEnd_toEndOf="@+id/dfDayMinutes"
+        app:layout_constraintBottom_toBottomOf="@+id/dfMinutes"
+        app:layout_constraintEnd_toEndOf="@+id/dfMinutes"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/dfDayMinutes"
-        app:layout_constraintTop_toTopOf="@+id/dfDayMinutes"
+        app:layout_constraintStart_toStartOf="@+id/dfMinutes"
+        app:layout_constraintTop_toTopOf="@+id/dfMinutes"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/dfDaySecondsLabel"
+        android:id="@+id/dfSecondsLabel"
         android:layout_width="65dp"
         android:layout_height="30dp"
         android:text="seconds"
-        app:layout_constraintBottom_toBottomOf="@+id/dfDaySeconds"
-        app:layout_constraintEnd_toEndOf="@+id/dfDaySeconds"
+        app:layout_constraintBottom_toBottomOf="@+id/dfSeconds"
+        app:layout_constraintEnd_toEndOf="@+id/dfSeconds"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/dfDaySeconds"
-        app:layout_constraintTop_toTopOf="@+id/dfDaySeconds"
+        app:layout_constraintStart_toStartOf="@+id/dfSeconds"
+        app:layout_constraintTop_toTopOf="@+id/dfSeconds"
         app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/dfWeek"
+        android:layout_width="162dp"
+        android:layout_height="130dp"
+        android:text="Week Format Day"
+        app:layout_constraintBottom_toBottomOf="@+id/dfDay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dfWeekDayF"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/dfWeekDayLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weeks"
+        app:layout_constraintBottom_toBottomOf="@+id/dfWeekDayF"
+        app:layout_constraintEnd_toEndOf="@+id/dfWeekDayF"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/dfWeekDayF"
+        app:layout_constraintTop_toTopOf="@+id/dfWeekDayF"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/dfWeekWeekLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Days"
+        app:layout_constraintBottom_toBottomOf="@+id/dfDay"
+        app:layout_constraintEnd_toEndOf="@+id/dfWeek"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/dfWeek"
+        app:layout_constraintTop_toTopOf="@+id/dfWeek"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/dfFortnightWeek"
+        android:layout_width="162dp"
+        android:layout_height="130dp"
+        android:text="Fornight format Week"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/dfWeek"
+        app:layout_constraintHorizontal_bias="0.984"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.357" />
+
+    <TextView
+        android:id="@+id/dfFortnightWeekLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weeks"
+        app:layout_constraintBottom_toBottomOf="@+id/dfFortnightWeek"
+        app:layout_constraintEnd_toStartOf="@+id/dfWeek"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/dfFortnightWeek"
+        app:layout_constraintTop_toTopOf="@+id/dfFortnightWeek"
+        app:layout_constraintVertical_bias="0.99" />
+
+    <TextView
+        android:id="@+id/dfMonth"
+        android:layout_width="162dp"
+        android:layout_height="130dp"
+        android:text="Month format"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/dfWeekDayF"
+        app:layout_constraintHorizontal_bias="0.984"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.186" />
+
+    <TextView
+        android:id="@+id/dfMonthLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:text="Months"
+        app:layout_constraintBottom_toTopOf="@+id/dfFortnightWeek"
+        app:layout_constraintEnd_toStartOf="@+id/dfWeekDayF"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/dfMonth"
+        app:layout_constraintTop_toTopOf="@+id/dfMonth"
+        app:layout_constraintVertical_bias="0.973" />
 </androidx.constraintlayout.widget.ConstraintLayout>
