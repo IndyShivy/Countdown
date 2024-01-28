@@ -125,6 +125,8 @@ public class AddAct extends AppCompatActivity {
                 Toast.makeText(AddAct.this, "Please select a date", Toast.LENGTH_SHORT).show();
             } else {
 
+                //have this only contain words and spaces
+                eventTitle.setText(eventTitle.getText().toString().replaceAll("[^a-zA-Z ]", ""));
                 System.out.println("Title" + eventTitle.getText().toString() + "Date" + date + "Format" + adapter.getFormat());
 
                 DateItem dateItem = new DateItem(eventTitle.getText().toString(), date, adapter.getFormat());

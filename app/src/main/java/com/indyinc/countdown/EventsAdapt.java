@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -55,9 +56,6 @@ public class EventsAdapt extends RecyclerView.Adapter<EventsAdapt.ViewHolder> {
         switch (format) {
             case "Day":
                 holder.formatImage.setImageResource(R.drawable.day);
-                //holder.itemView.setBackgroundResource(R.drawable.day);
-                //set the cardView background to the day image
-
                 break;
             case "Week":
                 holder.formatImage.setImageResource(R.drawable.week);
@@ -106,7 +104,7 @@ public class EventsAdapt extends RecyclerView.Adapter<EventsAdapt.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView eventTitleTextView;
         TextView dateTextView;
-        Button removeButton;
+        ImageButton removeButton;
         ImageView formatImage;
 
         // Constructor

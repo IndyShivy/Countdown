@@ -32,7 +32,7 @@
             <TextView
                 android:id="@+id/eventDate"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:paddingTop="8dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/black" />
@@ -43,16 +43,17 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
             android:contentDescription="@string/format_image" />
 
-        <Button
+        <ImageButton
             android:id="@+id/removeButton"
             style="@style/buttonStyle"
-            android:layout_width="106dp"
-            android:layout_height="60dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
-            android:text="Remove"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:background="@drawable/remove"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
