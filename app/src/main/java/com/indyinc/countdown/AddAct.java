@@ -75,7 +75,7 @@ public class AddAct extends AppCompatActivity {
         EditText eventTitle = findViewById(R.id.eventTitleGet);
         ViewPager viewPager = findViewById(R.id.viewPager);
         Button addButton = findViewById(R.id.addButton);
-        AddAdapt adapter = new AddAdapt();
+        AddAdapt adapter = new AddAdapt(this);
         viewPager.setAdapter(adapter);
 
 
