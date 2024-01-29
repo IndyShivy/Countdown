@@ -34,19 +34,22 @@
             android:id="@+id/chipDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/D" />
+            android:text="@string/D"
+            tools:ignore="TextContrastCheck" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipWeek"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/W" />
+            android:text="@string/W"
+            tools:ignore="TextContrastCheck" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipFortnight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/F" />
+            android:text="@string/F"
+            tools:ignore="TextContrastCheck" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipMonth"
