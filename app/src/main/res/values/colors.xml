@@ -8,4 +8,6 @@
     <color name="nav_background_dark">#000000</color>
     <color name="event_background_light">#ecf7fd</color>
     <color name="event_background_dark">#4E4E4E</color>
+    <color name="background_dark_secondary">#858585</color>
+    <color name="calendar_red">#ef456a</color>
 </resources>

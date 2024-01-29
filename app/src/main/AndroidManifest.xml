@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Base.Theme.Countdown"
-        tools:targetApi="31">
+        android:enableOnBackInvokedCallback="true"
+        tools:targetApi="31"
+        tools:ignore="UnusedAttribute">
         <activity
             android:name=".CountdownAct"
             android:exported="false" />

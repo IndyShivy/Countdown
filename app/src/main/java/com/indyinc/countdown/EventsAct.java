@@ -64,12 +64,6 @@ public class EventsAct extends AppCompatActivity {
         //set the context
         context = this;
         db = new DateDatabase(context);
-        //add some test data
-//        db.insertDate(new DateItem("Day", "11/11/24", "Day"));
-//        db.insertDate(new DateItem("Week", "21/12/24", "Week"));
-//        db.insertDate(new DateItem("Fortnight", "21/12/24", "Fortnight"));
-//        db.insertDate(new DateItem("Month", "21/12/24", "Month"));
-
         myEventsAdapter = new EventsAdapt(new ArrayList<>(), context);
         eventsRecycler = findViewById(R.id.eventsRecycler);
         eventsRecycler.setAdapter(myEventsAdapter);

@@ -36,4 +36,14 @@
         <item name="android:buttonBarNegativeButtonStyle">@style/AlertDialogButtonStyle</item>
     </style>
 
+    <style name="textStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:background">@color/event_background_dark</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="labelStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@color/calendar_red</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
