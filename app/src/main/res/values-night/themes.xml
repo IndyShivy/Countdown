@@ -35,25 +35,32 @@
         <item name="backgroundTint">@color/black</item>
     </style>
 
-
     <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:background">@drawable/act_events_alert_dialog_background</item>
+        <item name="android:background">@drawable/act_events_alert_dialog_background_dark</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:buttonBarPositiveButtonStyle">@style/AlertDialogButtonStyle</item>
         <item name="android:buttonBarNegativeButtonStyle">@style/AlertDialogButtonStyle</item>
     </style>
 
     <style name="CustomTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="hintTextColor">@color/add_act_events_title_box_hint_color</item>
-        <item name="boxStrokeColor">@color/add_act_events_title_box</item>
+        <item name="hintTextColor">@color/act_add_events_title_box_hint_color</item>
+        <item name="boxStrokeColor">@color/act_add_events_title_box</item>
+        <item name="boxStrokeWidth">2dp</item>
         <item name="cursorColor">@color/black</item>
-        <item name="android:textColorHint">@color/add_act_events_title_box_hint_color</item>
+        <item name="android:textColorHint">@color/act_add_events_title_box_hint_color</item>
+        <item name="android:textSelectHandle">@color/black</item>
+        <item name="cursorErrorColor">@color/black</item>
     </style>
 
+    <style name="textStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:background">#858585</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 
-
-
-
-
-
+    <style name="labelStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:background">@color/calendar_red</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

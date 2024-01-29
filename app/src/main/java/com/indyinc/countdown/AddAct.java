@@ -60,13 +60,13 @@ public class AddAct extends AppCompatActivity {
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 Objects.requireNonNull(getWindow().getInsetsController()).setSystemBarsAppearance(WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS, WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
-                getWindow().setNavigationBarColor(getColor(R.color.nav_background_light));
-                getWindow().getDecorView().setBackgroundColor(getColor(R.color.event_background_light));
-            } else {
+            }
                 getWindow().setNavigationBarColor(getColor(R.color.nav_background_light));
                 getWindow().getDecorView().setBackgroundColor(getColor(R.color.event_background_light));
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            }
+                getWindow().setStatusBarColor(getColor(R.color.event_background_light));
+
+
         }
 
 
@@ -82,7 +82,7 @@ public class AddAct extends AppCompatActivity {
 
 
         Button datePickerButton = findViewById(R.id.showDatePickerButton);
-        datePickerButton.setText("Select");
+        datePickerButton.setText(R.string.Select);
         datePickerButton.setOnClickListener(v -> {
             //close the keyboard
             View focusedView = getCurrentFocus();
@@ -101,8 +101,8 @@ public class AddAct extends AppCompatActivity {
             DatePickerDialog datePickerDialog = new DatePickerDialog(AddAct.this,
                     (view, year, monthOfYear, dayOfMonth) -> {
                         // Format month and day to ensure two digits
-                        String formattedMonth = String.format("%02d", monthOfYear + 1);
-                        String formattedDay = String.format("%02d", dayOfMonth);
+                        @SuppressLint("DefaultLocale") String formattedMonth = String.format("%02d", monthOfYear + 1);
+                        @SuppressLint("DefaultLocale") String formattedDay = String.format("%02d", dayOfMonth);
                         date = formattedDay + "/" + formattedMonth + "/" + year;
 
                         // Update button text with selected date
@@ -127,9 +127,7 @@ public class AddAct extends AppCompatActivity {
 
                 //have this only contain words and spaces
                 eventTitle.setText(eventTitle.getText().toString().replaceAll("[^a-zA-Z ]", ""));
-                System.out.println("Title" + eventTitle.getText().toString() + "Date" + date + "Format" + adapter.getFormat());
-
-                DateItem dateItem = new DateItem(eventTitle.getText().toString(), date, adapter.getFormat());
+                DateItem dateItem = new DateItem(eventTitle.getText().toString().trim(), date, adapter.getFormat());
                 db = new DateDatabase(AddAct.this);
                 db.insertDate(dateItem);
                 date = " ";

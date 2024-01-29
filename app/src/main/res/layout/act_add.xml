@@ -33,27 +33,29 @@
         android:layout_width="70dp"
         android:layout_height="36dp"
         android:gravity="center_vertical|end"
-        android:text="Format"
+        android:text="@string/format"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/borderView2"
         app:layout_constraintEnd_toEndOf="@+id/borderView2"
         app:layout_constraintHorizontal_bias="0.048"
         app:layout_constraintStart_toStartOf="@+id/borderView2"
         app:layout_constraintTop_toTopOf="@+id/borderView2"
-        app:layout_constraintVertical_bias="0.492" />
+        app:layout_constraintVertical_bias="0.492"
+        tools:ignore="TextSizeCheck" />
 
     <TextView
         android:id="@+id/dateLabel"
         android:layout_width="70dp"
         android:layout_height="36dp"
         android:gravity="center_vertical|end"
-        android:text="Date"
+        android:text="@string/date"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/borderView1"
         app:layout_constraintEnd_toEndOf="@+id/borderView1"
         app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="@+id/borderView1"
-        app:layout_constraintTop_toTopOf="@+id/borderView1" />
+        app:layout_constraintTop_toTopOf="@+id/borderView1"
+        tools:ignore="TextSizeCheck" />
 
     <TextView
         android:id="@+id/colonView"
@@ -61,12 +63,13 @@
         android:layout_height="36dp"
         android:layout_marginEnd="228dp"
         android:gravity="center"
-        android:text=":"
+        android:text="@string/colon"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/borderView1"
         app:layout_constraintEnd_toEndOf="@+id/borderView1"
-        app:layout_constraintTop_toTopOf="@+id/borderView1" />
+        app:layout_constraintTop_toTopOf="@+id/borderView1"
+        tools:ignore="TextSizeCheck" />
 
     <View
         android:id="@+id/borderView2"
@@ -85,7 +88,7 @@
         android:layout_width="388dp"
         android:layout_height="95dp"
         android:layout_marginTop="156dp"
-        android:hint="Event Title: "
+        android:hint="@string/event_title"
         android:paddingStart="23dp"
         android:paddingEnd="23dp"
 
@@ -100,9 +103,11 @@
             android:layout_width="340dp"
             android:layout_height="58dp"
             android:layout_marginTop="5dp"
+            android:gravity="start"
             android:imeOptions="actionGo"
             android:inputType="text"
-            android:singleLine="true" />
+            android:singleLine="true"
+            tools:ignore="TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
@@ -115,7 +120,8 @@
         app:layout_constraintStart_toEndOf="@+id/dateColon"
         app:layout_constraintTop_toTopOf="@+id/borderView2"
         app:layout_constraintVertical_bias="0.492"
-        app:srcCompat="@drawable/back" />
+        app:srcCompat="@drawable/back"
+        android:contentDescription="@string/back_button" />
 
     <TextView
         android:id="@+id/dateColon"
@@ -124,7 +130,7 @@
         android:layout_marginTop="14dp"
         android:layout_marginBottom="11dp"
         android:gravity="center"
-        android:text=":"
+        android:text="@string/colon"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/borderView2"
@@ -132,21 +138,23 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/formatLabel"
         app:layout_constraintTop_toTopOf="@+id/borderView2"
-        app:layout_constraintVertical_bias="0.475" />
+        app:layout_constraintVertical_bias="0.475"
+        tools:ignore="TextSizeCheck" />
 
     <Button
         android:id="@+id/showDatePickerButton"
         style="@style/buttonStyle"
         android:layout_width="157dp"
         android:layout_height="67dp"
-        android:text="Select"
+        android:text="@string/Select"
         android:textColorLink="#AA2222"
         app:layout_constraintBottom_toBottomOf="@+id/borderView1"
         app:layout_constraintEnd_toEndOf="@+id/borderView1"
         app:layout_constraintHorizontal_bias="0.765"
         app:layout_constraintStart_toStartOf="@+id/borderView1"
         app:layout_constraintTop_toTopOf="@+id/borderView1"
-        app:layout_constraintVertical_bias="0.50" />
+        app:layout_constraintVertical_bias="0.50"
+        tools:ignore="TextContrastCheck" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
@@ -161,7 +169,8 @@
         app:layout_constraintHorizontal_bias="0.655"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/borderView2"
-        app:layout_constraintVertical_bias="0.492" />
+        app:layout_constraintVertical_bias="0.492"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
         android:id="@+id/nextImage"
@@ -173,41 +182,22 @@
         app:layout_constraintStart_toEndOf="@+id/viewPager"
         app:layout_constraintTop_toTopOf="@+id/borderView2"
         app:layout_constraintVertical_bias="0.492"
-        app:srcCompat="@drawable/next" />
+        app:srcCompat="@drawable/next"
+        android:contentDescription="@string/next" />
 
     <Button
         android:id="@+id/addButton"
         style="@style/buttonStyle"
         android:layout_width="251dp"
         android:layout_height="70dp"
-        android:text="Add"
+        android:text="@string/add"
         app:layout_constraintBottom_toTopOf="@+id/navigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/borderView2"
-        app:layout_constraintVertical_bias="0.442" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="left"
-        app:constraint_referenced_ids="colonView" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="341dp" />
+        app:layout_constraintVertical_bias="0.442"
+        tools:ignore="TextContrastCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

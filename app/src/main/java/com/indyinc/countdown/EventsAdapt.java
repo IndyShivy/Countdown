@@ -77,11 +77,11 @@ public class EventsAdapt extends RecyclerView.Adapter<EventsAdapt.ViewHolder> {
             TextView title = dialogView.findViewById(R.id.dialog_title);
             String titleSet = "Delete Event";
             title.setText(titleSet);
-            title.setTextColor(Color.WHITE);
+            //title.setTextColor(Color.BLACK);
             TextView message = dialogView.findViewById(R.id.dialog_message);
             String textSetter = "Remove " + "\"" + eventTitle + "\"" +" ?";
             message.setText(textSetter);
-            message.setTextColor(Color.WHITE);  // Set the color
+            //message.setTextColor(Color.BLACK);  // Set the color
             builder.setPositiveButton("Yes", (dialog, which) -> {
                         db.deleteEvent(dateItem);
                         dateItems.remove(position);
