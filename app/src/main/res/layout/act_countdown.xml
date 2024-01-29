@@ -15,6 +15,16 @@
 <!--        app:layout_constraintBottom_toBottomOf="parent"-->
 <!--        app:menu="@menu/activity_nav_menu"/>-->
 
+    <View
+        android:layout_width="389dp"
+        android:layout_height="461dp"
+        android:background="@drawable/act_countdown_border"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.239" />
+
     <ImageView
         android:id="@+id/backButton"
         android:layout_width="42dp"
@@ -189,6 +199,8 @@
         android:layout_width="162dp"
         android:layout_height="130dp"
         android:text="Month format"
+        android:textSize="84sp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/dfWeek"
         app:layout_constraintHorizontal_bias="0.984"
@@ -200,11 +212,10 @@
         android:id="@+id/dfMonthLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
         android:text="Months"
-        app:layout_constraintBottom_toTopOf="@+id/dfFortnightWeek"
+        app:layout_constraintBottom_toBottomOf="@+id/dfMonth"
         app:layout_constraintEnd_toStartOf="@+id/dfWeek"
-        app:layout_constraintHorizontal_bias="0.984"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/dfMonth"
         app:layout_constraintTop_toTopOf="@+id/dfMonth"
         app:layout_constraintVertical_bias="1.0" />

@@ -3,8 +3,11 @@ package com.indyinc.countdown;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.View;
+import android.view.WindowInsetsController;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,7 +17,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
+import java.util.Objects;
 
 public class CountdownAct extends AppCompatActivity {
 
@@ -46,9 +55,19 @@ public class CountdownAct extends AppCompatActivity {
         boolean isDarkTheme = sharedPreferences.getBoolean(IS_DARK_THEME, false);
 
         if (isDarkTheme) {
-            getWindow().setNavigationBarColor(getColor(R.color.nav_background_dark));
+            getWindow().setNavigationBarColor(getColor(R.color.black));
+            getWindow().getDecorView().setBackgroundColor(getColor(R.color.event_background_dark));
+
         } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                Objects.requireNonNull(getWindow().getInsetsController()).setSystemBarsAppearance(WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS, WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
+            }
             getWindow().setNavigationBarColor(getColor(R.color.nav_background_light));
+            getWindow().getDecorView().setBackgroundColor(getColor(R.color.event_background_light));
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            getWindow().setStatusBarColor(getColor(R.color.event_background_light));
+
+
         }
 
         eventTitle = findViewById(R.id.eventTitle);
@@ -120,11 +139,13 @@ public class CountdownAct extends AppCompatActivity {
 
                 switch (format) {
                     case "Day":
+                        //set the labels for the day format
                         dfDay.setText(String.valueOf(days));
                         dfHours.setText(String.valueOf(hours));
                         dfMinutes.setText(String.valueOf(minutes));
                         dfSeconds.setText(String.valueOf(seconds));
                         System.out.print("Day format"+days);
+
                         //remove the labels for the other formats
                         dfWeekWeekLabel.setText("");
                         dfWeekDayLabel.setText("");
@@ -136,6 +157,7 @@ public class CountdownAct extends AppCompatActivity {
                         dfWeek.setText("");
                         break;
                     case "Week":
+                        //set the labels for the week format
                         long weeks = days / 7;
                         days %= 7;
                         dfWeek.setText(String.valueOf(weeks));
@@ -152,59 +174,75 @@ public class CountdownAct extends AppCompatActivity {
                         dfFortnightWeek.setText("");
                         break;
                     case "Fortnight":
-                        System.out.println("Days"+days);
                         long fortnights = days / 14;
-                        long weeksInFortnight = days / 7;
-                        //if the week has a value then use that to calculate the days
-                        if (weeksInFortnight > 0) {
-                            days %= 7;
-                        }
-                        else {
-                            days %= 14;
-                        }
+                        days %= 14;
+                        long weeksFormat = days / 7;
+                        days %= 7;
+
                         dfWeek.setText(String.valueOf(fortnights));
-                        dfFortnightWeek.setText(String.valueOf(weeksInFortnight));
+                        dfFortnightWeek.setText(String.valueOf(weeksFormat));
                         dfWeekDays.setText(String.valueOf(days));
                         dfHours.setText(String.valueOf(hours));
                         dfMinutes.setText(String.valueOf(minutes));
                         dfSeconds.setText(String.valueOf(seconds));
 
-                        //remove the labels for the other formats
-//
+                        if (fortnights > 1) {
+                            dfWeekDayLabel.setText("Fortnights");
+                        } else {
+                            dfWeekDayLabel.setText("Fortnight");
+                        }
 
+                        if (weeksFormat == 1) {
+                            dfFortnightWeekLabel.setText("Week");
+                        } else {
+                            dfFortnightWeekLabel.setText("Week");
+                        }
+
+                        //remove the labels for the other formats and set the labels
+                        dfMonth.setText("");
                         dfDayLabel.setText("");
                         dfMonthLabel.setText("");
-
                         break;
-//                    case "Month":
-//                        long months = days / 30;
-//                        days %= 30;
-//                        dfMonth.setText(String.valueOf(months));
-//                        long weeksInMonth = days / 7;
-//                        days %= 7;
-//                        dfWeekDays.setText(String.valueOf(weeksInMonth));
-//
-//                        dfFortnightWeeks.setText(String.valueOf(days));
-//                        dfMonthHours.setText(String.valueOf(hours));
-//                        dfMonthMinutes.setText(String.valueOf(minutes));
-//                        dfMonthSeconds.setText(String.valueOf(seconds));
-//                        break;
                     case "Month":
-                        long months = days / 30;
+                        long months = days / 30; // Assuming every month has 30 days
                         days %= 30;
-                        dfMonth.setText(String.valueOf(months));
-                        long weeksInMonth = days / 7;
-                        days %= 7;
-                        dfWeekDays.setText(String.valueOf(weeksInMonth));
-                        long fortnightsAfterWeeks = days / 14; // Calculate fortnights after weeks
+                        long fortnightsFormat = days / 14;
                         days %= 14;
-                        dfFortnightWeek.setText(String.valueOf(fortnightsAfterWeeks));
+                        long weeksFormat2 = days / 7;
+                        days %= 7;
+
+                        // Setting date components
+                        dfMonth.setText(String.valueOf(months));
+                        dfWeek.setText(String.valueOf(fortnightsFormat));
+                        dfFortnightWeek.setText(String.valueOf(weeksFormat2));
+                        dfWeekDays.setText(String.valueOf(days));
+                        dfWeekDays.setText(String.valueOf(days));
+
+                        // Setting time components
                         dfHours.setText(String.valueOf(hours));
                         dfMinutes.setText(String.valueOf(minutes));
                         dfSeconds.setText(String.valueOf(seconds));
+
+                        // Setting appropriate labels
+                        dfDayLabel.setText("");
+                        if (fortnightsFormat != 1) {
+                            dfWeekDayLabel.setText("Fortnights");
+                        } else {
+                            dfWeekDayLabel.setText("Fortnight");
+                        }
+                        if (weeksFormat2 == 1) {
+                            dfFortnightWeekLabel.setText("Week");
+                        } else {
+                            dfFortnightWeekLabel.setText("Weeks");
+                        }
+                        if (months != 1) {
+                            dfMonthLabel.setText("Months");
+                        } else {
+                            dfMonthLabel.setText("Month");
+                        }
+
                         break;
                     default:
-                        // Handle other formats or default case
                         break;
                 }
             }
@@ -229,6 +267,8 @@ public class CountdownAct extends AppCompatActivity {
             return 0;
         }
     }
+
+
 
     public String getFormattedCountdownString(long durationMillis, String format) {
         Duration duration = Duration.ofMillis(durationMillis);

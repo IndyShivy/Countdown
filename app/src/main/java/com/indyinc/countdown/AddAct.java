@@ -60,13 +60,13 @@ public class AddAct extends AppCompatActivity {
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 Objects.requireNonNull(getWindow().getInsetsController()).setSystemBarsAppearance(WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS, WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
-                getWindow().setNavigationBarColor(getColor(R.color.nav_background_light));
-                getWindow().getDecorView().setBackgroundColor(getColor(R.color.event_background_light));
-            } else {
+            }
                 getWindow().setNavigationBarColor(getColor(R.color.nav_background_light));
                 getWindow().getDecorView().setBackgroundColor(getColor(R.color.event_background_light));
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            }
+                getWindow().setStatusBarColor(getColor(R.color.event_background_light));
+
+
         }
 
 
