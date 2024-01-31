@@ -33,4 +33,10 @@
     <string name="dark_mode">Dark Mode</string>
     <string name="pattern">pattern</string>
     <string name="Date">Date</string>
+    <string name="Cloud">Cloud</string>
+    <string name="Day">Day</string>
+    <string name="Week">Week</string>
+    <string name="Fortnight">Fortnight</string>
+    <string name="Month">Month</string>
+
 </resources>
