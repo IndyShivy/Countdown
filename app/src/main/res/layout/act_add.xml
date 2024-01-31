@@ -8,32 +8,74 @@
     tools:context=".AddAct">
 
     <ImageView
+        android:layout_width="456dp"
+        android:layout_height="239dp"
+        android:layout_marginEnd="136dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/clouds_two"
+        app:layout_constraintBottom_toTopOf="@+id/navigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.795"
+        android:contentDescription="@string/Cloud"/>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/formatInputLayout"
+        style="@style/CustomTextInputLayout"
+        android:layout_width="380dp"
+        android:layout_height="83dp"
+        android:layout_marginEnd="112dp"
+        android:fontFamily="@font/viga"
+        android:hint="@string/format"
+        android:paddingStart="23dp"
+        android:paddingEnd="23dp"
+        app:layout_constraintBottom_toTopOf="@+id/navigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.734"
+        tools:ignore="RtlSymmetry">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/eventFormatGet"
+            android:layout_width="276dp"
+            android:layout_height="64dp"
+            android:fontFamily="@font/viga"
+            android:gravity="center"
+            android:imeOptions="actionGo"
+            android:inputType="text"
+            android:singleLine="true"
+            android:textSize="22sp"
+            tools:ignore="TextContrastCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
         android:layout_width="350dp"
         android:layout_height="240dp"
-        android:layout_marginStart="204dp"
+        android:layout_marginStart="200dp"
         android:scaleType="center"
         android:src="@drawable/clouds_one"
         app:layout_constraintBottom_toTopOf="@+id/navigationView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.38" />
-
+        app:layout_constraintVertical_bias="0.424"
+        android:contentDescription="@string/Cloud"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/dateInputLayout"
         style="@style/CustomTextInputLayout"
         android:layout_width="380dp"
         android:layout_height="83dp"
-        android:layout_marginStart="172dp"
+        android:layout_marginStart="152dp"
         android:fontFamily="@font/viga"
         android:hint="@string/Date"
         android:paddingStart="23dp"
-
         android:paddingEnd="23dp"
         app:layout_constraintBottom_toTopOf="@+id/navigationView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.434"
+        app:layout_constraintVertical_bias="0.477"
         tools:ignore="RtlSymmetry">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -50,46 +92,6 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/navigationView"
-        style="@style/CustomBottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="86dp"
-        android:layout_alignParentBottom="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/act_nav_menu">
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-
-    <TextView
-        android:id="@+id/formatLabel"
-        android:layout_width="70dp"
-        android:layout_height="36dp"
-        android:gravity="center_vertical|end"
-        android:text="@string/format"
-        android:fontFamily="@font/viga"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/borderView2"
-        app:layout_constraintEnd_toEndOf="@+id/borderView2"
-        app:layout_constraintHorizontal_bias="0.048"
-        app:layout_constraintStart_toStartOf="@+id/borderView2"
-        app:layout_constraintTop_toTopOf="@+id/borderView2"
-        app:layout_constraintVertical_bias="0.492"
-        tools:ignore="TextSizeCheck" />
-
-    <View
-        android:id="@+id/borderView2"
-        android:layout_width="340dp"
-        android:layout_height="162dp"
-        android:background="@drawable/act_add_button_border"
-        app:layout_constraintBottom_toTopOf="@+id/navigationView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.749" />
-
     <ImageView
         android:layout_width="350dp"
         android:layout_height="240dp"
@@ -100,7 +102,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:contentDescription="@string/Cloud"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
@@ -114,10 +117,10 @@
 
         app:layout_constraintBottom_toTopOf="@+id/navigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.16000003"
+        app:layout_constraintVertical_bias="0.139"
         tools:ignore="RtlSymmetry">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -134,82 +137,31 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <ImageView
-        android:id="@+id/backImage"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        app:layout_constraintBottom_toBottomOf="@+id/borderView2"
-        app:layout_constraintEnd_toStartOf="@+id/viewPager"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/dateColon"
-        app:layout_constraintTop_toTopOf="@+id/borderView2"
-        app:layout_constraintVertical_bias="0.492"
-        app:srcCompat="@drawable/back"
-        android:contentDescription="@string/back_button" />
-
-    <TextView
-        android:id="@+id/dateColon"
-        android:layout_width="28dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginBottom="11dp"
-        android:gravity="center"
-        android:text="@string/colon"
-        android:fontFamily="@font/viga"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/borderView2"
-        app:layout_constraintEnd_toEndOf="@+id/borderView2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/formatLabel"
-        app:layout_constraintTop_toTopOf="@+id/borderView2"
-        app:layout_constraintVertical_bias="0.475"
-        tools:ignore="TextSizeCheck" />
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="132dp"
-        android:layout_height="36dp"
-        android:clipToPadding="false"
-        android:foregroundGravity="center"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
-        android:fontFamily="@font/viga"
-        app:layout_constraintBottom_toBottomOf="@+id/borderView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.655"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/borderView2"
-        app:layout_constraintVertical_bias="0.492"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageView
-        android:id="@+id/nextImage"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        app:layout_constraintBottom_toBottomOf="@+id/borderView2"
-        app:layout_constraintEnd_toEndOf="@+id/borderView2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/viewPager"
-        app:layout_constraintTop_toTopOf="@+id/borderView2"
-        app:layout_constraintVertical_bias="0.492"
-        app:srcCompat="@drawable/next"
-        android:contentDescription="@string/next" />
-
     <Button
         android:id="@+id/addButton"
         style="@style/buttonStyle"
         android:layout_width="251dp"
         android:layout_height="70dp"
-        android:text="@string/add"
         android:fontFamily="@font/viga"
+        android:text="@string/add"
         app:layout_constraintBottom_toTopOf="@+id/navigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/borderView2"
-        app:layout_constraintVertical_bias="0.442"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.972"
         tools:ignore="TextContrastCheck" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigationView"
+        style="@style/CustomBottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="86dp"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/act_nav_menu">
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

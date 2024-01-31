@@ -3,14 +3,18 @@ package com.indyinc.countdown;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowInsetsController;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -21,7 +25,6 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -37,6 +40,7 @@ public class AddAct extends AppCompatActivity {
     private boolean isDarkTheme;
     public DateDatabase db;
     public String date;
+    public String format;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -44,6 +48,7 @@ public class AddAct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_add);
         date = "";
+        format = "";
 
         //set the selected menu options as add and setup listener
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
@@ -71,15 +76,27 @@ public class AddAct extends AppCompatActivity {
 
         }
 
-
         // Get the root layout
         ConstraintLayout rootLayout = findViewById(R.id.addLayout);
         EditText eventTitle = findViewById(R.id.eventTitleGet);
-        ViewPager viewPager = findViewById(R.id.viewPager);
         Button addButton = findViewById(R.id.addButton);
-        AddAdapt adapter = new AddAdapt(this);
-        viewPager.setAdapter(adapter);
 
+        TextInputEditText eventFormatGet = findViewById(R.id.eventFormatGet);
+        eventFormatGet.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                // Close the keyboard
+                View focusedView = getCurrentFocus();
+                if (focusedView != null) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    focusedView.clearFocus();
+                }
+
+                showFormatPickerDialog(eventFormatGet);
+                return true;
+            }
+            return false;
+        });
 
 
 
@@ -115,7 +132,6 @@ public class AddAct extends AppCompatActivity {
                 datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
                 datePickerDialog.show();
 
-
                 return true;
             }
             return false;
@@ -127,45 +143,29 @@ public class AddAct extends AppCompatActivity {
 
         //add button event that will check if the event name and date has been selected
         addButton.setOnClickListener(v -> {
-            String dateWord = "Date";
             //check if the event name is empty
             if (eventTitle.getText().toString().isEmpty()) {
                 Toast.makeText(AddAct.this, "Please enter an event name", Toast.LENGTH_SHORT).show();
                 eventTitle.requestFocus();
             } else if (date.isEmpty()) {
                 Toast.makeText(AddAct.this, "Please select a date", Toast.LENGTH_SHORT).show();
+
+            } else if (Objects.requireNonNull(eventFormatGet.getText()).toString().isEmpty()) {
+                Toast.makeText(AddAct.this, "Please select a format", Toast.LENGTH_SHORT).show();
             } else {
                 //have this only contain words and spaces
                 eventTitle.setText(eventTitle.getText().toString().replaceAll("[^a-zA-Z ]", ""));
-                DateItem dateItem = new DateItem(eventTitle.getText().toString().trim(), date, adapter.getFormat());
+                DateItem dateItem = new DateItem(eventTitle.getText().toString().trim(), date, format);
                 db = new DateDatabase(AddAct.this);
                 db.insertDate(dateItem);
                 date = " ";
+                format = " ";
                 Toast.makeText(AddAct.this, "Event added!", Toast.LENGTH_SHORT).show();
-                eventDateGet.setText(dateWord);
+                eventDateGet.setText("");
                 eventTitle.setText("");
+                eventFormatGet.setText("");
             }
         });
-
-
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                // Handle page scroll
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                // Update the current position in the adapter
-                adapter.setCurrentPosition(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                // Handle scroll state changes
-            }
-        });
-
 
         // Hide the keyboard when the user presses enter
         eventTitle.setOnEditorActionListener((v, actionId, event) -> {
@@ -239,5 +239,46 @@ public class AddAct extends AppCompatActivity {
         super.onResume();
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
         bottomNavigationView.setSelectedItemId(R.id.menu_add);
+    }
+
+    // In your activity or fragment
+    public void showFormatPickerDialog(TextInputEditText eventFormatGet) {
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.act_add_format_picker);
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        Button dayButton = dialog.findViewById(R.id.dayButton);
+        Button weekButton = dialog.findViewById(R.id.weekButton);
+        Button fortnightButton = dialog.findViewById(R.id.fortnightButton);
+        Button monthButton = dialog.findViewById(R.id.monthButton);
+
+        //if outside of the dialog is clicked then close the dialog
+        dialog.setCanceledOnTouchOutside(true);
+        dayButton.setOnClickListener(v -> {
+            format = "Day";
+            eventFormatGet.setText(format);
+            dialog.dismiss();
+        });
+
+        weekButton.setOnClickListener(v -> {
+            format = "Week";
+            eventFormatGet.setText(format);
+            dialog.dismiss();
+        });
+
+        fortnightButton.setOnClickListener(v -> {
+           format = "Fortnight";
+            eventFormatGet.setText(format);
+            dialog.dismiss();
+        });
+
+        monthButton.setOnClickListener(v -> {
+            format = "Month";
+            eventFormatGet.setText(format);
+            dialog.dismiss();
+        });
+
+        dialog.show();
     }
 }

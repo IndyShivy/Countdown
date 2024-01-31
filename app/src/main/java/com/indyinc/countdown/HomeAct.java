@@ -144,6 +144,8 @@ public class HomeAct extends AppCompatActivity {
 
 
         //view visibility
+        dfDay.setVisibility(View.GONE);
+        dfDayLabel.setVisibility(View.GONE);
         dfMonth.setVisibility(View.GONE);
         dfMonthLabel.setVisibility(View.GONE);
         dfWeek.setVisibility(View.GONE);

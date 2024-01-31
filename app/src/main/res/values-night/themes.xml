@@ -43,7 +43,7 @@
     <style name="CustomTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="hintTextColor">@color/act_add_events_title_box_hint_color</item>
         <item name="boxStrokeWidth">2dp</item>
-        <item name="boxBackgroundMode">outline</item>
+        <item name="boxBackgroundMode">none</item>
         <item name="boxStrokeColor">@android:color/transparent</item>
         <item name="cursorColor">@color/black</item>
         <item name="android:textColorHint">@color/act_add_events_title_box_hint_color</item>

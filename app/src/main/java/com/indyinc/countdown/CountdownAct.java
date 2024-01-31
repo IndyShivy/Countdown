@@ -168,22 +168,8 @@ public class CountdownAct extends AppCompatActivity {
             //remove end spaces or start spaces from the title
             lowerCaseTitle = lowerCaseTitle.trim();
 
-            if(day ==8){
-                System.out.println("This fires day 8");
-            }
-            if(month == 2){
-                System.out.println("This fires month 2");
-            }
-            if (lowerCaseTitle.equals("my birthday")) {
-                System.out.println("This fires birthday");
-            }
-
             if (day == 8 && month == 2 && lowerCaseTitle.equals("my birthday")) {
-
-                System.out.println("This fires birthday");
-                // Generate a random index within the bounds of the mySentences list
                 int randomIndex = (int) (Math.random() * mySentences.size());
-                // Get the sentence at the random index
                 String randomSentence = mySentences.get(randomIndex);
                 String finalSentence = '\"'+ randomSentence+ '\"';
                 sarahPhrases.setVisibility(View.VISIBLE);
