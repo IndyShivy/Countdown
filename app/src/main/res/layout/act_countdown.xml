@@ -34,6 +34,8 @@
             android:id="@+id/chipDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:chipBackgroundColor="@color/clock_num_light_test2"
+            android:textColor="@color/white"
             android:text="@string/D"
             android:fontFamily="@font/viga"
             tools:ignore="TextContrastCheck" />
@@ -42,6 +44,8 @@
             android:id="@+id/chipWeek"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:chipBackgroundColor="@color/clock_num_light_test2"
+            android:textColor="@color/white"
             android:text="@string/W"
             android:fontFamily="@font/viga"
             tools:ignore="TextContrastCheck" />
@@ -50,6 +54,8 @@
             android:id="@+id/chipFortnight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:chipBackgroundColor="@color/clock_num_light_test2"
+            android:textColor="@color/white"
             android:text="@string/F"
             android:fontFamily="@font/viga"
             tools:ignore="TextContrastCheck" />
@@ -58,6 +64,8 @@
             android:id="@+id/chipMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:chipBackgroundColor="@color/clock_num_light_test2"
+            android:textColor="@color/white"
             android:text="@string/M"
             android:fontFamily="@font/viga"/>
     </com.google.android.material.chip.ChipGroup>
@@ -108,7 +116,7 @@
 
     <TextView
         android:id="@+id/dfDay"
-        style="@style/textStyle"
+        style="@style/numberStyle"
         android:layout_width="249dp"
         android:layout_height="271dp"
         android:gravity="top|center"
@@ -139,7 +147,7 @@
 
     <TextView
         android:id="@+id/dfWeekDay"
-        style="@style/textStyle"
+        style="@style/numberStyle"
         android:layout_width="162dp"
         android:layout_height="140dp"
         android:gravity="top|center"
@@ -154,7 +162,7 @@
 
     <TextView
         android:id="@+id/dfWeek"
-        style="@style/textStyle"
+        style="@style/numberStyle"
         android:layout_width="162dp"
         android:layout_height="140dp"
         android:gravity="top|center"
@@ -169,7 +177,7 @@
 
     <TextView
         android:id="@+id/dfFortnightWeek"
-        style="@style/textStyle"
+        style="@style/numberStyle"
         android:layout_width="162dp"
         android:layout_height="140dp"
         android:gravity="top|center"
@@ -184,7 +192,7 @@
 
     <TextView
         android:id="@+id/dfHours"
-        style="@style/textStyle"
+        style="@style/numberStyle"
         android:layout_width="120dp"
         android:layout_height="140dp"
         android:gravity="top|center"
@@ -201,7 +209,7 @@
 
     <TextView
         android:id="@+id/dfMinutes"
-        style="@style/textStyle"
+        style="@style/numberStyle"
         android:layout_width="120dp"
         android:layout_height="140dp"
         android:gravity="top|center"
@@ -218,7 +226,7 @@
 
     <TextView
         android:id="@+id/dfSeconds"
-        style="@style/textStyle"
+        style="@style/numberStyle"
         android:layout_width="120dp"
         android:layout_height="140dp"
         android:gravity="top|center"
@@ -235,7 +243,7 @@
 
     <TextView
         android:id="@+id/dfMonth"
-        style="@style/textStyle"
+        style="@style/numberStyle"
         android:layout_width="162dp"
         android:layout_height="140dp"
         android:gravity="top|center"
@@ -360,18 +368,18 @@
         android:id="@+id/backButtonLabel"
         android:layout_width="62dp"
         android:layout_height="42dp"
+        android:fontFamily="@font/viga"
         android:gravity="start|center"
         android:text="@string/Back"
-        android:fontFamily="@font/viga"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.169"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.026"
+        app:layout_constraintVertical_bias="0.029"
         tools:ignore="TextContrastCheck" />
 
     <TextView
@@ -389,24 +397,16 @@
         app:layout_constraintVertical_bias="0.694"
         tools:ignore="TextSizeCheck" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="205dp" />
-
     <TextView
         android:id="@+id/sarahPhrases"
-        android:layout_width="386dp"
+        android:layout_width="380dp"
         android:layout_height="181dp"
-        android:gravity="center"
-        android:textSize="24sp"
-        android:textStyle="italic"
         android:fontFamily="@font/viga"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.36"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/eventTitle"
         app:layout_constraintVertical_bias="0.659" />

@@ -11,6 +11,7 @@ import android.view.WindowInsetsController;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.chip.Chip;
@@ -62,17 +63,17 @@ public class CountdownAct extends AppCompatActivity {
         boolean isDarkTheme = sharedPreferences.getBoolean(IS_DARK_THEME, false);
 
         if (isDarkTheme) {
-            getWindow().setNavigationBarColor(getColor(R.color.black));
-            getWindow().getDecorView().setBackgroundColor(getColor(R.color.event_background_dark));
+            getWindow().setNavigationBarColor(getColor(R.color.testing2));
+            getWindow().getDecorView().setBackgroundColor(getColor(R.color.light_background));
 
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 Objects.requireNonNull(getWindow().getInsetsController()).setSystemBarsAppearance(WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS, WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
             }
-            getWindow().setNavigationBarColor(getColor(R.color.nav_background_light));
-            getWindow().getDecorView().setBackgroundColor(getColor(R.color.event_background_light));
+            getWindow().setNavigationBarColor(getColor(R.color.navbar_background_light));
+            getWindow().getDecorView().setBackgroundColor(getColor(R.color.main_background_light));
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            getWindow().setStatusBarColor(getColor(R.color.event_background_light));
+            getWindow().setStatusBarColor(getColor(R.color.main_background_light));
         }
 
         //fill myWords
@@ -115,9 +116,15 @@ public class CountdownAct extends AppCompatActivity {
         dfFortnightWeekLabel = findViewById(R.id.dfFortnightWeekLabel);
         dfMonthLabel = findViewById(R.id.dfMonthLabel);
 
-        //if the backButton or backButtonLabel is clicked, go back to the previous activity
-        backButton.setOnClickListener(v -> finish());
-        backButtonLabel.setOnClickListener(v -> finish());
+
+        backButton.setOnClickListener(v -> {
+            finish();
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        });
+        backButtonLabel.setOnClickListener(v -> {
+            finish();
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        });
         dfDay = findViewById(R.id.dfDay);
         dfHours = findViewById(R.id.dfHours);
         dfMinutes = findViewById(R.id.dfMinutes);
@@ -195,6 +202,14 @@ public class CountdownAct extends AppCompatActivity {
         chipFortnight.setOnClickListener(v -> startCountdown(date, "Fortnight"));
         chipMonth.setOnClickListener(v -> startCountdown(date, "Month"));
 
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                finish();
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     public long getMillisUntilEvent(String dateString) {
@@ -407,5 +422,4 @@ public class CountdownAct extends AppCompatActivity {
         };
         countDownTimer.start();
     }
-
 }

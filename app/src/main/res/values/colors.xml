@@ -2,12 +2,56 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
     <color name="background_light">#96D196</color>
     <color name="background_dark">#4E4E4E</color>
     <color name="nav_background_light">#07492D</color>
     <color name="nav_background_dark">#000000</color>
-    <color name="event_background_light">#ecf7fd</color>
+    <color name="event_background_light">#ECF7FD</color>
     <color name="event_background_dark">#4E4E4E</color>
     <color name="background_dark_secondary">#858585</color>
-    <color name="calendar_red">#ef456a</color>
+    <color name="clock_label">#ef456a</color>
+    <color name="clock_num_light">#336699</color>
+
+
+
+
+    <color name="clock_num_light_test1">#96adde</color>
+
+
+    <color name="main_background_light1">#C1E1C1</color>
+    <color name="main_background_light">#8BB3C8</color>
+
+    <color name="main_background_dark">#0c141c</color>
+
+
+
+    <color name="clock_label_test_dark">#E16C6C</color>
+
+    <color name="clock_num_dark_test">#4E4E4E</color>
+
+    <color name="remove_button_light">#E16C6C</color>
+    <color name="event_item_light">#ecf7fd</color>
+    <color name="event_item_dark">#4E4E4E</color>
+
+
+    <!--Light Mode-->
+    <color name="light_background">#8BB3C8</color>
+    <color name="clock_num_light_test2">#0D0221</color>
+    <color name="clock_label_text_light">#B4B5B6</color>
+    <color name="clock_label_test_light">#32533D</color>
+    <color name="navbar_background_light">#32533D</color>
+
+    <!-- initial text = #DCE3EE -->
+
+
+    <color name="testing2">#19232f</color>
+    <color name="testing3">#dce3ee</color>
+    <color name="testing4">#1F3143</color>
+    #2F3061
+    #558B6E
+    #587cca
+    9FD3EF
+    2F243A
 </resources>

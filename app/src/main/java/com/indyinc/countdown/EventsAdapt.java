@@ -2,11 +2,9 @@ package com.indyinc.countdown;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,6 +28,7 @@ public class EventsAdapt extends RecyclerView.Adapter<EventsAdapt.ViewHolder> {
         this.dateItems = dateItems;
         this.context = context;
         this.db = new DateDatabase(context);
+        setHasStableIds(true);
     }
 
     @NonNull
@@ -44,6 +43,11 @@ public class EventsAdapt extends RecyclerView.Adapter<EventsAdapt.ViewHolder> {
         this.listener = listener;
     }
 
+    @Override
+    public long getItemId(int position) {
+        // Assuming DateItem has a unique id field
+        return dateItems.get(position).getId();
+    }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DateItem dateItem = dateItems.get(position);
@@ -67,37 +71,33 @@ public class EventsAdapt extends RecyclerView.Adapter<EventsAdapt.ViewHolder> {
                 holder.formatImage.setImageResource(R.drawable.month);
                 break;
         }
-
-        holder.removeButton.setOnClickListener(v -> {
-            String eventTitle = dateItem.getTitle();
-            AlertDialog.Builder builder = new AlertDialog.Builder(context,R.style.AlertDialogCustom);
-            LayoutInflater backupInflate = LayoutInflater.from(context);
-            View dialogView = backupInflate.inflate(R.layout.act_events_alert_dialog, null);
-            builder.setView(dialogView);
-            TextView title = dialogView.findViewById(R.id.dialog_title);
-            String titleSet = "Delete Event";
-            title.setText(titleSet);
-            //title.setTextColor(Color.BLACK);
-            TextView message = dialogView.findViewById(R.id.dialog_message);
-            String textSetter = "Remove " + "\"" + eventTitle + "\"" +" ?";
-            message.setText(textSetter);
-            //message.setTextColor(Color.BLACK);  // Set the color
-            builder.setPositiveButton("Yes", (dialog, which) -> {
-                        db.deleteEvent(dateItem);
-                        dateItems.remove(position);
-                        dateItems.clear();
-                        dateItems.addAll(db.getAllDates());
-                        notifyDataSetChanged();
-                    })
-                    .setNegativeButton("No", null)
-                    .show();
-        });
+        holder.removeButton.setOnClickListener(v -> setupRemoveDialog(dateItem, position));
     }
 
+    private void setupRemoveDialog(DateItem dateItem, int position) {
+        String eventTitle = dateItem.getTitle();
+        AlertDialog.Builder builder = new AlertDialog.Builder(context,R.style.AlertDialogCustom);
+        LayoutInflater backupInflate = LayoutInflater.from(context);
+        View dialogView = backupInflate.inflate(R.layout.act_events_alert_dialog, null);
+        builder.setView(dialogView);
+        TextView title = dialogView.findViewById(R.id.dialog_title);
+        String titleSetter = "Are you sure you want to remove:\n";
+        title.setText(titleSetter);
+        TextView message = dialogView.findViewById(R.id.dialog_message);
+        String textSetter = "\"" + eventTitle + "\"";
+        message.setText(textSetter);
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+                    db.deleteEvent(dateItem);
+                    dateItems.remove(position);
+                    notifyItemRemoved(position);
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
 
     @Override
     public int getItemCount() {
-        return db.getAllDates().size();
+        return dateItems.size();
     }
 
     // Create the view holder
@@ -123,6 +123,8 @@ public class EventsAdapt extends RecyclerView.Adapter<EventsAdapt.ViewHolder> {
                 }
             });
         }
+
+
 
 
 

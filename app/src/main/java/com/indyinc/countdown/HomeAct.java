@@ -15,14 +15,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
-import com.google.android.material.switchmaterial.SwitchMaterial;
-
-
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -157,22 +154,35 @@ public class HomeAct extends AppCompatActivity {
         dfWeekWeekLabel.setVisibility(View.GONE);
 
         String title;
-        String date = "";
-        String format = "";
+        String date;
+        String format;
 
         //get the first date and format from the database
         ArrayList<DateItem> dateItems = db.getAllDates();
+        //delete all dates from the db if the date is in the past
+        for (DateItem dateItem : dateItems) {
+            if (getMillisUntilEvent(dateItem.getDate()) < 0) {
+                db.deleteDate(dateItem);
+            }
+        }
+        dateItems = db.getAllDates();
         if (dateItems.size() > 0) {
             title = dateItems.get(0).getTitle();
-            String finalTitle = '\"'+ title+ '\"';
+            String finalTitle = '\"' + title + '\"';
             eventTitle.setText(finalTitle);
             date = dateItems.get(0).getDate();
             format = dateItems.get(0).getFormat();
+            startCountdown(date, format);
+            highlightSelectedFormat(format);
+            String finalDate = date;
+            chipDay.setOnClickListener(v -> startCountdown(finalDate, "Day"));
+            chipWeek.setOnClickListener(v -> startCountdown(finalDate, "Week"));
+            chipFortnight.setOnClickListener(v -> startCountdown(finalDate, "Fortnight"));
+            chipMonth.setOnClickListener(v -> startCountdown(finalDate, "Month"));
         } else {
             eventTitle.setText(R.string.Add_an_Event);
             dfDay.setVisibility(View.GONE);
             dfDayLabel.setVisibility(View.GONE);
-
             dfMonth.setVisibility(View.VISIBLE);
             dfMonthLabel.setVisibility(View.VISIBLE);
             dfWeek.setVisibility(View.VISIBLE);
@@ -182,16 +192,6 @@ public class HomeAct extends AppCompatActivity {
             dfWeekDays.setVisibility(View.VISIBLE);
             dfWeekWeekLabel.setVisibility(View.VISIBLE);
         }
-
-
-        startCountdown(date, format);
-        highlightSelectedFormat(format);
-        String finalDate = date;
-        chipDay.setOnClickListener(v -> startCountdown(finalDate, "Day"));
-        chipWeek.setOnClickListener(v -> startCountdown(finalDate, "Week"));
-        chipFortnight.setOnClickListener(v -> startCountdown(finalDate, "Fortnight"));
-        chipMonth.setOnClickListener(v -> startCountdown(finalDate, "Month"));
-
     }
 
 
@@ -421,7 +421,7 @@ public class HomeAct extends AppCompatActivity {
                 //pass in if the theme is dark or not
                 intent.putExtra(IS_DARK_THEME, isDarkTheme);
                 startActivity(intent);
-                overridePendingTransition(R.anim.hold, R.anim.fade_in);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 //close the current activity
                 finish();
                 return true;
@@ -432,18 +432,22 @@ public class HomeAct extends AppCompatActivity {
     };
     private void setStatusBarColor() {
         if (isDarkTheme) {
-            getWindow().setNavigationBarColor(getColor(R.color.black));
-            getWindow().getDecorView().setBackgroundColor(getColor(R.color.event_background_dark));
+            //if the theme is dark
+            getWindow().setNavigationBarColor(getColor(R.color.testing2));
+            getWindow().getDecorView().setBackgroundColor(getColor(R.color.light_background));
         } else {
+            //if the theme is light
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 Objects.requireNonNull(getWindow().getInsetsController()).setSystemBarsAppearance(WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS, WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
             }
-            getWindow().setNavigationBarColor(getColor(R.color.nav_background_light));
-            getWindow().getDecorView().setBackgroundColor(getColor(R.color.event_background_light));
+            getWindow().setNavigationBarColor(getColor(R.color.navbar_background_light));
+            getWindow().getDecorView().setBackgroundColor(getColor(R.color.light_background));
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            getWindow().setStatusBarColor(getColor(R.color.event_background_light));
+            getWindow().setStatusBarColor(getColor(R.color.light_background));
         }
     }
+
+
 
     @Override
     protected void onResume() {

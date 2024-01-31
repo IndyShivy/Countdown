@@ -1,5 +1,7 @@
 package com.indyinc.countdown;
 
+import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,7 +23,6 @@ public class DateDatabase extends SQLiteOpenHelper {
     public static final String COLUMN_DATE = "Date";
     public static final String COLUMN_FORMAT = "Format";
     Context context;
-    String dbPath;
 
     //create a constructor to initialize the data
     public DateDatabase(Context context) {
@@ -33,15 +34,13 @@ public class DateDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        //create a table
+        // Modified to include ID as a primary key and autoincrement
         String query = "CREATE TABLE " + TABLE_NAME + " (" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_TITLE + " TEXT, " +
                 COLUMN_DATE + " TEXT, " +
                 COLUMN_FORMAT + " TEXT);";
         sqLiteDatabase.execSQL(query);
-        dbPath = context.getDatabasePath(DATABASE_NAME).getAbsolutePath();
-
     }
 
     @Override
@@ -49,24 +48,21 @@ public class DateDatabase extends SQLiteOpenHelper {
 
     }
 
+    // Modified insertDate method
     public void insertDate(DateItem dateItem){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        String query = "INSERT INTO " + TABLE_NAME + " (" +
-                COLUMN_TITLE + ", " +
-                COLUMN_DATE + ", " +
-                COLUMN_FORMAT + ") VALUES ('" +
-                dateItem.getTitle() + "', '" +
-                dateItem.getDate() + "', '" +
-                dateItem.getFormat() + "');";
-        sqLiteDatabase.execSQL(query);
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_TITLE, dateItem.getTitle());
+        values.put(COLUMN_DATE, dateItem.getDate());
+        values.put(COLUMN_FORMAT, dateItem.getFormat());
+        sqLiteDatabase.insert(TABLE_NAME, null, values);
     }
 
+    // Modified delete method to use id
     public void deleteEvent(DateItem dateItem){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         String query = "DELETE FROM " + TABLE_NAME + " WHERE " +
-                COLUMN_TITLE + " = '" + dateItem.getTitle() + "' AND " +
-                COLUMN_DATE + " = '" + dateItem.getDate() + "' AND " +
-                COLUMN_FORMAT + " = '" + dateItem.getFormat() + "';";
+                COLUMN_ID + " = " + dateItem.getId() + ";";
         sqLiteDatabase.execSQL(query);
     }
 
@@ -83,10 +79,11 @@ public class DateDatabase extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
+                @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
                 String title = cursor.getString(titleIndex);
                 String date = cursor.getString(dateIndex);
                 String format = cursor.getString(formatIndex);
-                dateItems.add(new DateItem(title, date, format));
+                dateItems.add(new DateItem(id, title, date, format)); // Assuming constructor with id
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -111,6 +108,14 @@ public class DateDatabase extends SQLiteOpenHelper {
             e.printStackTrace();
             return 0;
         }
+    }
+    public void deleteDate(DateItem dateItem){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        String query = "DELETE FROM " + TABLE_NAME + " WHERE " +
+                COLUMN_TITLE + " = '" + dateItem.getTitle() + "' AND " +
+                COLUMN_DATE + " = '" + dateItem.getDate() + "' AND " +
+                COLUMN_FORMAT + " = '" + dateItem.getFormat() + "';";
+        sqLiteDatabase.execSQL(query);
     }
 
 

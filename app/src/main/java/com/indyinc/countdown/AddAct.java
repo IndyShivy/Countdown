@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsetsController;
 import android.view.inputmethod.EditorInfo;
@@ -24,6 +25,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
 import java.util.Objects;
@@ -54,17 +56,17 @@ public class AddAct extends AppCompatActivity {
         isDarkTheme = sharedPreferences.getBoolean(IS_DARK_THEME, false);
 
         if (isDarkTheme) {
-            getWindow().setNavigationBarColor(getColor(R.color.black));
-            getWindow().getDecorView().setBackgroundColor(getColor(R.color.event_background_dark));
+            getWindow().setNavigationBarColor(getColor(R.color.testing2));
+            getWindow().getDecorView().setBackgroundColor(getColor(R.color.light_background));
 
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 Objects.requireNonNull(getWindow().getInsetsController()).setSystemBarsAppearance(WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS, WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
             }
-                getWindow().setNavigationBarColor(getColor(R.color.nav_background_light));
-                getWindow().getDecorView().setBackgroundColor(getColor(R.color.event_background_light));
+                getWindow().setNavigationBarColor(getColor(R.color.navbar_background_light));
+                getWindow().getDecorView().setBackgroundColor(getColor(R.color.main_background_light));
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-                getWindow().setStatusBarColor(getColor(R.color.event_background_light));
+                getWindow().setStatusBarColor(getColor(R.color.main_background_light));
 
 
         }
@@ -81,42 +83,51 @@ public class AddAct extends AppCompatActivity {
 
 
 
-        Button datePickerButton = findViewById(R.id.showDatePickerButton);
-        datePickerButton.setText(R.string.Select);
-        datePickerButton.setOnClickListener(v -> {
-            //close the keyboard
-            View focusedView = getCurrentFocus();
-            if (focusedView != null) {
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                focusedView.clearFocus();
+        TextInputEditText eventDateGet = findViewById(R.id.eventDateGet);
+        eventDateGet.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                // Close the keyboard
+                View focusedView = getCurrentFocus();
+                if (focusedView != null) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    focusedView.clearFocus();
+                }
+
+                // Get Current Date
+                final Calendar c = Calendar.getInstance();
+                int mYear = c.get(Calendar.YEAR);
+                int mMonth = c.get(Calendar.MONTH);
+                int mDayOfMonth = c.get(Calendar.DAY_OF_MONTH);
+
+                // Launch Date Picker Dialog
+                DatePickerDialog datePickerDialog = new DatePickerDialog(AddAct.this,
+                        (view, year, monthOfYear, dayOfMonth) -> {
+                            // Format month and day to ensure two digits
+                            @SuppressLint("DefaultLocale") String formattedMonth = String.format("%02d", monthOfYear + 1);
+                            @SuppressLint("DefaultLocale") String formattedDay = String.format("%02d", dayOfMonth);
+                            date = formattedDay + "/" + formattedMonth + "/" + year;
+
+                            // Update button text with selected date
+                            eventDateGet.setText(date);
+                        }, mYear, mMonth, mDayOfMonth);
+
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                datePickerDialog.show();
+
+
+                return true;
             }
-            // Get Current Date
-            final Calendar c = Calendar.getInstance();
-            int mYear = c.get(Calendar.YEAR);
-            int mMonth = c.get(Calendar.MONTH);
-            int mDay = c.get(Calendar.DAY_OF_MONTH);
-
-            // Launch Date Picker Dialog
-            DatePickerDialog datePickerDialog = new DatePickerDialog(AddAct.this,
-                    (view, year, monthOfYear, dayOfMonth) -> {
-                        // Format month and day to ensure two digits
-                        @SuppressLint("DefaultLocale") String formattedMonth = String.format("%02d", monthOfYear + 1);
-                        @SuppressLint("DefaultLocale") String formattedDay = String.format("%02d", dayOfMonth);
-                        date = formattedDay + "/" + formattedMonth + "/" + year;
-
-                        // Update button text with selected date
-                        datePickerButton.setText(date);
-                    }, mYear, mMonth, mDay);
-
-            datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
-            datePickerDialog.show();
+            return false;
         });
+
+
+
 
 
         //add button event that will check if the event name and date has been selected
         addButton.setOnClickListener(v -> {
-            String select = "Select";
+            String dateWord = "Date";
             //check if the event name is empty
             if (eventTitle.getText().toString().isEmpty()) {
                 Toast.makeText(AddAct.this, "Please enter an event name", Toast.LENGTH_SHORT).show();
@@ -124,7 +135,6 @@ public class AddAct extends AppCompatActivity {
             } else if (date.isEmpty()) {
                 Toast.makeText(AddAct.this, "Please select a date", Toast.LENGTH_SHORT).show();
             } else {
-
                 //have this only contain words and spaces
                 eventTitle.setText(eventTitle.getText().toString().replaceAll("[^a-zA-Z ]", ""));
                 DateItem dateItem = new DateItem(eventTitle.getText().toString().trim(), date, adapter.getFormat());
@@ -132,7 +142,7 @@ public class AddAct extends AppCompatActivity {
                 db.insertDate(dateItem);
                 date = " ";
                 Toast.makeText(AddAct.this, "Event added!", Toast.LENGTH_SHORT).show();
-                datePickerButton.setText(select);
+                eventDateGet.setText(dateWord);
                 eventTitle.setText("");
             }
         });
@@ -216,7 +226,7 @@ public class AddAct extends AppCompatActivity {
         if (intent != null) {
             intent.putExtra(IS_DARK_THEME, isDarkTheme);
             startActivity(intent);
-            overridePendingTransition(R.anim.hold, R.anim.fade_in);
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             return true;
         }
 

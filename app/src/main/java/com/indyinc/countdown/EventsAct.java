@@ -10,11 +10,15 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowInsetsController;
+import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -47,18 +51,25 @@ public class EventsAct extends AppCompatActivity {
         isDarkTheme = sharedPreferences.getBoolean(IS_DARK_THEME, false);
 
         if (isDarkTheme) {
-            getWindow().setNavigationBarColor(getColor(R.color.black));
-            getWindow().getDecorView().setBackgroundColor(getColor(R.color.event_background_dark));
+            getWindow().setNavigationBarColor(getColor(R.color.testing2));
+            getWindow().getDecorView().setBackgroundColor(getColor(R.color.light_background));
 
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 Objects.requireNonNull(getWindow().getInsetsController()).setSystemBarsAppearance(WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS, WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
             }
-            getWindow().setNavigationBarColor(getColor(R.color.nav_background_light));
-            getWindow().getDecorView().setBackgroundColor(getColor(R.color.event_background_light));
+            getWindow().setNavigationBarColor(getColor(R.color.navbar_background_light));
+            getWindow().getDecorView().setBackgroundColor(getColor(R.color.main_background_light));
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            getWindow().setStatusBarColor(getColor(R.color.event_background_light));
+            getWindow().setStatusBarColor(getColor(R.color.main_background_light));
         }
+
+        ImageView imageView = findViewById(R.id.pattern);
+        Drawable drawable = imageView.getDrawable();
+        ColorMatrix colorMatrix = new ColorMatrix();
+        colorMatrix.setSaturation(0.5f); // 0.5 means half saturated. Change this value as per your need.
+        ColorMatrixColorFilter colorFilter = new ColorMatrixColorFilter(colorMatrix);
+        drawable.setColorFilter(colorFilter);
 
 
         //set the context
@@ -93,7 +104,7 @@ public class EventsAct extends AppCompatActivity {
             intent.putExtra("eventFormat", item.getFormat());
             System.out.println("item.getDate(): " + item.getDate());
             startActivity(intent);
-            overridePendingTransition(R.anim.hold, R.anim.fade_in);
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         });
 
         //#ecf7fd
@@ -117,8 +128,7 @@ public class EventsAct extends AppCompatActivity {
                 //intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 intent.putExtra(IS_DARK_THEME, isDarkTheme);
                 startActivity(intent);
-                overridePendingTransition(R.anim.hold, R.anim.fade_in);
-
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 return true;
             }
 

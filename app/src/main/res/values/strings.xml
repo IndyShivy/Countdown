@@ -11,7 +11,7 @@
     <string name="format">Format</string>
     <string name="date">Date</string>
     <string name="colon">:</string>
-    <string name="event_title">Event Title:</string>
+    <string name="event_title">Event Title</string>
     <string name="back_button">back_button</string>
     <string name="next">next</string>
     <string name="D">D</string>
@@ -31,4 +31,6 @@
     <string name="TILL">TILL</string>
     <string name="remove_button">remove_button</string>
     <string name="dark_mode">Dark Mode</string>
+    <string name="pattern">pattern</string>
+    <string name="Date">Date</string>
 </resources>

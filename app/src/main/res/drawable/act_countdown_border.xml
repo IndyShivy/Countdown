@@ -2,7 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <solid android:color="@android:color/transparent"/> <!-- Transparent background -->
     <stroke
-        android:width="5px"
+        android:width="10px"
         android:color="@color/black"/> <!-- Set your border color -->
     <!-- Optionally, set corner radius if you want rounded corners -->
     <corners android:radius="4dp"/>
