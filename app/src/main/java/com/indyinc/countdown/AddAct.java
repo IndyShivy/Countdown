@@ -20,6 +20,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
@@ -49,6 +50,7 @@ public class AddAct extends AppCompatActivity {
         setContentView(R.layout.act_add);
         date = "";
         format = "";
+        ImageView gradientBackground = findViewById(R.id.gradientBackground);
 
         //set the selected menu options as add and setup listener
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
@@ -62,7 +64,10 @@ public class AddAct extends AppCompatActivity {
 
         if (isDarkTheme) {
             getWindow().setNavigationBarColor(getColor(R.color.testing2));
-            getWindow().getDecorView().setBackgroundColor(getColor(R.color.light_background));
+            getWindow().getDecorView().setBackgroundColor(getColor(R.color.testing4));
+            getWindow().setStatusBarColor(getColor(R.color.testing4));
+            //set the src for the gradient background
+            gradientBackground.setImageResource(R.drawable.background_grad_dark);
 
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -72,6 +77,8 @@ public class AddAct extends AppCompatActivity {
                 getWindow().getDecorView().setBackgroundColor(getColor(R.color.main_background_light));
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
                 getWindow().setStatusBarColor(getColor(R.color.main_background_light));
+                gradientBackground.setImageResource(R.drawable.background_grad_light);
+
 
 
         }

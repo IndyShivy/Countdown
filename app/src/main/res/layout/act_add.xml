@@ -8,16 +8,28 @@
     tools:context=".AddAct">
 
     <ImageView
+        android:id="@+id/gradientBackground"
+        android:scaleType="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/Cloud"
+        android:src="@drawable/background_grad_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
         android:layout_width="456dp"
         android:layout_height="239dp"
-        android:layout_marginEnd="136dp"
+        android:layout_marginEnd="54dp"
+        android:contentDescription="@string/Cloud"
         android:scaleType="fitCenter"
-        android:src="@drawable/clouds_two"
+        android:src="@drawable/clouds_three_cat"
         app:layout_constraintBottom_toTopOf="@+id/navigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.795"
-        android:contentDescription="@string/Cloud"/>
+        app:layout_constraintVertical_bias="0.795" />
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -25,7 +37,7 @@
         style="@style/CustomTextInputLayout"
         android:layout_width="380dp"
         android:layout_height="83dp"
-        android:layout_marginEnd="112dp"
+        android:layout_marginEnd="136dp"
         android:fontFamily="@font/viga"
         android:hint="@string/format"
         android:paddingStart="23dp"
@@ -33,7 +45,7 @@
         app:layout_constraintBottom_toTopOf="@+id/navigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.734"
+        app:layout_constraintVertical_bias="0.728"
         tools:ignore="RtlSymmetry">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -52,22 +64,22 @@
 
     <ImageView
         android:layout_width="350dp"
-        android:layout_height="240dp"
-        android:layout_marginStart="200dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="84dp"
+        android:contentDescription="@string/Cloud"
         android:scaleType="center"
-        android:src="@drawable/clouds_one"
+        android:src="@drawable/clouds_two_cat"
         app:layout_constraintBottom_toTopOf="@+id/navigationView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.424"
-        android:contentDescription="@string/Cloud"/>
+        app:layout_constraintVertical_bias="0.424" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/dateInputLayout"
         style="@style/CustomTextInputLayout"
         android:layout_width="380dp"
         android:layout_height="83dp"
-        android:layout_marginStart="152dp"
+        android:layout_marginStart="180dp"
         android:fontFamily="@font/viga"
         android:hint="@string/Date"
         android:paddingStart="23dp"
@@ -75,7 +87,7 @@
         app:layout_constraintBottom_toTopOf="@+id/navigationView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.477"
+        app:layout_constraintVertical_bias="0.494"
         tools:ignore="RtlSymmetry">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -95,15 +107,15 @@
     <ImageView
         android:layout_width="350dp"
         android:layout_height="240dp"
+        android:contentDescription="@string/Cloud"
         android:scaleType="center"
-        android:src="@drawable/clouds_one"
+        android:src="@drawable/clouds_one_cat"
         app:layout_constraintBottom_toTopOf="@+id/navigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:contentDescription="@string/Cloud"/>
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
@@ -120,7 +132,7 @@
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.139"
+        app:layout_constraintVertical_bias="0.155"
         tools:ignore="RtlSymmetry">
 
         <com.google.android.material.textfield.TextInputEditText

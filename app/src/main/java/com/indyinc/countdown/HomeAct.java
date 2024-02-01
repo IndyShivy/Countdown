@@ -436,7 +436,7 @@ public class HomeAct extends AppCompatActivity {
         if (isDarkTheme) {
             //if the theme is dark
             getWindow().setNavigationBarColor(getColor(R.color.testing2));
-            getWindow().getDecorView().setBackgroundColor(getColor(R.color.light_background));
+            getWindow().getDecorView().setBackgroundColor(getColor(R.color.testing4));
         } else {
             //if the theme is light
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

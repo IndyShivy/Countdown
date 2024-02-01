@@ -1,7 +1,7 @@
 <resources>
     <style name="Base.Theme.Countdown" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <item name="android:windowBackground">@color/light_background</item>
+        <item name="android:windowBackground">@color/testing4</item>
         <item name="android:statusBarColor">@color/light_background</item>
         <item name="android:navigationBarColor">@color/light_background</item>
         <item name="colorControlActivated">@color/light_background</item>
