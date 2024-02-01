@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/event_background_light" /> <!-- Background color -->
+    <solid android:color="@color/act_events_dialog_box_light" /> <!-- Background color -->
     <corners android:radius="4dp" /> <!-- Corner radius -->
     <!--increase size of box-->
     <!--    <padding-->

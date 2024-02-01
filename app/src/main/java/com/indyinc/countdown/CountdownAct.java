@@ -63,17 +63,17 @@ public class CountdownAct extends AppCompatActivity {
         boolean isDarkTheme = sharedPreferences.getBoolean(IS_DARK_THEME, false);
 
         if (isDarkTheme) {
-            getWindow().setNavigationBarColor(getColor(R.color.testing2));
-            getWindow().getDecorView().setBackgroundColor(getColor(R.color.light_background));
+            getWindow().setNavigationBarColor(getColor(R.color.act_all_dark_background));
+            getWindow().getDecorView().setBackgroundColor(getColor(R.color.act_all_light_background));
 
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 Objects.requireNonNull(getWindow().getInsetsController()).setSystemBarsAppearance(WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS, WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
             }
-            getWindow().setNavigationBarColor(getColor(R.color.navbar_background_light));
-            getWindow().getDecorView().setBackgroundColor(getColor(R.color.main_background_light));
+            getWindow().setNavigationBarColor(getColor(R.color.act_all_navbar_background_light));
+            getWindow().getDecorView().setBackgroundColor(getColor(R.color.act_all_light_background));
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            getWindow().setStatusBarColor(getColor(R.color.main_background_light));
+            getWindow().setStatusBarColor(getColor(R.color.act_all_light_background));
         }
 
         //fill myWords

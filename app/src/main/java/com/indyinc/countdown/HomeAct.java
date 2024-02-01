@@ -65,7 +65,7 @@ public class HomeAct extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(isDarkTheme ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
 
         setContentView(R.layout.act_home);
-        setStatusBarColor();
+        setViewColour();
 
 
         bottomNavigationView = findViewById(R.id.navigationView);
@@ -432,20 +432,20 @@ public class HomeAct extends AppCompatActivity {
             return false;
         }
     };
-    private void setStatusBarColor() {
+    private void setViewColour() {
         if (isDarkTheme) {
             //if the theme is dark
-            getWindow().setNavigationBarColor(getColor(R.color.testing2));
-            getWindow().getDecorView().setBackgroundColor(getColor(R.color.testing4));
+            getWindow().setNavigationBarColor(getColor(R.color.act_all_dark_background));
+            getWindow().getDecorView().setBackgroundColor(getColor(R.color.act_all_navbar_background_dark));
         } else {
             //if the theme is light
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 Objects.requireNonNull(getWindow().getInsetsController()).setSystemBarsAppearance(WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS, WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
             }
-            getWindow().setNavigationBarColor(getColor(R.color.navbar_background_light));
-            getWindow().getDecorView().setBackgroundColor(getColor(R.color.light_background));
+            getWindow().setNavigationBarColor(getColor(R.color.act_all_navbar_background_light));
+            getWindow().getDecorView().setBackgroundColor(getColor(R.color.act_all_light_background));
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            getWindow().setStatusBarColor(getColor(R.color.light_background));
+            getWindow().setStatusBarColor(getColor(R.color.act_all_light_background));
         }
     }
 
@@ -454,7 +454,7 @@ public class HomeAct extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        setStatusBarColor();
+        setViewColour();
     }
 
 }

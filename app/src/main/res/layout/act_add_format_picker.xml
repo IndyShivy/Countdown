@@ -11,31 +11,28 @@
         android:id="@+id/cloud_num_one"
         android:layout_width="530dp"
         android:layout_height="353dp"
-        android:layout_marginEnd="132dp"
+        android:contentDescription="@string/Cloud"
         android:scaleType="fitXY"
-        android:scaleX="1.0"
-        android:scaleY="1.0"
-        android:src="@drawable/clouds_two"
+        android:src="@drawable/clouds_three_cat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.058"
-        android:contentDescription="@string/Cloud" />
+        app:layout_constraintVertical_bias="0.058" />
 
     <ImageView
         android:id="@+id/cloud_num_two"
         android:layout_width="530dp"
         android:layout_height="353dp"
-        android:layout_marginStart="108dp"
+        android:layout_marginStart="100dp"
+        android:contentDescription="@string/Cloud"
         android:scaleType="fitXY"
         android:scaleX="1.0"
         android:scaleY="1.0"
-        android:src="@drawable/clouds_two"
+        android:src="@drawable/clouds_one_cat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.686"
-        android:contentDescription="@string/Cloud"/>
+        app:layout_constraintVertical_bias="0.686" />
 
     <Button
         android:id="@+id/dayButton"
@@ -83,6 +80,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/cloud_num_two"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.55"
         app:layout_constraintStart_toStartOf="@+id/cloud_num_two"
         app:layout_constraintTop_toTopOf="@+id/cloud_num_two" />
 
@@ -98,7 +96,6 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/cloud_num_two"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.441"
         app:layout_constraintStart_toStartOf="@+id/cloud_num_two"
         app:layout_constraintTop_toTopOf="@+id/cloud_num_two"
         app:layout_constraintVertical_bias="0.756" />

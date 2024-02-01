@@ -30,10 +30,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Calendar;
 import java.util.Objects;
-
+import android.view.ViewGroup;
 
 public class AddAct extends AppCompatActivity {
 
@@ -51,7 +52,11 @@ public class AddAct extends AppCompatActivity {
         date = "";
         format = "";
         ImageView gradientBackground = findViewById(R.id.gradientBackground);
+        ImageView cloudsOne = findViewById(R.id.cloudsOne);
+        ImageView cloudsTwo = findViewById(R.id.cloudsTwo);
+        ImageView cloudsThree = findViewById(R.id.cloudsThree);
 
+        TextInputLayout formatInputLayout = findViewById(R.id.formatInputLayout);
         //set the selected menu options as add and setup listener
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
         bottomNavigationView.setSelectedItemId(R.id.menu_add);
@@ -62,21 +67,39 @@ public class AddAct extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("Storage", MODE_PRIVATE);
         isDarkTheme = sharedPreferences.getBoolean(IS_DARK_THEME, false);
 
+        // Set the theme
         if (isDarkTheme) {
-            getWindow().setNavigationBarColor(getColor(R.color.testing2));
-            getWindow().getDecorView().setBackgroundColor(getColor(R.color.testing4));
-            getWindow().setStatusBarColor(getColor(R.color.testing4));
-            //set the src for the gradient background
+            // Set the background gradient
             gradientBackground.setImageResource(R.drawable.background_grad_dark);
+
+            //set the clouds and move them to the right position
+            cloudsOne.setImageResource(R.drawable.clouds_one_dark);
+            ViewGroup.LayoutParams layoutParams = cloudsOne.getLayoutParams();
+            float density = getResources().getDisplayMetrics().density;
+            int extraWidth = (int) (20 * density);
+            layoutParams.width = layoutParams.width + extraWidth;
+
+            cloudsOne.setLayoutParams(layoutParams);
+            cloudsOne.setTranslationX(-80);
+            cloudsOne.setTranslationY(30);
+
+            cloudsTwo.setImageResource(R.drawable.clouds_two_dark);
+            cloudsTwo.setTranslationX(170);
+            cloudsTwo.setTranslationY(60);
+
+            cloudsThree.setImageResource(R.drawable.clouds_three_dark);
+            cloudsThree.setTranslationY(40);
+            formatInputLayout.setTranslationY(130);
+
 
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 Objects.requireNonNull(getWindow().getInsetsController()).setSystemBarsAppearance(WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS, WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
             }
-                getWindow().setNavigationBarColor(getColor(R.color.navbar_background_light));
-                getWindow().getDecorView().setBackgroundColor(getColor(R.color.main_background_light));
+                getWindow().setNavigationBarColor(getColor(R.color.act_all_navbar_background_light));
+                getWindow().getDecorView().setBackgroundColor(getColor(R.color.act_all_light_background));
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-                getWindow().setStatusBarColor(getColor(R.color.main_background_light));
+                getWindow().setStatusBarColor(getColor(R.color.act_all_light_background));
                 gradientBackground.setImageResource(R.drawable.background_grad_light);
 
 
@@ -105,8 +128,7 @@ public class AddAct extends AppCompatActivity {
             return false;
         });
 
-
-
+        // Get the date picker
         TextInputEditText eventDateGet = findViewById(R.id.eventDateGet);
         eventDateGet.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -143,10 +165,6 @@ public class AddAct extends AppCompatActivity {
             }
             return false;
         });
-
-
-
-
 
         //add button event that will check if the event name and date has been selected
         addButton.setOnClickListener(v -> {

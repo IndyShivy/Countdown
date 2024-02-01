@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:fontFamily="@font/viga"
-                android:textColor="@color/clock_label" />
+                android:textColor="@color/calendar_header" />
         </LinearLayout>
 
         <ImageView

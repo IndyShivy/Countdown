@@ -7,16 +7,15 @@
     tools:context=".EventsAct">
 
     <ImageView
-        android:id="@+id/pattern"
+        android:id="@+id/gradientBackground"
         android:layout_width="match_parent"
-        android:layout_height="850dp"
-        android:contentDescription="@string/pattern"
-        android:scaleType="centerCrop"
-        android:src="@drawable/pattern_one"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/Cloud"
+        android:scaleType="center"
+        android:src="@drawable/background_grad_light"
+        app:layout_constraintBottom_toTopOf="@+id/navigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calenderFoot" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <View
         android:id="@+id/calenderFoot"

@@ -9,17 +9,17 @@
 
     <ImageView
         android:id="@+id/gradientBackground"
-        android:scaleType="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:contentDescription="@string/Cloud"
+        android:scaleType="center"
         android:src="@drawable/background_grad_light"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/navigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
+        android:id="@+id/cloudsThree"
         android:layout_width="456dp"
         android:layout_height="239dp"
         android:layout_marginEnd="54dp"
@@ -37,7 +37,7 @@
         style="@style/CustomTextInputLayout"
         android:layout_width="380dp"
         android:layout_height="83dp"
-        android:layout_marginEnd="136dp"
+        android:layout_marginEnd="128dp"
         android:fontFamily="@font/viga"
         android:hint="@string/format"
         android:paddingStart="23dp"
@@ -45,7 +45,7 @@
         app:layout_constraintBottom_toTopOf="@+id/navigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.728"
+        app:layout_constraintVertical_bias="0.742"
         tools:ignore="RtlSymmetry">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -63,6 +63,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
+        android:id="@+id/cloudsTwo"
         android:layout_width="350dp"
         android:layout_height="300dp"
         android:layout_marginStart="84dp"
@@ -105,6 +106,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
+        android:id="@+id/cloudsOne"
         android:layout_width="350dp"
         android:layout_height="240dp"
         android:contentDescription="@string/Cloud"

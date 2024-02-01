@@ -37,8 +37,8 @@
             android:layout_height="wrap_content"
             android:scaleX="1.0"
             android:scaleY="1.0"
-            app:thumbTint="@color/navbar_background_light"
-            app:trackTint="@color/clock_num_light_test2" />
+            app:thumbTint="@color/act_all_navbar_background_light"
+            app:trackTint="@color/act_all_clock_num_light" />
 
 
     </LinearLayout>
@@ -70,7 +70,7 @@
         <com.google.android.material.chip.Chip
             android:id="@+id/chipDay"
             android:fontFamily="@font/viga"
-            app:chipBackgroundColor="@color/clock_num_light_test2"
+            app:chipBackgroundColor="@color/act_all_clock_num_light"
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
         <com.google.android.material.chip.Chip
             android:id="@+id/chipWeek"
             android:fontFamily="@font/viga"
-            app:chipBackgroundColor="@color/clock_num_light_test2"
+            app:chipBackgroundColor="@color/act_all_clock_num_light"
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
         <com.google.android.material.chip.Chip
             android:id="@+id/chipFortnight"
             android:fontFamily="@font/viga"
-            app:chipBackgroundColor="@color/clock_num_light_test2"
+            app:chipBackgroundColor="@color/act_all_clock_num_light"
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
         <com.google.android.material.chip.Chip
             android:id="@+id/chipMonth"
             android:fontFamily="@font/viga"
-            app:chipBackgroundColor="@color/clock_num_light_test2"
+            app:chipBackgroundColor="@color/act_all_clock_num_light"
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

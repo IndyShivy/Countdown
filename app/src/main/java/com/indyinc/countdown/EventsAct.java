@@ -10,9 +10,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -39,6 +36,7 @@ public class EventsAct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_events);
+        ImageView gradientBackground = findViewById(R.id.gradientBackground);
 
         //set the selected menu options as add and setup listener
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
@@ -51,25 +49,27 @@ public class EventsAct extends AppCompatActivity {
         isDarkTheme = sharedPreferences.getBoolean(IS_DARK_THEME, false);
 
         if (isDarkTheme) {
-            getWindow().setNavigationBarColor(getColor(R.color.testing2));
-            getWindow().getDecorView().setBackgroundColor(getColor(R.color.light_background));
+            getWindow().setNavigationBarColor(getColor(R.color.act_all_dark_background));
+            getWindow().getDecorView().setBackgroundColor(getColor(R.color.act_all_light_background));
+            gradientBackground.setImageResource(R.drawable.background_grad_dark);
 
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 Objects.requireNonNull(getWindow().getInsetsController()).setSystemBarsAppearance(WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS, WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
             }
-            getWindow().setNavigationBarColor(getColor(R.color.navbar_background_light));
-            getWindow().getDecorView().setBackgroundColor(getColor(R.color.main_background_light));
+            getWindow().setNavigationBarColor(getColor(R.color.act_all_navbar_background_light));
+            getWindow().getDecorView().setBackgroundColor(getColor(R.color.act_all_light_background));
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            getWindow().setStatusBarColor(getColor(R.color.main_background_light));
+            getWindow().setStatusBarColor(getColor(R.color.act_all_light_background));
+            gradientBackground.setImageResource(R.drawable.background_grad_light);
         }
 
-        ImageView imageView = findViewById(R.id.pattern);
-        Drawable drawable = imageView.getDrawable();
-        ColorMatrix colorMatrix = new ColorMatrix();
-        colorMatrix.setSaturation(0.5f); // 0.5 means half saturated. Change this value as per your need.
-        ColorMatrixColorFilter colorFilter = new ColorMatrixColorFilter(colorMatrix);
-        drawable.setColorFilter(colorFilter);
+//        ImageView imageView = findViewById(R.id.pattern);
+//        Drawable drawable = imageView.getDrawable();
+//        ColorMatrix colorMatrix = new ColorMatrix();
+//        colorMatrix.setSaturation(0.5f); // 0.5 means half saturated. Change this value as per your need.
+//        ColorMatrixColorFilter colorFilter = new ColorMatrixColorFilter(colorMatrix);
+//        drawable.setColorFilter(colorFilter);
 
 
         //set the context
