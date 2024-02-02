@@ -41,8 +41,8 @@
 
         <ImageView
             android:id="@+id/formatImage"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_gravity="center"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
@@ -50,11 +50,11 @@
 
         <ImageButton
             android:id="@+id/removeButton"
-            style="@style/buttonStyle"
+            style="@style/buttonStyleAdapter"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
-            android:background="@drawable/remove"
+            android:background="@drawable/act_events_remove_button"
             android:backgroundTint="@color/black"
             android:contentDescription="@string/remove_button"
             android:textColor="#FFFFFF" />

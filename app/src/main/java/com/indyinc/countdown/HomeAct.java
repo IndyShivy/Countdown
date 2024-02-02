@@ -1,5 +1,6 @@
 package com.indyinc.countdown;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -55,6 +56,7 @@ public class HomeAct extends AppCompatActivity {
     private CountDownTimer countDownTimer;
 
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +70,6 @@ public class HomeAct extends AppCompatActivity {
         setContentView(R.layout.act_home);
         ImageView gradientBackground = findViewById(R.id.gradientBackground);
         setViewColour(gradientBackground);
-
 
         bottomNavigationView = findViewById(R.id.navigationView);
         darkModeSwitch = findViewById(R.id.darkModeSwitch);
@@ -185,16 +186,18 @@ public class HomeAct extends AppCompatActivity {
             chipMonth.setOnClickListener(v -> startCountdown(finalDate, "Month"));
         } else {
             eventTitle.setText(R.string.Add_an_Event);
-            dfDay.setVisibility(View.GONE);
-            dfDayLabel.setVisibility(View.GONE);
-            dfMonth.setVisibility(View.VISIBLE);
-            dfMonthLabel.setVisibility(View.VISIBLE);
-            dfWeek.setVisibility(View.VISIBLE);
-            dfWeekDayLabel.setVisibility(View.VISIBLE);
-            dfFortnightWeek.setVisibility(View.VISIBLE);
-            dfFortnightWeekLabel.setVisibility(View.VISIBLE);
-            dfWeekDays.setVisibility(View.VISIBLE);
-            dfWeekWeekLabel.setVisibility(View.VISIBLE);
+            dfDay.setVisibility(View.VISIBLE);
+            dfDayLabel.setVisibility(View.VISIBLE);
+            dfMonth.setVisibility(View.GONE);
+            dfMonthLabel.setVisibility(View.GONE);
+            dfWeek.setVisibility(View.GONE);
+            dfWeekDayLabel.setVisibility(View.GONE);
+            dfFortnightWeek.setVisibility(View.GONE);
+            dfFortnightWeekLabel.setVisibility(View.GONE);
+            dfWeekDays.setVisibility(View.GONE);
+            dfWeekWeekLabel.setVisibility(View.GONE);
+            //dfWeekDayLabel.setText("FORTNIGHTS");
+            //dfFortnightWeekLabel.setText("WEEKS");
         }
     }
 
@@ -437,7 +440,7 @@ public class HomeAct extends AppCompatActivity {
     private void setViewColour(ImageView gradientBackground) {
         if (isDarkTheme) {
             //if the theme is dark
-            gradientBackground.setImageResource(R.drawable.background_grad_dark_starless);
+            gradientBackground.setImageResource(R.drawable.act_all_background_grad_dark_starless);
             getWindow().setNavigationBarColor(getColor(R.color.act_all_dark_background));
             getWindow().getDecorView().setBackgroundColor(getColor(R.color.act_all_navbar_background_dark));
         } else {
@@ -449,7 +452,7 @@ public class HomeAct extends AppCompatActivity {
             getWindow().getDecorView().setBackgroundColor(getColor(R.color.act_all_light_background));
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             getWindow().setStatusBarColor(getColor(R.color.act_all_light_background));
-            gradientBackground.setImageResource(R.drawable.background_grad_light);
+            gradientBackground.setImageResource(R.drawable.act_all_background_grad_light);
         }
     }
 
@@ -458,7 +461,7 @@ public class HomeAct extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        setViewColour((ImageView) findViewById(R.id.gradientBackground));
+        setViewColour(findViewById(R.id.gradientBackground));
     }
 
 }

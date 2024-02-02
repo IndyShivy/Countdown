@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.view.WindowInsetsController;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,7 +38,7 @@ public class CountdownAct extends AppCompatActivity {
 
     TextView dfDayLabel, dfHoursLabel, dfMinutesLabel, dfSecondsLabel;
     TextView dfWeekWeekLabel, dfWeekDayLabel, dfFortnightWeekLabel, dfMonthLabel;
-    ImageView backButton;
+    ImageButton backButton;
     TextView backButtonLabel;
     TextView sarahPhrases;
 
@@ -63,10 +64,11 @@ public class CountdownAct extends AppCompatActivity {
         boolean isDarkTheme = sharedPreferences.getBoolean(IS_DARK_THEME, false);
         ImageView gradientBackground = findViewById(R.id.gradientBackground);
 
+
         if (isDarkTheme) {
             getWindow().setNavigationBarColor(getColor(R.color.act_all_dark_background));
             getWindow().getDecorView().setBackgroundColor(getColor(R.color.act_all_light_background));
-            gradientBackground.setImageResource(R.drawable.background_grad_dark_starless);
+            gradientBackground.setImageResource(R.drawable.act_all_background_grad_dark_starless);
 
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -76,7 +78,7 @@ public class CountdownAct extends AppCompatActivity {
             getWindow().getDecorView().setBackgroundColor(getColor(R.color.act_all_light_background));
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             getWindow().setStatusBarColor(getColor(R.color.act_all_light_background));
-            gradientBackground.setImageResource(R.drawable.background_grad_light);
+            gradientBackground.setImageResource(R.drawable.act_all_background_grad_light);
         }
 
         //fill myWords

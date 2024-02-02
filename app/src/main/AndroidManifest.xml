@@ -11,20 +11,29 @@
         android:roundIcon="@mipmap/countdown_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Base.Theme.Countdown"
+        android:screenOrientation="portrait"
         android:enableOnBackInvokedCallback="true"
         tools:targetApi="31"
         tools:ignore="UnusedAttribute">
         <activity
             android:name=".CountdownAct"
-            android:exported="false" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".AddAct"
-            android:exported="false" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="LockedOrientationActivity"/>
         <activity
             android:name=".EventsAct"
-            android:exported="false" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="LockedOrientationActivity"/>
         <activity
             android:name=".HomeAct"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

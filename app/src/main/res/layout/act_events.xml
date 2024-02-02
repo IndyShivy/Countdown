@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/Cloud"
         android:scaleType="center"
-        android:src="@drawable/background_grad_light"
+        android:src="@drawable/act_all_background_grad_light"
         app:layout_constraintBottom_toTopOf="@+id/navigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

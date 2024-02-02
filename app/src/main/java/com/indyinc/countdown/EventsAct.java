@@ -33,9 +33,11 @@ public class EventsAct extends AppCompatActivity {
     private DateDatabase db;
     private Context context;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.act_events);
         context = this;
         ImageView gradientBackground = findViewById(R.id.gradientBackground);
@@ -51,6 +53,7 @@ public class EventsAct extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.menu_events);
         bottomNavigationView.setOnItemSelectedListener(navItemSelectedListener);
 
+
         //Get the app's theme from shared preferences then set it as the app's theme
         SharedPreferences sharedPreferences = getSharedPreferences("Storage", MODE_PRIVATE);
 
@@ -59,7 +62,7 @@ public class EventsAct extends AppCompatActivity {
         if (isDarkTheme) {
             getWindow().setNavigationBarColor(getColor(R.color.act_all_dark_background));
             getWindow().getDecorView().setBackgroundColor(getColor(R.color.act_all_light_background));
-            gradientBackground.setImageResource(R.drawable.background_grad_dark_starless);
+            gradientBackground.setImageResource(R.drawable.act_all_background_grad_dark_starless);
             calendarFoot.setImageDrawable(AppCompatResources.getDrawable(context,R.drawable.act_events_calender_shape_dark));
             pill1.setImageDrawable(AppCompatResources.getDrawable(context,R.drawable.act_events_pill_shape_dark));
             pill2.setImageDrawable(AppCompatResources.getDrawable(context,R.drawable.act_events_pill_shape_dark));
@@ -74,7 +77,7 @@ public class EventsAct extends AppCompatActivity {
             getWindow().getDecorView().setBackgroundColor(getColor(R.color.act_all_light_background));
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             getWindow().setStatusBarColor(getColor(R.color.act_all_light_background));
-            gradientBackground.setImageResource(R.drawable.background_grad_light);
+            gradientBackground.setImageResource(R.drawable.act_all_background_grad_light);
         }
 
 //        ImageView imageView = findViewById(R.id.pattern);

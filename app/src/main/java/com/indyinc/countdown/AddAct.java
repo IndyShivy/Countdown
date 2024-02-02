@@ -44,10 +44,11 @@ public class AddAct extends AppCompatActivity {
     public String date;
     public String format;
 
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint({"ClickableViewAccessibility", "SourceLockedOrientationActivity"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.act_add);
         date = "";
         format = "";
@@ -63,6 +64,7 @@ public class AddAct extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(navItemSelectedListener);
 
 
+
         //Get the app's theme from shared preferences then set it as the app's theme
         SharedPreferences sharedPreferences = getSharedPreferences("Storage", MODE_PRIVATE);
         isDarkTheme = sharedPreferences.getBoolean(IS_DARK_THEME, false);
@@ -70,10 +72,10 @@ public class AddAct extends AppCompatActivity {
         // Set the theme
         if (isDarkTheme) {
             // Set the background gradient
-            gradientBackground.setImageResource(R.drawable.background_grad_dark);
+            gradientBackground.setImageResource(R.drawable.act_add_background_grad_dark);
 
             //set the clouds and move them to the right position
-            cloudsOne.setImageResource(R.drawable.clouds_one_dark);
+            cloudsOne.setImageResource(R.drawable.act_add_clouds_one_cat_dark);
             ViewGroup.LayoutParams layoutParams = cloudsOne.getLayoutParams();
             float density = getResources().getDisplayMetrics().density;
             int extraWidth = (int) (20 * density);
@@ -83,11 +85,11 @@ public class AddAct extends AppCompatActivity {
             cloudsOne.setTranslationX(-80);
             cloudsOne.setTranslationY(30);
 
-            cloudsTwo.setImageResource(R.drawable.clouds_two_dark);
+            cloudsTwo.setImageResource(R.drawable.act_add_clouds_two_cat_dark);
             cloudsTwo.setTranslationX(170);
             cloudsTwo.setTranslationY(60);
 
-            cloudsThree.setImageResource(R.drawable.clouds_three_dark);
+            cloudsThree.setImageResource(R.drawable.act_add_clouds_three_cat_dark);
             cloudsThree.setTranslationY(40);
             formatInputLayout.setTranslationY(130);
 
@@ -100,9 +102,7 @@ public class AddAct extends AppCompatActivity {
                 getWindow().getDecorView().setBackgroundColor(getColor(R.color.act_all_light_background));
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
                 getWindow().setStatusBarColor(getColor(R.color.act_all_light_background));
-                gradientBackground.setImageResource(R.drawable.background_grad_light);
-
-
+                gradientBackground.setImageResource(R.drawable.act_all_background_grad_light);
 
         }
 
@@ -122,7 +122,7 @@ public class AddAct extends AppCompatActivity {
                     focusedView.clearFocus();
                 }
 
-                showFormatPickerDialog(eventFormatGet);
+                showFormatPickerDialog(eventFormatGet, isDarkTheme);
                 return true;
             }
             return false;
@@ -267,10 +267,14 @@ public class AddAct extends AppCompatActivity {
     }
 
     // In your activity or fragment
-    public void showFormatPickerDialog(TextInputEditText eventFormatGet) {
+    public void showFormatPickerDialog(TextInputEditText eventFormatGet, boolean isDarkTheme) {
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.act_add_format_picker);
+        if (isDarkTheme) {
+            dialog.setContentView(R.layout.act_add_format_picker_dark);
+        } else {
+            dialog.setContentView(R.layout.act_add_format_picker_light);
+        }
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         Button dayButton = dialog.findViewById(R.id.dayButton);

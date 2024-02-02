@@ -59,16 +59,16 @@ public class EventsAdapt extends RecyclerView.Adapter<EventsAdapt.ViewHolder> {
         String format = dateItem.getFormat();
         switch (format) {
             case "Day":
-                holder.formatImage.setImageResource(R.drawable.day);
+                holder.formatImage.setImageResource(R.drawable.act_events_icon_day);
                 break;
             case "Week":
-                holder.formatImage.setImageResource(R.drawable.week);
+                holder.formatImage.setImageResource(R.drawable.act_events_icon_week);
                 break;
             case "Fortnight":
-                holder.formatImage.setImageResource(R.drawable.fortnight);
+                holder.formatImage.setImageResource(R.drawable.act_events_icon_fortnight);
                 break;
             case "Month":
-                holder.formatImage.setImageResource(R.drawable.month);
+                holder.formatImage.setImageResource(R.drawable.act_events_icon_month);
                 break;
         }
         holder.removeButton.setOnClickListener(v -> setupRemoveDialog(dateItem, position));

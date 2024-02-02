@@ -36,9 +36,12 @@
     <string name="Cloud">Cloud</string>
     <string name="Day">Day</string>
     <string name="Week">Week</string>
+    <string name="WEEKS">WEEKS</string>
     <string name="Fortnight">Fortnight</string>
+    <string name="FORTNIGHTS">FORTNIGHTS</string>
     <string name="Month">Month</string>
     <string name="calendar_footer">calendar_footer</string>
     <string name="calendar_pill">calendar_pill</string>
+    <string name="cloud_eyes_one_dark">cloud_eyes_one_dark</string>
 
 </resources>

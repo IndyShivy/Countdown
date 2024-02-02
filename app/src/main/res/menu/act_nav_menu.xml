@@ -3,16 +3,16 @@
     <item
 
         android:id="@+id/menu_home"
-        android:icon="@drawable/home"
+        android:icon="@drawable/act_system_navicon_home"
         android:title="@string/Home" />
 
     <item
         android:id="@+id/menu_add"
-        android:icon="@drawable/plus"
+        android:icon="@drawable/act_system_navicon_plus"
         android:title="@string/add" />
 
     <item
         android:id="@+id/menu_events"
-        android:icon="@drawable/event"
+        android:icon="@drawable/act_system_navicon_event"
         android:title="@string/my_events" />
 </menu>
