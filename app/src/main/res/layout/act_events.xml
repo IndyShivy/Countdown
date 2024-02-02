@@ -17,62 +17,67 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <View
-        android:id="@+id/calenderFoot"
+    <ImageView
+        android:id="@+id/calendarFoot"
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:layout_marginBottom="596dp"
-        android:background="@drawable/act_events_calender_shape"
+        android:background="@drawable/act_events_calender_shape_light"
         app:layout_constraintBottom_toTopOf="@+id/navigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.588" />
+        app:layout_constraintVertical_bias="0.588"
+        android:contentDescription="@string/calendar_footer" />
 
-    <View
+    <ImageView
+        android:id="@+id/pill1"
+        android:layout_width="25dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="56dp"
+        android:background="@drawable/act_events_pill_shape_light"
+        app:layout_constraintBottom_toBottomOf="@+id/calendarFoot"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/calendar_pill"/>
+
+    <ImageView
         android:id="@+id/pill2"
         android:layout_width="25dp"
         android:layout_height="65dp"
         android:layout_marginBottom="56dp"
-        android:background="@drawable/act_events_pill_shape"
-        app:layout_constraintBottom_toBottomOf="@+id/calenderFoot"
+        android:background="@drawable/act_events_pill_shape_light"
+        app:layout_constraintBottom_toBottomOf="@+id/calendarFoot"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.14"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.32"
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/calendar_pill" />
 
-    <View
+    <ImageView
         android:id="@+id/pill3"
         android:layout_width="25dp"
         android:layout_height="65dp"
         android:layout_marginBottom="56dp"
-        android:background="@drawable/act_events_pill_shape"
-        app:layout_constraintBottom_toBottomOf="@+id/calenderFoot"
+        android:background="@drawable/act_events_pill_shape_light"
+        app:layout_constraintBottom_toBottomOf="@+id/calendarFoot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.68"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/calendar_pill"/>
 
-    <View
+    <ImageView
         android:id="@+id/pill4"
         android:layout_width="25dp"
         android:layout_height="65dp"
         android:layout_marginBottom="56dp"
-        android:background="@drawable/act_events_pill_shape"
-        app:layout_constraintBottom_toBottomOf="@+id/calenderFoot"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.32"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <View
-        android:id="@+id/pill5"
-        android:layout_width="25dp"
-        android:layout_height="65dp"
-        android:layout_marginBottom="56dp"
-        android:background="@drawable/act_events_pill_shape"
-        app:layout_constraintBottom_toBottomOf="@+id/calenderFoot"
+        android:background="@drawable/act_events_pill_shape_light"
+        app:layout_constraintBottom_toBottomOf="@+id/calendarFoot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.86"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/calendar_pill"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"
@@ -92,7 +97,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calenderFoot"
+        app:layout_constraintTop_toBottomOf="@+id/calendarFoot"
         app:layout_constraintVertical_bias="1.0" />
 
 

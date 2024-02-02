@@ -3,6 +3,7 @@ package com.indyinc.countdown;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,7 +37,14 @@ public class EventsAct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_events);
+        context = this;
         ImageView gradientBackground = findViewById(R.id.gradientBackground);
+        ImageView calendarFoot = findViewById(R.id.calendarFoot);
+        ImageView pill1 = findViewById(R.id.pill1);
+        ImageView pill2 = findViewById(R.id.pill2);
+        ImageView pill3 = findViewById(R.id.pill3);
+        ImageView pill4 = findViewById(R.id.pill4);
+
 
         //set the selected menu options as add and setup listener
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
@@ -51,7 +59,12 @@ public class EventsAct extends AppCompatActivity {
         if (isDarkTheme) {
             getWindow().setNavigationBarColor(getColor(R.color.act_all_dark_background));
             getWindow().getDecorView().setBackgroundColor(getColor(R.color.act_all_light_background));
-            gradientBackground.setImageResource(R.drawable.background_grad_dark);
+            gradientBackground.setImageResource(R.drawable.background_grad_dark_starless);
+            calendarFoot.setImageDrawable(AppCompatResources.getDrawable(context,R.drawable.act_events_calender_shape_dark));
+            pill1.setImageDrawable(AppCompatResources.getDrawable(context,R.drawable.act_events_pill_shape_dark));
+            pill2.setImageDrawable(AppCompatResources.getDrawable(context,R.drawable.act_events_pill_shape_dark));
+            pill3.setImageDrawable(AppCompatResources.getDrawable(context,R.drawable.act_events_pill_shape_dark));
+            pill4.setImageDrawable(AppCompatResources.getDrawable(context,R.drawable.act_events_pill_shape_dark));
 
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -72,8 +85,7 @@ public class EventsAct extends AppCompatActivity {
 //        drawable.setColorFilter(colorFilter);
 
 
-        //set the context
-        context = this;
+
         db = new DateDatabase(context);
         myEventsAdapter = new EventsAdapt(new ArrayList<>(), context);
         eventsRecycler = findViewById(R.id.eventsRecycler);

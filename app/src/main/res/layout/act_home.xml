@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".HomeAct">
 
+    <ImageView
+        android:id="@+id/gradientBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/Cloud"
+        android:scaleType="center"
+        android:src="@drawable/background_grad_light"
+        app:layout_constraintBottom_toTopOf="@+id/navigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"

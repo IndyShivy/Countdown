@@ -8,6 +8,7 @@ import android.os.CountDownTimer;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowInsetsController;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
@@ -65,7 +66,8 @@ public class HomeAct extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(isDarkTheme ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
 
         setContentView(R.layout.act_home);
-        setViewColour();
+        ImageView gradientBackground = findViewById(R.id.gradientBackground);
+        setViewColour(gradientBackground);
 
 
         bottomNavigationView = findViewById(R.id.navigationView);
@@ -432,9 +434,10 @@ public class HomeAct extends AppCompatActivity {
             return false;
         }
     };
-    private void setViewColour() {
+    private void setViewColour(ImageView gradientBackground) {
         if (isDarkTheme) {
             //if the theme is dark
+            gradientBackground.setImageResource(R.drawable.background_grad_dark_starless);
             getWindow().setNavigationBarColor(getColor(R.color.act_all_dark_background));
             getWindow().getDecorView().setBackgroundColor(getColor(R.color.act_all_navbar_background_dark));
         } else {
@@ -446,6 +449,7 @@ public class HomeAct extends AppCompatActivity {
             getWindow().getDecorView().setBackgroundColor(getColor(R.color.act_all_light_background));
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             getWindow().setStatusBarColor(getColor(R.color.act_all_light_background));
+            gradientBackground.setImageResource(R.drawable.background_grad_light);
         }
     }
 
@@ -454,7 +458,7 @@ public class HomeAct extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        setViewColour();
+        setViewColour((ImageView) findViewById(R.id.gradientBackground));
     }
 
 }

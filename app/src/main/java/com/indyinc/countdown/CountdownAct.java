@@ -61,10 +61,12 @@ public class CountdownAct extends AppCompatActivity {
         //Get the app's theme from shared preferences then set it as the app's theme
         SharedPreferences sharedPreferences = getSharedPreferences("Storage", MODE_PRIVATE);
         boolean isDarkTheme = sharedPreferences.getBoolean(IS_DARK_THEME, false);
+        ImageView gradientBackground = findViewById(R.id.gradientBackground);
 
         if (isDarkTheme) {
             getWindow().setNavigationBarColor(getColor(R.color.act_all_dark_background));
             getWindow().getDecorView().setBackgroundColor(getColor(R.color.act_all_light_background));
+            gradientBackground.setImageResource(R.drawable.background_grad_dark_starless);
 
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -74,22 +76,22 @@ public class CountdownAct extends AppCompatActivity {
             getWindow().getDecorView().setBackgroundColor(getColor(R.color.act_all_light_background));
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             getWindow().setStatusBarColor(getColor(R.color.act_all_light_background));
+            gradientBackground.setImageResource(R.drawable.background_grad_light);
         }
 
         //fill myWords
         ArrayList<String> mySentences = new ArrayList<>();
-        mySentences.add("Hermoine Granger wannabe line: I'm not an owl!");
-        mySentences.add("Hermoine Granger wannabe line: It's leviosaaaa!");
+        mySentences.add("I'm not an owl!");
+        mySentences.add("It's leviosaaaa!");
         mySentences.add("Uppies! Uppies! Uppies!");
         mySentences.add("Alfoil...only Queensland calls it that Sarah...");
-        mySentences.add("What do you get when you cross a struggling artist with a missed Centrelink payment? You get what you fucking deserve!");
+        mySentences.add("What do you get when you cross a struggling artist with a missed Centrelink payment? You get what you forking deserve!");
         mySentences.add("What are you doing ya dirty stopout");
-        mySentences.add("Most used phrase: I'm super shy, super shy");
-        mySentences.add("Most controversial take: No I don't lick my dogs feet");
-        mySentences.add("Most likely to make a song from these lyrics: Take the PT! (Public Transport)");
-
-        mySentences.add("Favourite nickname: Hi pookiebear");
-        mySentences.add("Top 1 gaming moment: Struggling to jump to a tiny ledge without realising you would be jumping to the same spot you came from...You trying your best to complete a square in Alan Wake");
+        mySentences.add("I'm super shy, super shy");
+        mySentences.add("No I don't lick my dogs feet!");
+        mySentences.add("Take the PT! (Public Transport)");
+        mySentences.add("Hi pookiebear!");
+        mySentences.add("Struggling to jump to a tiny ledge without realising you would be jumping to the same spot you came from...You trying your best to complete a square in Alan Wake");
 
 
 

@@ -16,6 +16,17 @@
     <!--        android:layout_alignParentBottom="true"-->
     <!--        app:layout_constraintBottom_toBottomOf="parent"-->
     <!--        app:menu="@menu/activity_nav_menu"/>-->
+    <ImageView
+        android:id="@+id/gradientBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/Cloud"
+        android:scaleType="center"
+        android:src="@drawable/background_grad_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroup"

@@ -38,5 +38,7 @@
     <string name="Week">Week</string>
     <string name="Fortnight">Fortnight</string>
     <string name="Month">Month</string>
+    <string name="calendar_footer">calendar_footer</string>
+    <string name="calendar_pill">calendar_pill</string>
 
 </resources>
