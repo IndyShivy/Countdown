@@ -20,16 +20,16 @@ public class EventsAdapt extends RecyclerView.Adapter<EventsAdapt.ViewHolder> {
     private DateDatabase db;
     private final Context context;
     private OnItemClickListener listener;
+    private final boolean isDarkTheme;
 
 
 
-
-
-    public EventsAdapt(ArrayList<DateItem> dateItems, Context context) {
+    public EventsAdapt(ArrayList<DateItem> dateItems, Context context, Boolean isDarkTheme) {
         this.dateItems = dateItems;
         this.context = context;
         this.db = new DateDatabase(context);
         setHasStableIds(true);
+        this.isDarkTheme = isDarkTheme;
     }
 
     @NonNull
@@ -63,16 +63,28 @@ public class EventsAdapt extends RecyclerView.Adapter<EventsAdapt.ViewHolder> {
         String format = dateItem.getFormat();
         switch (format) {
             case "Day":
-                holder.formatImage.setImageResource(R.drawable.act_events_icon_day);
+                if (isDarkTheme)
+                    holder.formatImage.setImageResource(R.drawable.act_events_icon_day_dark);
+                else
+                    holder.formatImage.setImageResource(R.drawable.act_events_icon_day_light);
                 break;
             case "Week":
-                holder.formatImage.setImageResource(R.drawable.act_events_icon_week);
+                if (isDarkTheme)
+                    holder.formatImage.setImageResource(R.drawable.act_events_icon_week_dark);
+                else
+                    holder.formatImage.setImageResource(R.drawable.act_events_icon_week_light);
                 break;
             case "Fortnight":
-                holder.formatImage.setImageResource(R.drawable.act_events_icon_fortnight);
+                if (isDarkTheme)
+                    holder.formatImage.setImageResource(R.drawable.act_events_icon_fortnight_dark);
+                else
+                    holder.formatImage.setImageResource(R.drawable.act_events_icon_fortnight_light);
                 break;
             case "Month":
-                holder.formatImage.setImageResource(R.drawable.act_events_icon_month);
+                if (isDarkTheme)
+                    holder.formatImage.setImageResource(R.drawable.act_events_icon_month_dark);
+                else
+                    holder.formatImage.setImageResource(R.drawable.act_events_icon_month_light);
                 break;
         }
         holder.removeButton.setOnClickListener(v -> setupRemoveDialog(dateItem, position));

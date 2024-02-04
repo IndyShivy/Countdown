@@ -9,12 +9,14 @@
         android:id="@+id/dialog_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/viga"
         android:textSize="20sp"
         android:textStyle="bold"/>
     <TextView
         android:id="@+id/dialog_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/viga"
         android:textSize="18sp" />
 
 

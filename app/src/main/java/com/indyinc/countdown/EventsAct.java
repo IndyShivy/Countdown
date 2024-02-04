@@ -60,7 +60,7 @@ public class EventsAct extends AppCompatActivity {
         isDarkTheme = sharedPreferences.getBoolean(IS_DARK_THEME, false);
 
         if (isDarkTheme) {
-            getWindow().setNavigationBarColor(getColor(R.color.act_all_dark_background));
+            getWindow().setNavigationBarColor(getColor(R.color.act_all_navbar_background_dark));
             getWindow().getDecorView().setBackgroundColor(getColor(R.color.act_all_light_background));
             gradientBackground.setImageResource(R.drawable.act_all_background_grad_dark_starless);
             calendarFoot.setImageDrawable(AppCompatResources.getDrawable(context,R.drawable.act_events_calender_shape_dark));
@@ -90,7 +90,7 @@ public class EventsAct extends AppCompatActivity {
 
 
         db = new DateDatabase(context);
-        myEventsAdapter = new EventsAdapt(new ArrayList<>(), context);
+        myEventsAdapter = new EventsAdapt(new ArrayList<>(), context, isDarkTheme);
         eventsRecycler = findViewById(R.id.eventsRecycler);
         eventsRecycler.setAdapter(myEventsAdapter);
         eventsRecycler.setLayoutManager(new LinearLayoutManager(context));
@@ -154,7 +154,7 @@ public class EventsAct extends AppCompatActivity {
     @SuppressLint("NotifyDataSetChanged")
     public void populateRecyclerView(){
         ArrayList<DateItem> dateItems = db.getAllDates();
-        myEventsAdapter = new EventsAdapt(dateItems, context);
+        myEventsAdapter = new EventsAdapt(dateItems, context, isDarkTheme);
         eventsRecycler.setAdapter(myEventsAdapter);
         eventsRecycler.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(context));
         myEventsAdapter.notifyDataSetChanged();

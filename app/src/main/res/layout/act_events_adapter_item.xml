@@ -9,7 +9,6 @@
     app:cardCornerRadius="8dp"
     app:cardElevation="8dp">
 
-    <!-- Use RelativeLayout for better control over positioning -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -17,7 +16,7 @@
         <LinearLayout
             android:id="@+id/imageAndDateContainer"
             android:layout_width="60dp"
-            android:layout_height="match_parent"
+            android:layout_height="80dp"
             android:layout_marginStart="20dp"
             android:orientation="vertical"
             android:gravity="center_vertical"
@@ -32,12 +31,12 @@
             <TextView
                 android:id="@+id/eventDate"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:fontFamily="@font/viga"
                 style="@style/dateStyle"/>
         </LinearLayout>
 
-        <!-- This TextView is now directly within RelativeLayout for centering -->
+
         <TextView
             android:id="@+id/eventTitle"
             android:layout_toEndOf="@+id/imageAndDateContainer"
@@ -48,7 +47,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
+            style="@style/titleStyle"
             android:fontFamily="@font/viga"
             android:textStyle="bold"
             android:gravity="center" />

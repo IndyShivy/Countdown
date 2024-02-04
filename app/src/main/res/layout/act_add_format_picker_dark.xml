@@ -5,10 +5,6 @@
     android:layout_height="892dp"
     android:background="@android:color/transparent">
 
-    <!-- Add your format options here -->
-
-
-
     <ImageView
         android:id="@+id/cloud_num_one"
         android:layout_width="530dp"

@@ -66,7 +66,7 @@ public class CountdownAct extends AppCompatActivity {
 
 
         if (isDarkTheme) {
-            getWindow().setNavigationBarColor(getColor(R.color.act_all_dark_background));
+            getWindow().setNavigationBarColor(getColor(R.color.act_all_navbar_background_dark));
             getWindow().getDecorView().setBackgroundColor(getColor(R.color.act_all_light_background));
             gradientBackground.setImageResource(R.drawable.act_all_background_grad_dark_starless);
 

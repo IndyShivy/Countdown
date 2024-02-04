@@ -18,6 +18,10 @@
         <item name="backgroundTint">@color/black</item>
     </style>
 
+    <style name="titleStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="CustomTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="hintTextColor">@color/act_add_events_title_box_hint_color</item>
         <item name="boxStrokeWidth">2dp</item>

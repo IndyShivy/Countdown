@@ -43,8 +43,9 @@
     <!-- initial text = #DCE3EE -->
 
     <!--Dark Mode-->
-    <color name="act_all_dark_background">#19232f</color>
-    <color name="act_all_navbar_background_dark">#1F3143</color>
+    <color name="act_all_dark_background">#1F3143</color>
+    <color name="act_all_navbar_background_dark">#19232f</color>
+
 
     <color name="act_all_clock_label_background_dark">#292929</color>
     <color name="act_all_clock_num_dark">#15202B</color>
@@ -53,7 +54,7 @@
 
     <color name="act_add_text_colour">#8899A6</color>
 
-    <color name="act_events_item_dark">#4E4E4E</color>
+    <color name="act_events_item_dark">#181818</color>
     <color name="act_events_dialog_box_dark">#4E4E4E</color>
 
 
