@@ -135,6 +135,11 @@ public class EventsAct extends AppCompatActivity {
                 return true;
             } else if (id == R.id.menu_home) {
                 intent = new Intent(EventsAct.this, HomeAct.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                finish();
+                return true;
             } else if (id == R.id.menu_add) {
                 intent = new Intent(EventsAct.this, AddAct.class);
             }
@@ -142,6 +147,7 @@ public class EventsAct extends AppCompatActivity {
             if (intent != null) {
                 //intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 intent.putExtra(IS_DARK_THEME, isDarkTheme);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 return true;
@@ -166,6 +172,10 @@ public class EventsAct extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
         bottomNavigationView.setSelectedItemId(R.id.menu_events);
     }
+//    public void removeItem(int position) {
+//        dateItems.remove(position);
+//        notifyItemRemoved(position);
+//    }
 
 
 }

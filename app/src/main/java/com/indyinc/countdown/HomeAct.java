@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowInsetsController;
@@ -64,8 +66,8 @@ public class HomeAct extends AppCompatActivity {
         // Get the app's theme from shared preferences then set it as the app's theme
         SharedPreferences sharedPreferences = getSharedPreferences("Storage", MODE_PRIVATE);
         isDarkTheme = sharedPreferences.getBoolean(IS_DARK_THEME, false);
-        System.out.println("isDarkTheme: " + isDarkTheme);
         AppCompatDelegate.setDefaultNightMode(isDarkTheme ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
+
 
         setContentView(R.layout.act_home);
         ImageView gradientBackground = findViewById(R.id.gradientBackground);
@@ -104,9 +106,7 @@ public class HomeAct extends AppCompatActivity {
         chipWeek = findViewById(R.id.chipWeek);
         chipFortnight = findViewById(R.id.chipFortnight);
         chipMonth = findViewById(R.id.chipMonth);
-
         chipDay.setChecked(true);
-
         eventTitle = findViewById(R.id.eventTitle);
 
         //labels
@@ -199,6 +199,16 @@ public class HomeAct extends AppCompatActivity {
             //dfWeekDayLabel.setText("FORTNIGHTS");
             //dfFortnightWeekLabel.setText("WEEKS");
         }
+
+        TextView dfDay = findViewById(R.id.dfDay);
+        String numberString = dfDay.getText().toString();
+        if (numberString.length() > 2) {
+            dfDay.setTextSize(TypedValue.COMPLEX_UNIT_SP, 136);
+            dfDay.setGravity(Gravity.CENTER);
+        } else {
+            dfDay.setTextSize(TypedValue.COMPLEX_UNIT_SP, 186);
+            dfDay.setGravity(Gravity.CENTER|Gravity.TOP);
+        }
     }
 
 
@@ -231,6 +241,17 @@ public class HomeAct extends AppCompatActivity {
         String formattedHours = String.format(Locale.getDefault(), "%02d", hours);
         String formattedMinutes = String.format(Locale.getDefault(), "%02d", minutes);
         String formattedSeconds = String.format(Locale.getDefault(), "%02d", seconds);
+
+        if (formattedDays.length() >= 4) {
+            dfDay.setTextSize(TypedValue.COMPLEX_UNIT_SP, 96);
+            dfDay.setGravity(Gravity.CENTER);
+        } else if (formattedDays.length() >= 3) {
+            dfDay.setTextSize(TypedValue.COMPLEX_UNIT_SP, 136);
+            dfDay.setGravity(Gravity.CENTER);
+        } else {
+            dfDay.setTextSize(TypedValue.COMPLEX_UNIT_SP, 186);
+            dfDay.setGravity(Gravity.CENTER|Gravity.TOP);
+        }
 
         //set all textview to be visible
         dfDay.setVisibility(View.VISIBLE);

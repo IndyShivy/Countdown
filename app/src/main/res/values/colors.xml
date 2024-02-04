@@ -35,7 +35,7 @@
 
     <color name="act_events_item_light">#ECF7FD</color>
     <color name="act_events_remove_button">#B4B5B6</color>
-    <color name="act_events_remove_dialog_box_light">#4E4E4E</color>
+    <color name="act_events_remove_dialog_box_light">#FFFFFFFF</color>
 
 
 

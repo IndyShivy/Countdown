@@ -108,6 +108,8 @@ public class EventsAdapt extends RecyclerView.Adapter<EventsAdapt.ViewHolder> {
                     db.deleteEvent(dateItem);
                     dateItems.remove(position);
                     notifyItemRemoved(position);
+                    notifyItemRangeChanged(position, dateItems.size());
+
                 })
                 .setNegativeButton("No", null)
                 .show();

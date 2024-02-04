@@ -19,5 +19,4 @@
         android:fontFamily="@font/viga"
         android:textSize="18sp" />
 
-
 </LinearLayout>

@@ -98,6 +98,7 @@
         android:layout_width="52dp"
         android:layout_height="52dp"
         android:background="@drawable/act_countdown_back_button"
+        style="@style/backButtonStyle"
         android:contentDescription="@string/back_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

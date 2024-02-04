@@ -80,6 +80,10 @@
         <item name="android:textColor">@color/act_add_text_colour</item>
     </style>
 
+    <style name="backButtonStyle" parent="Widget.AppCompat.ImageButton">
+        <item name="backgroundTint">@color/act_add_text_colour</item>
+    </style>
+
 
 
 </resources>

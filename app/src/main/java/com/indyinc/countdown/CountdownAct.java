@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowInsetsController;
 import android.widget.ImageButton;
@@ -185,6 +187,17 @@ public class CountdownAct extends AppCompatActivity {
 
         }
 
+        TextView dfDay = findViewById(R.id.dfDay);
+        String numberString = dfDay.getText().toString();
+        if (numberString.length() > 2) {
+            dfDay.setTextSize(TypedValue.COMPLEX_UNIT_SP, 136);
+            dfDay.setGravity(Gravity.CENTER);
+        } else {
+            dfDay.setTextSize(TypedValue.COMPLEX_UNIT_SP, 186);
+            dfDay.setGravity(Gravity.CENTER|Gravity.TOP);
+        }
+
+
 
 
         chipDay.setOnClickListener(v -> startCountdown(date, "Day"));
@@ -251,6 +264,17 @@ public class CountdownAct extends AppCompatActivity {
         String formattedMinutes = String.format(Locale.getDefault(), "%02d", minutes);
         String formattedSeconds = String.format(Locale.getDefault(), "%02d", seconds);
 
+        if (formattedDays.length() >= 4) {
+            dfDay.setTextSize(TypedValue.COMPLEX_UNIT_SP, 96);
+            dfDay.setGravity(Gravity.CENTER);
+        } else if (formattedDays.length() >= 3) {
+            dfDay.setTextSize(TypedValue.COMPLEX_UNIT_SP, 136);
+            dfDay.setGravity(Gravity.CENTER);
+        } else {
+            dfDay.setTextSize(TypedValue.COMPLEX_UNIT_SP, 186);
+            dfDay.setGravity(Gravity.CENTER|Gravity.TOP);
+        }
+
         //set all textview to be visible
         dfDay.setVisibility(View.VISIBLE);
         dfDayLabel.setVisibility(View.VISIBLE);
@@ -270,8 +294,11 @@ public class CountdownAct extends AppCompatActivity {
         dfMonthLabel.setVisibility(View.VISIBLE);
 
 
+
+
         switch (format) {
             case "Day":
+
                 dfDay.setText(formattedDays);
                 dfHours.setText(formattedHours);
                 dfMinutes.setText(formattedMinutes);
@@ -299,8 +326,6 @@ public class CountdownAct extends AppCompatActivity {
                 dfFortnightWeekLabel.setVisibility(View.GONE);
                 dfWeekDays.setVisibility(View.GONE);
                 dfWeekWeekLabel.setVisibility(View.GONE);
-
-
                 break;
             case "Week":
                 //set the labels for the week format

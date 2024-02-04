@@ -179,7 +179,8 @@ public class AddAct extends AppCompatActivity {
                 Toast.makeText(AddAct.this, "Please select a format", Toast.LENGTH_SHORT).show();
             } else {
                 //have this only contain words and spaces
-                eventTitle.setText(eventTitle.getText().toString().replaceAll("[^a-zA-Z ]", ""));
+                eventTitle.setText(eventTitle.getText().toString());
+                //.replaceAll("[^a-zA-Z ]", "")
                 DateItem dateItem = new DateItem(eventTitle.getText().toString().trim(), date, format);
                 db = new DateDatabase(AddAct.this);
                 db.insertDate(dateItem);
@@ -244,12 +245,18 @@ public class AddAct extends AppCompatActivity {
             return true;
         } else if (id == R.id.menu_home) {
             intent = new Intent(AddAct.this, HomeAct.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            finish();
+            return true;
         } else if (id == R.id.menu_events) {
             intent = new Intent(AddAct.this, EventsAct.class);
         }
 
         if (intent != null) {
             intent.putExtra(IS_DARK_THEME, isDarkTheme);
+            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             return true;
