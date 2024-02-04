@@ -54,12 +54,12 @@
 
     <style name="numberStyle" parent="Widget.AppCompat.TextView">
         <item name="android:background">@color/act_all_clock_num_dark</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/act_all_clock_Label_text_dark</item>
     </style>
 
     <style name="labelStyle" parent="Widget.AppCompat.TextView">
         <item name="android:background">@color/act_all_clock_label_background_dark</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/act_all_clock_Label_text_dark</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -69,6 +69,10 @@
 
     <style name="cardStyle" parent="Widget.MaterialComponents.CardView">
         <item name="cardBackgroundColor">@color/act_events_item_dark</item>
+    </style>
+
+    <style name="dateStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/act_add_text_colour</item>
     </style>
 
 

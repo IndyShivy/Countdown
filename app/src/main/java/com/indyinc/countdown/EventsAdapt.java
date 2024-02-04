@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -53,7 +54,10 @@ public class EventsAdapt extends RecyclerView.Adapter<EventsAdapt.ViewHolder> {
         DateItem dateItem = dateItems.get(position);
         holder.bind(dateItem, listener);
         holder.eventTitleTextView.setText(dateItem.getTitle());
-        holder.dateTextView.setText(dateItem.getDate());
+        String date = dateItem.getDate();
+        //date will be : 24/12/2024, remove the 20 from 2024
+        date = date.substring(0, 6) + date.substring(8);
+        holder.dateTextView.setText(date);
 
         // Set the image based on the format
         String format = dateItem.getFormat();
@@ -81,9 +85,11 @@ public class EventsAdapt extends RecyclerView.Adapter<EventsAdapt.ViewHolder> {
         View dialogView = backupInflate.inflate(R.layout.act_events_alert_dialog, null);
         builder.setView(dialogView);
         TextView title = dialogView.findViewById(R.id.dialog_title);
-        String titleSetter = "Are you sure you want to remove:\n";
+        String titleSetter = "Remove Event:\n";
         title.setText(titleSetter);
+        title.setTextColor((ContextCompat.getColor(context, R.color.black)));
         TextView message = dialogView.findViewById(R.id.dialog_message);
+        message.setTextColor((ContextCompat.getColor(context, R.color.black)));
         String textSetter = "\"" + eventTitle + "\"";
         message.setText(textSetter);
         builder.setPositiveButton("Yes", (dialog, which) -> {

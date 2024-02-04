@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/calendar_header"/> <!-- Change this to your desired color -->
+    <solid android:color="@color/act_all_navbar_background_light"/> <!-- Change this to your desired color -->
     <corners
         android:topLeftRadius="30dp"
         android:topRightRadius="30dp"

@@ -1,62 +1,69 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardView"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="80dp"
     android:layout_margin="8dp"
     style="@style/cardStyle"
     app:cardCornerRadius="8dp"
     app:cardElevation="8dp">
 
-    <LinearLayout
-        android:layout_width="359dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:orientation="horizontal"
-        android:padding="8dp">
+    <!-- Use RelativeLayout for better control over positioning -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="105dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:id="@+id/imageAndDateContainer"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            tools:ignore="UseCompoundDrawables">
 
-            <TextView
-                android:id="@+id/eventTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="80dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/black"
-                android:fontFamily="@font/viga"
-                android:textStyle="bold"
-                android:paddingBottom="10dp"/>
+            <ImageView
+                android:id="@+id/formatImage"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:contentDescription="@string/format_image" />
 
             <TextView
                 android:id="@+id/eventDate"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/viga"
-                android:textColor="@color/calendar_header" />
+                style="@style/dateStyle"/>
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/formatImage"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
-            android:contentDescription="@string/format_image" />
+        <!-- This TextView is now directly within RelativeLayout for centering -->
+        <TextView
+            android:id="@+id/eventTitle"
+            android:layout_toEndOf="@+id/imageAndDateContainer"
+            android:layout_toStartOf="@+id/removeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:fontFamily="@font/viga"
+            android:textStyle="bold"
+            android:gravity="center" />
 
         <ImageButton
             android:id="@+id/removeButton"
             style="@style/buttonStyleAdapter"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_gravity="center"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:layout_centerVertical="true"
             android:background="@drawable/act_events_remove_button"
             android:backgroundTint="@color/black"
             android:contentDescription="@string/remove_button"
             android:textColor="#FFFFFF" />
-    </LinearLayout>
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>
