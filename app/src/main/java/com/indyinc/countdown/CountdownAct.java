@@ -23,6 +23,9 @@ import com.google.android.material.chip.ChipGroup;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -49,6 +52,7 @@ public class CountdownAct extends AppCompatActivity {
     String format;
 
     private CountDownTimer countDownTimer;
+    private String finalDate;
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -153,6 +157,7 @@ public class CountdownAct extends AppCompatActivity {
         String date = intent.getStringExtra("eventDate");
         String format = intent.getStringExtra("eventFormat");
         startCountdown(date, format);
+        finalDate = date;
 
         sarahPhrases = findViewById(R.id.sarahPhrases);
         sarahPhrases.setVisibility(View.GONE);
@@ -299,6 +304,7 @@ public class CountdownAct extends AppCompatActivity {
         switch (format) {
             case "Day":
 
+
                 dfDay.setText(formattedDays);
                 dfHours.setText(formattedHours);
                 dfMinutes.setText(formattedMinutes);
@@ -382,7 +388,7 @@ public class CountdownAct extends AppCompatActivity {
                 dfDayLabel.setVisibility(View.GONE);
                 break;
             case "Month":
-                long months = days / 30; // Assuming every month has 30 days
+                /*long months = days / 30; // Assuming every month has 30 days
                 days %= 30;
                 long fortnightsFormat = days / 14;
                 days %= 14;
@@ -407,6 +413,56 @@ public class CountdownAct extends AppCompatActivity {
                 dfMonthLabel.setText(months != 1 ? "MONTHS" : "MONTH");
                 dfWeekDayLabel.setText(fortnightsFormat != 1 ? "FORTNIGHTS" : "FORTNIGHT");
                 dfFortnightWeekLabel.setText(weeksFormat2 != 1 ? "WEEKS" : "WEEK");
+
+                dfDayLabel.setText("");
+
+                //view visibility
+                dfDay.setVisibility(View.GONE);
+                dfDayLabel.setVisibility(View.GONE);*/
+                //get the day month and year from finalDate
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate date = LocalDate.parse(finalDate, formatter);
+
+                int day = date.getDayOfMonth();
+                int month = date.getMonthValue();
+                int year = date.getYear();
+
+
+                LocalDate eventDate = LocalDate.of(year, month, day);
+                LocalDate currentDate = LocalDate.now();
+
+                long totalMonths = ChronoUnit.MONTHS.between(currentDate, eventDate);
+                LocalDate afterMonthsDate = currentDate.plusMonths(totalMonths);
+                long daysAfterMonths = ChronoUnit.DAYS.between(afterMonthsDate, eventDate);
+
+                long totalFortnightsAfterMonths = daysAfterMonths / 14; // Each fortnight has 14 days
+                long daysAfterFortnights = daysAfterMonths % 14;
+                long weeksAfterFortnights = daysAfterFortnights / 7; // Remaining weeks after accounting for full fortnights
+                long daysAfterWeeks = daysAfterFortnights % 7; // Remaining days after accounting for full weeks
+
+                System.out.println("Months left until the event: " + totalMonths);
+                System.out.println("Fortnights left after months: " + totalFortnightsAfterMonths);
+                System.out.println("Weeks left after fortnights: " + weeksAfterFortnights);
+                System.out.println("Days left after weeks: " + daysAfterWeeks);
+
+                // Setting date components
+                dfMonth.setText(String.format(Locale.getDefault(), "%02d", totalMonths));
+                dfWeek.setText(String.format(Locale.getDefault(), "%02d", totalFortnightsAfterMonths));
+                dfFortnightWeek.setText(String.format(Locale.getDefault(), "%02d", weeksAfterFortnights));
+                dfWeekDays.setText(String.format(Locale.getDefault(), "%02d", daysAfterWeeks));
+
+                // Setting time components
+                dfHours.setText(formattedHours);
+                dfMinutes.setText(formattedMinutes);
+                dfSeconds.setText(formattedSeconds);
+
+                // Setting appropriate labels
+                //set the labels for the day format
+                setTimeLabels(hours, minutes, seconds);
+                dfMonthLabel.setText(totalMonths != 1 ? "MONTHS" : "MONTH");
+                dfWeekDayLabel.setText(totalFortnightsAfterMonths != 1 ? "FORTNIGHTS" : "FORTNIGHT");
+                dfFortnightWeekLabel.setText(weeksAfterFortnights != 1 ? "WEEKS" : "WEEK");
+                dfWeekWeekLabel.setText(daysAfterWeeks != 1 ? "DAYS" : "DAY");
 
                 dfDayLabel.setText("");
 
