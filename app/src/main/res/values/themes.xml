@@ -76,4 +76,23 @@
     </style>
 
 
+    <style name="DatePickerDialogTheme" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <item name="colorAccent">@color/act_all_dark_background</item>
+        <item name="android:background">#6E937A</item>
+        <item name="android:datePickerDialogTheme">@style/MyDatePickerStyle</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/AlertDialogButtonCalendar</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/AlertDialogButtonCalendar</item>
+    </style>
+
+    <style name="AlertDialogButtonCalendar" parent="Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="MyDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
+        <item name="android:headerBackground">@color/act_all_clock_label_background_light</item>
+    </style>
+
+
+
+
 </resources>

@@ -67,8 +67,6 @@ public class HomeAct extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("Storage", MODE_PRIVATE);
         isDarkTheme = sharedPreferences.getBoolean(IS_DARK_THEME, false);
         AppCompatDelegate.setDefaultNightMode(isDarkTheme ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
-
-
         setContentView(R.layout.act_home);
         ImageView gradientBackground = findViewById(R.id.gradientBackground);
         setViewColour(gradientBackground);
@@ -484,5 +482,6 @@ public class HomeAct extends AppCompatActivity {
         super.onResume();
         setViewColour(findViewById(R.id.gradientBackground));
     }
+
 
 }
