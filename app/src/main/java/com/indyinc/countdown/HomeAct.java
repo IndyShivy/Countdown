@@ -166,6 +166,7 @@ public class HomeAct extends AppCompatActivity {
 
         //get the first date and format from the database
         ArrayList<DateItem> dateItems = db.getAllDates();
+
         //delete all dates from the db if the date is in the past
         for (DateItem dateItem : dateItems) {
             if (getMillisUntilEvent(dateItem.getDate()) < 0) {
@@ -325,7 +326,6 @@ public class HomeAct extends AppCompatActivity {
                 //set the labels for the week format
                 long weeks = days / 7;
                 days %= 7;
-                System.out.println("Days: " + days);
                 dfWeek.setText(String.format(Locale.getDefault(), "%02d", weeks));
                 dfWeekDays.setText(String.format(Locale.getDefault(), "%02d", days));
                 dfHours.setText(formattedHours);
@@ -335,7 +335,7 @@ public class HomeAct extends AppCompatActivity {
                 //set the labels for the day format
                 setTimeLabels( hours, minutes, seconds);
                 dfWeekDayLabel.setText(weeks != 1 ? "WEEKS" : "WEEK");
-                dfWeekWeekLabel.setText(weeks != 1 ? "DAYS" : "DAY");
+                dfWeekWeekLabel.setText(days != 1 ? "DAYS" : "DAY");
 
                 //remove the labels for the other formats
                 dfDayLabel.setText("");
@@ -397,11 +397,6 @@ public class HomeAct extends AppCompatActivity {
                 long daysAfterFortnights = daysAfterMonths % 14;
                 long weeksAfterFortnights = daysAfterFortnights / 7; // Remaining weeks after accounting for full fortnights
                 long daysAfterWeeks = daysAfterFortnights % 7; // Remaining days after accounting for full weeks
-
-                System.out.println("Months left until the event: " + totalMonths);
-                System.out.println("Fortnights left after months: " + totalFortnightsAfterMonths);
-                System.out.println("Weeks left after fortnights: " + weeksAfterFortnights);
-                System.out.println("Days left after weeks: " + daysAfterWeeks);
 
                 // Setting date components
                 dfMonth.setText(String.format(Locale.getDefault(), "%02d", totalMonths));
