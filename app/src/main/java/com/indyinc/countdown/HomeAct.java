@@ -28,6 +28,9 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
@@ -56,6 +59,7 @@ public class HomeAct extends AppCompatActivity {
     DateDatabase db = new DateDatabase(this);
 
     private CountDownTimer countDownTimer;
+    private String finalDate;
 
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -67,8 +71,6 @@ public class HomeAct extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("Storage", MODE_PRIVATE);
         isDarkTheme = sharedPreferences.getBoolean(IS_DARK_THEME, false);
         AppCompatDelegate.setDefaultNightMode(isDarkTheme ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
-
-
         setContentView(R.layout.act_home);
         ImageView gradientBackground = findViewById(R.id.gradientBackground);
         setViewColour(gradientBackground);
@@ -164,6 +166,7 @@ public class HomeAct extends AppCompatActivity {
 
         //get the first date and format from the database
         ArrayList<DateItem> dateItems = db.getAllDates();
+
         //delete all dates from the db if the date is in the past
         for (DateItem dateItem : dateItems) {
             if (getMillisUntilEvent(dateItem.getDate()) < 0) {
@@ -177,6 +180,7 @@ public class HomeAct extends AppCompatActivity {
             eventTitle.setText(finalTitle);
             date = dateItems.get(0).getDate();
             format = dateItems.get(0).getFormat();
+            finalDate = date;
             startCountdown(date, format);
             highlightSelectedFormat(format);
             String finalDate = date;
@@ -274,13 +278,27 @@ public class HomeAct extends AppCompatActivity {
 
         switch (format) {
             case "Day":
+                /*
+                DateTimeFormatter formatterDay = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate dateDay = LocalDate.parse(finalDate, formatterDay);
+
+                int dDay = dateDay.getDayOfMonth();
+                int dMonth = dateDay.getMonthValue();
+                int dYear = dateDay.getYear();
+
+
+                LocalDate eventDateDay = LocalDate.of(dYear, dMonth, dDay);
+                LocalDate currentDateDay = LocalDate.now();
+
+                long totalDays = ChronoUnit.DAYS.between(currentDateDay, eventDateDay);*/
+
                 dfDay.setText(formattedDays);
                 dfHours.setText(formattedHours);
                 dfMinutes.setText(formattedMinutes);
                 dfSeconds.setText(formattedSeconds);
                 dfDayLabel.setText(days != 1 ? "DAYS" : "DAY");
                 //set the labels for the day format
-                setTimeLabels( hours, minutes, seconds);
+                setTimeLabels(hours, minutes, seconds);
 
                 //remove the labels for the other formats
                 dfWeekWeekLabel.setText("");
@@ -317,7 +335,7 @@ public class HomeAct extends AppCompatActivity {
                 //set the labels for the day format
                 setTimeLabels( hours, minutes, seconds);
                 dfWeekDayLabel.setText(weeks != 1 ? "WEEKS" : "WEEK");
-                dfWeekWeekLabel.setText(weeks != 1 ? "DAYS" : "DAY");
+                dfWeekWeekLabel.setText(days != 1 ? "DAYS" : "DAY");
 
                 //remove the labels for the other formats
                 dfDayLabel.setText("");
@@ -359,19 +377,32 @@ public class HomeAct extends AppCompatActivity {
                 dfDayLabel.setVisibility(View.GONE);
                 break;
             case "Month":
-                long months = days / 30; // Assuming every month has 30 days
-                days %= 30;
-                long fortnightsFormat = days / 14;
-                days %= 14;
-                long weeksFormat2 = days / 7;
-                days %= 7;
+                //get the day month and year from finalDate
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate date = LocalDate.parse(finalDate, formatter);
+
+                int day = date.getDayOfMonth();
+                int month = date.getMonthValue();
+                int year = date.getYear();
+
+
+                LocalDate eventDate = LocalDate.of(year, month, day);
+                LocalDate currentDate = LocalDate.now();
+
+                long totalMonths = ChronoUnit.MONTHS.between(currentDate, eventDate);
+                LocalDate afterMonthsDate = currentDate.plusMonths(totalMonths);
+                long daysAfterMonths = ChronoUnit.DAYS.between(afterMonthsDate, eventDate);
+
+                long totalFortnightsAfterMonths = daysAfterMonths / 14; // Each fortnight has 14 days
+                long daysAfterFortnights = daysAfterMonths % 14;
+                long weeksAfterFortnights = daysAfterFortnights / 7; // Remaining weeks after accounting for full fortnights
+                long daysAfterWeeks = daysAfterFortnights % 7; // Remaining days after accounting for full weeks
 
                 // Setting date components
-                dfMonth.setText(String.format(Locale.getDefault(), "%02d", months));
-                dfWeek.setText(String.format(Locale.getDefault(),"%02d",fortnightsFormat));
-                dfFortnightWeek.setText(String.format(Locale.getDefault(),"%02d",weeksFormat2));
-                dfWeekDays.setText(String.format(Locale.getDefault(),"%02d",days));
-                dfWeekDays.setText(String.format(Locale.getDefault(),"%02d",days));
+                dfMonth.setText(String.format(Locale.getDefault(), "%02d", totalMonths));
+                dfWeek.setText(String.format(Locale.getDefault(), "%02d", totalFortnightsAfterMonths));
+                dfFortnightWeek.setText(String.format(Locale.getDefault(), "%02d", weeksAfterFortnights));
+                dfWeekDays.setText(String.format(Locale.getDefault(), "%02d", daysAfterWeeks));
 
                 // Setting time components
                 dfHours.setText(formattedHours);
@@ -380,10 +411,11 @@ public class HomeAct extends AppCompatActivity {
 
                 // Setting appropriate labels
                 //set the labels for the day format
-                setTimeLabels( hours, minutes, seconds);
-                dfMonthLabel.setText(months != 1 ? "MONTHS" : "MONTH");
-                dfWeekDayLabel.setText(fortnightsFormat != 1 ? "FORTNIGHTS" : "FORTNIGHT");
-                dfFortnightWeekLabel.setText(weeksFormat2 != 1 ? "WEEKS" : "WEEK");
+                setTimeLabels(hours, minutes, seconds);
+                dfMonthLabel.setText(totalMonths != 1 ? "MONTHS" : "MONTH");
+                dfWeekDayLabel.setText(totalFortnightsAfterMonths != 1 ? "FORTNIGHTS" : "FORTNIGHT");
+                dfFortnightWeekLabel.setText(weeksAfterFortnights != 1 ? "WEEKS" : "WEEK");
+                dfWeekWeekLabel.setText(daysAfterWeeks != 1 ? "DAYS" : "DAY");
 
                 dfDayLabel.setText("");
 
@@ -484,5 +516,6 @@ public class HomeAct extends AppCompatActivity {
         super.onResume();
         setViewColour(findViewById(R.id.gradientBackground));
     }
+
 
 }

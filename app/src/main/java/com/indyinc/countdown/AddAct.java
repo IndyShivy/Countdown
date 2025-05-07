@@ -148,7 +148,7 @@ public class AddAct extends AppCompatActivity {
                 int mDayOfMonth = c.get(Calendar.DAY_OF_MONTH);
 
                 // Launch Date Picker Dialog
-                DatePickerDialog datePickerDialog = new DatePickerDialog(AddAct.this,
+                DatePickerDialog datePickerDialog = new DatePickerDialog(AddAct.this,R.style.DatePickerDialogTheme,
                         (view, year, monthOfYear, dayOfMonth) -> {
                             // Format month and day to ensure two digits
                             @SuppressLint("DefaultLocale") String formattedMonth = String.format("%02d", monthOfYear + 1);
@@ -284,6 +284,11 @@ public class AddAct extends AppCompatActivity {
             dialog.setContentView(R.layout.act_add_format_picker_light);
         }
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        // Get the root view of the dialog
+        View rootView = dialog.findViewById(android.R.id.content);
+        // Set a click listener on the root view
+        rootView.setOnClickListener(v -> dialog.dismiss());
 
         Button dayButton = dialog.findViewById(R.id.dayButton);
         Button weekButton = dialog.findViewById(R.id.weekButton);
