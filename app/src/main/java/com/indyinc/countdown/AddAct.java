@@ -38,6 +38,7 @@ import android.view.ViewGroup;
 
 public class AddAct extends AppCompatActivity {
 
+    //minor change trigger
     private static final String IS_DARK_THEME = "IS_DARK_THEME";
     private boolean isDarkTheme;
     public DateDatabase db;
