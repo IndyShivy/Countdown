@@ -4,14 +4,14 @@ plugins {
 
 android {
     namespace = "com.indyinc.countdown"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.indyinc.countdown"
         minSdk = 28
-        targetSdk = 34
-        versionCode = 5
-        versionName = "1.3"
+        targetSdk = 35
+        versionCode = 7
+        versionName = "1.5"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
